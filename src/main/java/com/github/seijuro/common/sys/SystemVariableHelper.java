@@ -1,4 +1,4 @@
-package com.github.seijuro.common;
+package com.github.seijuro.common.sys;
 
 import java.util.*;
 

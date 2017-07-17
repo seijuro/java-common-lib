@@ -1,7 +1,6 @@
-package com.github.seijuro.common.reader;
+package com.github.seijuro.common.config;
 
-import com.github.seijuro.common.SystemVariableHelper;
-import com.github.seijuro.common.config.ConfigFile;
+import com.github.seijuro.common.sys.SystemVariableHelper;
 
 import java.io.*;
 
@@ -20,6 +19,11 @@ public class AppConfigReader {
      */
     static AppConfigReader instance;
 
+    /**
+     * Singleton pattern method
+     *
+     * @return singleton instance if exists. Otherwise, this methods instantiate the singleton instance & return it.
+     */
     synchronized public static AppConfigReader getInstance() {
         if (instance == null) {
             instance = new AppConfigReader();
@@ -29,6 +33,9 @@ public class AppConfigReader {
         return instance;
     }
 
+    /**
+     * Instance Propeties
+     */
     private String appConfDirath = null;
     private Map<String, ConfigFile> appConfFiles;
 
@@ -38,6 +45,16 @@ public class AppConfigReader {
     AppConfigReader() {
     }
 
+    /**
+     * 1. traverse the director you passed as parameter.
+     * 2. find & parse all 'regular' config files.
+     *
+     * [parsing rule]
+     * $config := $key '=' $value
+     *
+     *
+     * @param dir
+     */
     protected void traverseDirectory(final File dir) {
         for (final File fileEntry : dir.listFiles()) {
             if (fileEntry.isDirectory()) {
@@ -79,7 +96,7 @@ public class AppConfigReader {
             }
         }
     }
-
+    
     protected void init() {
         this.appConfDirath = SystemVariableHelper.getSystemVariables(SYS_VARIRABLE);
         this.appConfFiles = new HashMap<>();

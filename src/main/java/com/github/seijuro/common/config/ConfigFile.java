@@ -1,7 +1,7 @@
 package com.github.seijuro.common.config;
 
 
-import com.github.seijuro.common.SystemVariableHelper;
+import com.github.seijuro.common.sys.SystemVariableHelper;
 
 import java.util.*;
 import java.util.function.Consumer;
