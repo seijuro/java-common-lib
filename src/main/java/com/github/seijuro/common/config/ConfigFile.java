@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 /**
- * Created by myungjoonlee on 2017. 7. 17..
+ * Created by seijuro
  */
 public class ConfigFile {
     private final String filepath;

@@ -1,7 +1,7 @@
 package com.github.seijuro.common.config;
 
 /**
- * Created by myungjoonlee on 2017. 7. 17..
+ * Created by seijuro
  */
 public class Config {
     private final String key;

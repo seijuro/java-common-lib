@@ -8,11 +8,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by myungjoonlee on 2017. 7. 17..
+ * Created by seijuro
+ *
+ * AppConfigReader have $key-$value entry container.
+ * $key : filename, not filepath. so it doesn't allow duplicated filename.
+ * $value : configuration written in configuration file.
+ *
+ * the configuration file contains a number of configurations.
+ * At First, AppConfigReader separate each configuration using line separator.
+ * That is, One configuration must be written in one line in the configuration file.
+ * The configuration consists of key , key-value sepeartor, value.
+ * At this point, the equal makr,'=', is used for key-value separarater.
+ *
  */
 public class AppConfigReader {
     public static final String SYS_VARIRABLE = "app.conf";
-    public static final String CONF_KV_SEPARATOR = "\\s*=\\s*";
+
+    static final String CONF_KV_SEPARATOR = "\\s*=\\s*";
+    static final String CONF_COMMNET_INDICATOR = "#";
 
     /**
      * Singleton instance
@@ -69,10 +82,18 @@ public class AppConfigReader {
                     cb.setFilepath(fileEntry.getAbsolutePath());
 
                     while ((line = br.readLine()) != null) {
-                        String[] tokens = line.split(CONF_KV_SEPARATOR,2);
+                        String trimmed = line.trim();
 
-                        String key = tokens[0].trim();
-                        String value = tokens[1].trim();
+                        //  check if this line is comment.
+                        if (trimmed.startsWith(CONF_COMMNET_INDICATOR)) continue;
+
+                        String[] tokens = trimmed.split(CONF_KV_SEPARATOR,2);
+
+                        //  check if this line is valid.
+                        if (tokens.length < 2) continue;
+
+                        String key = tokens[0];
+                        String value = tokens[1];
 
                         System.out.println("key : " + key + ", value : " + value);
 
@@ -96,7 +117,11 @@ public class AppConfigReader {
             }
         }
     }
-    
+
+    /**
+     * Inistialize AppConfigReader instance.
+     * this method would be called only once after instantiating singleton instance.
+     */
     protected void init() {
         this.appConfDirath = SystemVariableHelper.getSystemVariables(SYS_VARIRABLE);
         this.appConfFiles = new HashMap<>();
