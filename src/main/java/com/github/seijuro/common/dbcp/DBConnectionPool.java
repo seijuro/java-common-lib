@@ -2,7 +2,6 @@ package com.github.seijuro.common.dbcp;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -11,15 +10,15 @@ import java.util.Map;
 /**
  * Created by seijuro
  */
-public class DatabaseManager {
+public class DBConnectionPool {
     /**
      * Singleton Instance
      */
-    static DatabaseManager instance;
+    static DBConnectionPool instance;
 
-    synchronized public static DatabaseManager getInstance() {
+    synchronized public static DBConnectionPool getInstance() {
         if (instance == null) {
-            instance = new DatabaseManager();
+            instance = new DBConnectionPool();
         }
 
         return instance;
@@ -66,7 +65,7 @@ public class DatabaseManager {
     /**
      * C"tor
      */
-    protected DatabaseManager() {
+    protected DBConnectionPool() {
         this.dataSourceMap = new HashMap<>();;
     }
 
@@ -84,7 +83,7 @@ public class DatabaseManager {
     }
 
     /**
-     * create connection 
+     * create connection
      *
      * @param url
      * @param user
