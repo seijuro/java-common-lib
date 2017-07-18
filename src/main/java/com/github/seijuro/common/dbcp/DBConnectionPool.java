@@ -83,6 +83,15 @@ public class DatabaseManager {
         return bds;
     }
 
+    /**
+     * create connection 
+     *
+     * @param url
+     * @param user
+     * @param pass
+     * @return
+     * @throws SQLException
+     */
     public Connection createConnection(String url, String user, String pass) throws SQLException {
         BasicDataSource bds = getBasicDataSource(url, user, pass);
 
