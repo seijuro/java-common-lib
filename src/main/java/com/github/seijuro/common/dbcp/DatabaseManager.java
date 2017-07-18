@@ -11,16 +11,30 @@ import java.util.Map;
 /**
  * Created by seijuro
  */
-public class DatabaseUtils {
+public class DatabaseManager {
+    /**
+     * Singleton Instance
+     */
+    static DatabaseManager instance;
+
+    synchronized public static DatabaseManager getInstance() {
+        if (instance == null) {
+            instance = new DatabaseManager();
+        }
+
+        return instance;
+    }
+
     public static class Constants {
         public static final int DEFAULT_MIN_IDLE = 5;
         public static final int DEFAULT_MAX_IDLE = 10;
         public static final int DEFAULT_MAX_PREPARED_STMT = 20;
     }
 
-    private static Map<HashKey, BasicDataSource> dataSourceMap = new HashMap<>();
-
-    public static class HashKey {
+    /**
+     * key class for HashMap
+     */
+    private static class HashKey {
         private final String url;
         private final String user;
 
@@ -44,7 +58,19 @@ public class DatabaseUtils {
         }
     }
 
-    synchronized public static BasicDataSource getBasicDataSource(String url, String user, String pass) {
+    /**
+     * Instance Property
+     */
+    private final Map<HashKey, BasicDataSource> dataSourceMap;
+
+    /**
+     * C"tor
+     */
+    protected DatabaseManager() {
+        this.dataSourceMap = new HashMap<>();;
+    }
+
+    synchronized public BasicDataSource getBasicDataSource(String url, String user, String pass) {
         HashKey hkey = new HashKey(url, user, pass);
 
         if (dataSourceMap.containsKey(hkey)) {
@@ -57,13 +83,13 @@ public class DatabaseUtils {
         return bds;
     }
 
-    public static Connection createConnection(String url, String user, String pass) throws SQLException {
+    public Connection createConnection(String url, String user, String pass) throws SQLException {
         BasicDataSource bds = getBasicDataSource(url, user, pass);
 
         return bds.getConnection();
     }
 
-    protected static BasicDataSource createDataSource(String url, String user, String pass) {
+    protected BasicDataSource createDataSource(String url, String user, String pass) {
         BasicDataSource bds = new BasicDataSource();
         bds.setUrl(url);
         bds.setUsername(user);
@@ -76,7 +102,7 @@ public class DatabaseUtils {
         return bds;
     }
 
-    synchronized public static void closeAll() {
+    synchronized public void close() {
         for (BasicDataSource bds : dataSourceMap.values()) {
             try {
                 bds.close();
