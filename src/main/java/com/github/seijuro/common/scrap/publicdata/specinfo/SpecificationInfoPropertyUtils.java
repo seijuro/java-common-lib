@@ -16,7 +16,7 @@ public class SpecificationInfoPropertyUtils {
 
             itemMap.put(SpecificationInfoProperty.Item.ORDER_INSTR_NAME, SpecificationInfoProperty.ItemCode.IC_ORDER_INSTR_NAME);
             itemMap.put(SpecificationInfoProperty.Item.DEMAND_INST_NAME, SpecificationInfoProperty.ItemCode.IC_DEMAND_INST_NAME);
-            itemMap.put(SpecificationInfoProperty.Item.ASIGN_BUDGET_AMOUNT, SpecificationInfoProperty.ItemCode.IC_ASIGN_BUDGET_AMOUNT);
+            itemMap.put(SpecificationInfoProperty.Item.ASIGN_BUDGET_AMOUNT, SpecificationInfoProperty.ItemCode.IC_ASSIGN_BUDGET_AMOUNT);
 
             itemMap.put(SpecificationInfoProperty.Item.RECEIPT_DATE, SpecificationInfoProperty.ItemCode.IC_RECEIPT_DATE);
             itemMap.put(SpecificationInfoProperty.Item.OPITION_REG_CLOSE_DATE, SpecificationInfoProperty.ItemCode.IC_OPITION_REG_CLOSE_DATE);

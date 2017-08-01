@@ -43,7 +43,7 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
 
     @Override
     protected boolean handleTagBegin(String tag) {
-        return true;
+        return false;
     }
 
     @Override

@@ -43,7 +43,7 @@ public class SpecificationInfoProperty {
 
         public static final int IC_ORDER_INSTR_NAME = CodePrefix.IC_PREFIX | 0x04;
         public static final int IC_DEMAND_INST_NAME = CodePrefix.IC_PREFIX | 0x05;
-        public static final int IC_ASIGN_BUDGET_AMOUNT = CodePrefix.IC_PREFIX | 0x06;
+        public static final int IC_ASSIGN_BUDGET_AMOUNT = CodePrefix.IC_PREFIX | 0x06;
 
         public static final int IC_RECEIPT_DATE = CodePrefix.IC_PREFIX | 0x07;
         public static final int IC_OPITION_REG_CLOSE_DATE = CodePrefix.IC_PREFIX | 0x08;

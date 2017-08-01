@@ -10,6 +10,7 @@ public class SpecificationInfo {
     private final String orderingInstName;
     private final String demandInstName;
     private final String assignBudgetAmount;
+    private final String receiptDate;
     private final String regOptionDueDate;
     private final String officalTel;
     private final String officalName;
@@ -22,6 +23,7 @@ public class SpecificationInfo {
     private final String specificationDocFileURL3;
     private final String specificationDocFileURL4;
     private final String specificationDocFileURL5;
+    private final String productDetails;
     private final String regDate;
     private final String changedDate;
     private final String bidNoticeNoList;
@@ -38,6 +40,7 @@ public class SpecificationInfo {
         this.orderingInstName = builder.orderingInstName;
         this.demandInstName = builder.demandInstName;
         this.assignBudgetAmount = builder.assignBudgetAmount;
+        this.receiptDate = builder.receiptDate;
         this.regOptionDueDate = builder.regOptionDueDate;
         this.officalTel = builder.officalTel;
         this.officalName = builder.officalName;
@@ -50,6 +53,7 @@ public class SpecificationInfo {
         this.specificationDocFileURL3 = builder.specificationDocFileURL3;
         this.specificationDocFileURL4 = builder.specificationDocFileURL4;
         this.specificationDocFileURL5 = builder.specificationDocFileURL5;
+        this.productDetails = builder.productDetails;
         this.regDate = builder.regDate;
         this.changedDate = builder.changedDate;
         this.bidNoticeNoList = builder.bidNoticeNoList;
@@ -68,6 +72,7 @@ public class SpecificationInfo {
         private String orderingInstName;
         private String demandInstName;
         private String assignBudgetAmount;
+        private String receiptDate;
         private String regOptionDueDate;
         private String officalTel;
         private String officalName;
@@ -80,6 +85,7 @@ public class SpecificationInfo {
         private String specificationDocFileURL3;
         private String specificationDocFileURL4;
         private String specificationDocFileURL5;
+        private String productDetails;
         private String regDate;
         private String changedDate;
         private String bidNoticeNoList;
@@ -120,6 +126,11 @@ public class SpecificationInfo {
 
         public Builder setAssignBudgetAmount(String amount) {
             this.assignBudgetAmount = amount;
+            return this;
+        }
+
+        public Builder setReceiptDate(String date) {
+            this.receiptDate = date;
             return this;
         }
 
@@ -180,6 +191,11 @@ public class SpecificationInfo {
 
         public Builder setSpecificationDocFileURL5(String url) {
             this.specificationDocFileURL5 = url;
+            return this;
+        }
+
+        public Builder setProductDetails(String value) {
+            this.productDetails = value;
             return this;
         }
 
