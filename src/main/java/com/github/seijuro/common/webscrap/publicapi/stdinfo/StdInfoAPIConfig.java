@@ -9,7 +9,6 @@ import java.util.Properties;
 
 public class StdInfoAPIConfig extends Properties {
     //  general
-    public static final String SERVICE_KEY = CommonProperty.Request.SERVICE_KEY;
     public static final String NUM_OF_ROWS = CommonProperty.Request.NUM_OF_ROWS;
     public static final String PAGE_NO = CommonProperty.Request.PAGE_NO;
     //  specific
@@ -26,8 +25,7 @@ public class StdInfoAPIConfig extends Properties {
     static final int DEFAULT_NUM_OF_ROWS = 10;
     static final int DEFAULT_PAGE_NO = 1;
 
-    public StdInfoAPIConfig(String serviceKey) {
-        this.setProperty(SERVICE_KEY, serviceKey);
+    public StdInfoAPIConfig() {
     }
 
     public StdInfoAPIConfig setPageSize(int size) {

@@ -54,14 +54,12 @@ public class ProductStdInfoAPIResponseParser extends PublicDataAPIResponseParser
 
     @Override
     protected void handleTagBegin(String tag) {
-        //  TODO remove ...
-        System.out.println("begin : [" + tag + "]");
+        super.handleTagBegin(tag);
     }
 
     @Override
     protected void handleTagEnd(String tag, String value) {
-        //  TODO remove ...
-        System.out.println("end : [" + tag + "], value : ["  + value + "]");
+        super.handleTagEnd(tag, value);
     }
 
 

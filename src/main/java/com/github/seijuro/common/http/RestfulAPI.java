@@ -124,9 +124,6 @@ public abstract class RestfulAPI {
             sb.append(this.encodeFunc.encode(key)).append("=").append(this.encodeFunc.encode(value));
         }
 
-        // TODO remove ...
-        System.out.println("request URL : " + sb.toString());
-
         return sb.toString();
     }
 

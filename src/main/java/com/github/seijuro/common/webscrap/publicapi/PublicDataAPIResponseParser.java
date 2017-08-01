@@ -48,9 +48,12 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
     public void endDocument() throws SAXException {
         super.endDocument();
 
-        this.errorResponse = new PublicDataAPIErrorResponse(this.reasonCode, this.errorMsg);
-        if (this.authMsg != null) {
-            this.errorResponse.setOther(CommonProperty.Error.AUTHENTICATION_MESSAGE, this.authMsg);
+        if (hasError()) {
+            this.errorResponse = new PublicDataAPIErrorResponse(this.reasonCode, this.errorMsg);
+
+            if (this.authMsg != null) {
+                this.errorResponse.setOther(CommonProperty.Error.AUTHENTICATION_MESSAGE, this.authMsg);
+            }
         }
     }
 

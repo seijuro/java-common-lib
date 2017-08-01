@@ -57,6 +57,7 @@ public abstract class XMLSAXParser extends DefaultHandler {
      */
     @Override
     public void startDocument() throws SAXException {
+        System.out.println("start document ...");
         super.startDocument();
     }
 
@@ -65,6 +66,7 @@ public abstract class XMLSAXParser extends DefaultHandler {
      */
     @Override
     public void endDocument() throws SAXException {
+        System.out.println("end document ...");
         super.endDocument();
     }
 

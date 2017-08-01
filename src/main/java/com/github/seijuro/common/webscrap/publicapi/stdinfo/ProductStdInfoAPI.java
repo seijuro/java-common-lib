@@ -1,21 +1,23 @@
 package com.github.seijuro.common.webscrap.publicapi.stdinfo;
 
-import com.github.seijuro.common.http.RestfulAPI;
-import com.github.seijuro.common.webscrap.publicapi.CommonProperty;
+import com.github.seijuro.common.webscrap.publicapi.PublicDataAPI;
 
-import java.net.URLEncoder;
 import java.util.Properties;
 
-public class ProductStdInfoAPI extends RestfulAPI {
+public class ProductStdInfoAPI extends PublicDataAPI {
     public static final String SERVICE_URL = "http://apis.data.go.kr/1230000/HrcspSsstndrdInfoService/getPublicPrcureThngInfoThng";
+
+    public static String getServiceURL() {
+        return SERVICE_URL;
+    }
 
     /**
      * C'tor
      *
-     * @param method
      * @param config
+     * @param serviceKey
      */
-    public ProductStdInfoAPI(RequestMethod method, Properties config) {
-        super(method, SERVICE_URL, config, s -> URLEncoder.encode(s, CommonProperty.Encoding));
+    public ProductStdInfoAPI(Properties config, String serviceKey) {
+        super(getServiceURL(), config, serviceKey);
     }
 }
