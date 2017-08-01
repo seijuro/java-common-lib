@@ -1,4 +1,4 @@
-package com.github.seijuro.common.webscrap.publicapi;
+package com.github.seijuro.common.scrap.publicdata;
 
 import com.github.seijuro.common.http.RestfulAPI;
 
@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class PublicDataAPI extends RestfulAPI {
     static final RequestMethod APIRequestMethod = RequestMethod.GET;
-    static final IParamEncoder ParameterEncoder = s -> URLEncoder.encode(s, CommonProperty.Encoding);
+    static final IParamEncoder ParameterEncoder = s -> URLEncoder.encode(s, PublicDataProperty.Encoding);
     static final String ServiceKey = "ServiceKey";
 
     private final String serviceKey;

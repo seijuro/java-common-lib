@@ -57,7 +57,6 @@ public abstract class XMLSAXParser extends DefaultHandler {
      */
     @Override
     public void startDocument() throws SAXException {
-        System.out.println("start document ...");
         super.startDocument();
     }
 
@@ -66,7 +65,6 @@ public abstract class XMLSAXParser extends DefaultHandler {
      */
     @Override
     public void endDocument() throws SAXException {
-        System.out.println("end document ...");
         super.endDocument();
     }
 
@@ -92,7 +90,7 @@ public abstract class XMLSAXParser extends DefaultHandler {
             ClassName = "XMLSaxParser",
             MethodName = "handleTagBegin",
             Description = "Abstract Method")
-    protected abstract void handleTagBegin(String tag);
+    protected abstract boolean handleTagBegin(String tag);
 
     /**
      *
@@ -103,7 +101,7 @@ public abstract class XMLSAXParser extends DefaultHandler {
             ClassName = "XMLSaxParser",
             MethodName = "handleTagEnd",
             Description = "Abstract Method")
-    protected abstract void handleTagEnd(String tag, String value);
+    protected abstract boolean handleTagEnd(String tag, String value);
 
     public void characters(char[] ch, int start, int length) {
         this.currentValue = new String(ch, start, length).trim();

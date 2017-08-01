@@ -1,10 +1,10 @@
-package com.github.seijuro.common.webscrap.publicapi.stdinfo;
+package com.github.seijuro.common.scrap.publicdata.specinfo.api;
 
-import com.github.seijuro.common.webscrap.publicapi.PublicDataAPI;
+import com.github.seijuro.common.scrap.publicdata.PublicDataAPI;
 
 import java.util.Properties;
 
-public class ProductStdInfoAPI extends PublicDataAPI {
+public class ProductSpecificationInfoAPI extends PublicDataAPI {
     public static final String SERVICE_URL = "http://apis.data.go.kr/1230000/HrcspSsstndrdInfoService/getPublicPrcureThngInfoThng";
 
     public static String getServiceURL() {
@@ -17,7 +17,7 @@ public class ProductStdInfoAPI extends PublicDataAPI {
      * @param config
      * @param serviceKey
      */
-    public ProductStdInfoAPI(Properties config, String serviceKey) {
+    public ProductSpecificationInfoAPI(Properties config, String serviceKey) {
         super(getServiceURL(), config, serviceKey);
     }
 }
