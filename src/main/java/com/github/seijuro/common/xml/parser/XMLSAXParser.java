@@ -37,7 +37,6 @@ public abstract class XMLSAXParser extends DefaultHandler {
      */
     private TagStack<String> tagStack = new TagStack<>();
     private String currentValue = null;
-    private int responseCode = -1;
 
     private final InputType inputType;
     private final String input;;
@@ -56,6 +55,7 @@ public abstract class XMLSAXParser extends DefaultHandler {
     /**
      * startDocuemnt
      */
+    @Override
     public void startDocument() throws SAXException {
         super.startDocument();
     }
@@ -63,14 +63,19 @@ public abstract class XMLSAXParser extends DefaultHandler {
     /**
      * endDocument
      */
-    public void endDocuemtn() throws SAXException{
+    @Override
+    public void endDocument() throws SAXException {
         super.endDocument();
     }
 
+    @Override
     public void startElement(String url, String localName, String qName, Attributes attributes) throws SAXException {
         this.tagStack.push(qName);
+
+        handleTagBegin(qName);
     }
 
+    @Override
     public void endElement(String url, String localName, String qName) throws SAXException {
         String top = this.tagStack.top();
 
@@ -99,7 +104,7 @@ public abstract class XMLSAXParser extends DefaultHandler {
     protected abstract void handleTagEnd(String tag, String value);
 
     public void characters(char[] ch, int start, int length) {
-        this.currentValue = new String(ch, start, length);
+        this.currentValue = new String(ch, start, length).trim();
     }
 
     public void parse() {

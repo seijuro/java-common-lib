@@ -1,6 +1,7 @@
-package com.github.seijuro.common.webscrap.publicapi;
+package com.github.seijuro.common.webscrap.publicapi.stdinfo;
 
 import com.github.seijuro.common.http.RestfulAPI;
+import com.github.seijuro.common.webscrap.publicapi.CommonProperty;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -8,23 +9,26 @@ import org.joda.time.format.DateTimeFormatter;
 import java.net.URLEncoder;
 import java.util.Properties;
 
-public class StandardInfoAPI extends RestfulAPI {
+public class ProductStdInfoAPI extends RestfulAPI {
     public static final String SERVICE_URL = "http://apis.data.go.kr/1230000/HrcspSsstndrdInfoService/getPublicPrcureThngInfoThng";
-    public static final String Encoding = "UTF-8";
+    public static final String Encoding = CommonProperty.Encoding;
 
     public static class Config extends Properties {
-        public static final String SERVICE_KEY = "ServiceKey";
-
-        public static final String NUM_OF_ROWS = "numOfRows";
-        public static final String PAGE_NO = "pageNo";
+        //  general
+        public static final String SERVICE_KEY = CommonProperty.Request.SERVICE_KEY;
+        public static final String NUM_OF_ROWS = CommonProperty.Request.NUM_OF_ROWS;
+        public static final String PAGE_NO = CommonProperty.Request.PAGE_NO;
+        //  specific
         public static final String INQUERY_DIV = "inqryDiv";
         public static final String INQUERY_BEGIN_DATE = "inqryBgnDt";
         public static final String INQUERY_END_DATE = "inqryEndDt";
         public static final String REGISTER_NO = "bfSpecRgstNo";
 
+        //  reserved
         static final int INQUERY_DIV_REGISTER_DATE = 1;
         static final int INQUERY_DIV_REGISTER_NO = 2;
 
+        //  default(s)
         static final int DEFAULT_NUM_OF_ROWS = 10;
         static final int DEFAULT_PAGE_NO = 1;
 
@@ -72,7 +76,7 @@ public class StandardInfoAPI extends RestfulAPI {
      * @param method
      * @param props
      */
-    public StandardInfoAPI(RequestMethod method, Properties props) {
+    public ProductStdInfoAPI(RequestMethod method, Properties props) {
         super(method, SERVICE_URL, props, s -> URLEncoder.encode(s, Encoding));
     }
 }
