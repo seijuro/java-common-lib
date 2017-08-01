@@ -1,7 +1,6 @@
 package com.github.seijuro.common.webscrap.publicapi.stdinfo;
 
 import com.github.seijuro.common.webscrap.publicapi.CommonProperty;
-import com.github.seijuro.common.webscrap.publicapi.PublicDataAPIResponse;
 import com.github.seijuro.common.webscrap.publicapi.PublicDataAPIResponseParser;
 
 public class ProductStdInfoAPIResponseParser extends PublicDataAPIResponseParser {
