@@ -1,8 +1,7 @@
-package com.github.seijuro.common.scrap.publicdata.nps.api;
+package com.github.seijuro.common.scrap.publicdata.nps.normal;
 
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPI;
-
-import java.util.Properties;
+import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
 
 public class BusinessPlaceInfoAPI extends PublicDataAPI {
     public static final String SERVICE_URL = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch";
@@ -17,7 +16,7 @@ public class BusinessPlaceInfoAPI extends PublicDataAPI {
      * @param props
      * @param serviceKey
      */
-    public BusinessPlaceInfoAPI(Properties props, String serviceKey) {
+    public BusinessPlaceInfoAPI(PublicDataConfig props, String serviceKey) {
         super(getServiceURL(), props, serviceKey);
     }
 }

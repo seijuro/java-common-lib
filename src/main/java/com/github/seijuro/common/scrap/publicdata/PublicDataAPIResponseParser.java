@@ -20,7 +20,7 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
     protected String authMsg = null;
     protected String reasonCode = null;
 
-    protected PublicDataAPIResult result = null;
+    private PublicDataAPIResult result = null;
 
     /**
      * C'tor

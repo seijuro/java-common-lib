@@ -1,8 +1,7 @@
 package com.github.seijuro.common.scrap.publicdata.specinfo;
 
-import com.github.seijuro.common.scrap.publicdata.PublicDataAPIErrorResult;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponseParser;
-import org.xml.sax.SAXException;
+import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,23 +154,14 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
     }
 
     @Override
-    public void endDocument() throws SAXException {
-        super.endDocument();
+    protected PublicDataAPIResult createResult() {
+        if (!hasError()) {
+            PublicDataAPIResult result = new SpeficiationInfoResult(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
+            result.addData(this.specificationInfos);
 
-        if (hasError()) {
-            this.result = new PublicDataAPIErrorResult(this.reasonCode, this.errorMsg, this.authMsg);
-        }
-        else {
-            SpeficiationInfoResult res = new SpeficiationInfoResult(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
-            res.setSpecificationInfos(this.specificationInfos);
-
-            this.result = res;
+            return result;
         }
 
-        //  release reference(s)
-        this.specificationInfos = null;
-        this.productStdInfoBuilder = null;
+        return super.createResult();
     }
-
-
 }

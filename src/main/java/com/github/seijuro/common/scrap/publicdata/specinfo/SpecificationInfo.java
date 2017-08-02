@@ -64,7 +64,7 @@ public class SpecificationInfo extends PublicData {
     /**
      * Builder Pattern class
      */
-    public static class Builder {
+    public static class Builder extends PublicData.Builder {
         /**
          * Instance Properties
          */

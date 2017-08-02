@@ -1,11 +1,12 @@
-package com.github.seijuro.common.scrap.publicdata.nps;
+package com.github.seijuro.common.scrap.publicdata.nps.normal;
 
-import com.github.seijuro.common.PrettyPrint;
-import com.github.seijuro.common.scrap.publicdata.PublicData;
+import com.github.seijuro.common.IPrettyPrint;
+import com.github.seijuro.common.scrap.publicdata.nps.NPSData;
+import com.github.seijuro.common.scrap.publicdata.nps.NPSProperty;
 
 import java.util.function.Consumer;
 
-public class BusinessPlaceInfo extends PublicData implements PrettyPrint {
+public class BusinessPlaceInfo extends NPSData implements IPrettyPrint {
     /**
      * Instsance Properties
      */
@@ -83,16 +84,16 @@ public class BusinessPlaceInfo extends PublicData implements PrettyPrint {
         StringBuffer sb = new StringBuffer();
 
         sb.append("business place information := \n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.ID).append(" : [").append(this.id).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.CREATED_YM).append(" : [").append(this.createdDatedYM).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.BUSINESSPLACE_NAME).append(" : [").append(this.name).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.REGISTRATION_NUMBER).append(" : [").append(this.registrationNumber).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.ADDRESS_STREET).append(" : [").append(this.addrStreet).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.STATUS_CODE).append(" : [").append(this.statusCode).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.DIVISION_CODE).append(" : [").append(this.divisionCode).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.ADDRESS_DG).append(" : [").append(this.addrCodeDG).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.ADDRESS_SGG).append(" : [").append(this.addrCodeSGG).append("]\n")
-                .append("\t").append(BusinessPlaceInfoProperty.Item.ADDRESS_EMD).append(" : [").append(this.addrCodeEMD).append("]");
+                .append("\t").append(NPSProperty.Item.Normal.ID).append(" : [").append(this.id).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.CREATED_YM).append(" : [").append(this.createdDatedYM).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.BUSINESSPLACE_NAME).append(" : [").append(this.name).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.REGISTRATION_NUMBER).append(" : [").append(this.registrationNumber).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.ADDRESS_STREET).append(" : [").append(this.addrStreet).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.STATUS_CODE).append(" : [").append(this.statusCode).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.DIVISION_CODE).append(" : [").append(this.divisionCode).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.ADDRESS_DG).append(" : [").append(this.addrCodeDG).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.ADDRESS_SGG).append(" : [").append(this.addrCodeSGG).append("]\n")
+                .append("\t").append(NPSProperty.Item.Normal.ADDRESS_EMD).append(" : [").append(this.addrCodeEMD).append("]");
 
         consumer.accept(sb.toString());
     }
@@ -100,7 +101,7 @@ public class BusinessPlaceInfo extends PublicData implements PrettyPrint {
     /**
      * Builder Pattern class
      */
-    public static class Builder {
+    public static class Builder extends NPSData.Builder {
         private String id = null;
         private String createdDatedYM = null;
         private String name = null;

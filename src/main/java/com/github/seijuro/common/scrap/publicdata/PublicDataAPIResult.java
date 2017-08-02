@@ -1,12 +1,12 @@
 package com.github.seijuro.common.scrap.publicdata;
 
-import com.github.seijuro.common.PrettyPrint;
+import com.github.seijuro.common.IPrettyPrint;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class PublicDataAPIResult implements PrettyPrint {
+public class PublicDataAPIResult implements IPrettyPrint {
     private final String resultCode;
     private final String resultMsg;
     private int pageNo;
@@ -40,7 +40,7 @@ public class PublicDataAPIResult implements PrettyPrint {
         return this.resultMsg;
     }
 
-    public int getPageNos() {
+    public int getPageNo() {
         return this.pageNo;
     }
 

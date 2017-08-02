@@ -1,8 +1,7 @@
 package com.github.seijuro.common.scrap.publicdata.specinfo.api;
 
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPI;
-
-import java.util.Properties;
+import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
 
 public class ConstructSpecificationInfoAPI extends PublicDataAPI {
     public static final String SERVICE_URL = "http://apis.data.go.kr/1230000/HrcspSsstndrdInfoService/getPublicPrcureThngInfoFrgcpt";
@@ -17,7 +16,7 @@ public class ConstructSpecificationInfoAPI extends PublicDataAPI {
      * @param props
      * @param serviceKey
      */
-    public ConstructSpecificationInfoAPI(Properties props, String serviceKey) {
+    public ConstructSpecificationInfoAPI(PublicDataConfig props, String serviceKey) {
         super(SERVICE_URL, props, serviceKey);
     }
 }

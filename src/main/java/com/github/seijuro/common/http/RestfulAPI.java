@@ -1,5 +1,7 @@
 package com.github.seijuro.common.http;
 
+import com.github.seijuro.common.IURLEncoder;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,10 +14,6 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 public abstract class RestfulAPI {
-    public interface IParamEncoder {
-        String encode(String url) throws UnsupportedEncodingException;
-    }
-
     /**
      * RequestMethod
      */
@@ -43,7 +41,7 @@ public abstract class RestfulAPI {
     protected final RequestMethod requestMethod;
     protected final String requestURL;
     protected final Properties properties;
-    protected final IParamEncoder encodeFunc;
+    protected final IURLEncoder encodeFunc;
 
     /**
      * C'tor
@@ -52,7 +50,7 @@ public abstract class RestfulAPI {
      * @param url
      * @param props
      */
-    public RestfulAPI(RequestMethod method, String url, Properties props, IParamEncoder func) {
+    public RestfulAPI(RequestMethod method, String url, Properties props, IURLEncoder func) {
         this.requestMethod = method;
         this.requestURL = url;
         this.properties = props;

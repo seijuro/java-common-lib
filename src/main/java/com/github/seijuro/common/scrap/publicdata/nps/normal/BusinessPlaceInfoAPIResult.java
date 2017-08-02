@@ -1,4 +1,4 @@
-package com.github.seijuro.common.scrap.publicdata.nps;
+package com.github.seijuro.common.scrap.publicdata.nps.normal;
 
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResult;
 
@@ -24,6 +24,6 @@ public class BusinessPlaceInfoAPIResult extends PublicDataAPIResult {
      * @param <T>
      */
     public <T extends PublicDataAPIResult> BusinessPlaceInfoAPIResult(T parent) {
-        super(parent.getResultCode(), parent.getResultMessage(), parent.getPageNos(), parent.getNumberOfRows(), parent.getTotalCount());
+        super(parent.getResultCode(), parent.getResultMessage(), parent.getPageNo(), parent.getNumberOfRows(), parent.getTotalCount());
     }
 }

@@ -1,5 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.specinfo;
 
+import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
 import com.github.seijuro.common.scrap.publicdata.PublicDataProperty;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -7,7 +8,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Properties;
 
-public class SpecificationInfoAPIConfig extends Properties {
+public class SpecificationInfoAPIConfig extends PublicDataConfig {
     //  general
     public static final String NUM_OF_ROWS = PublicDataProperty.Request.NUM_OF_ROWS;
     public static final String PAGE_NO = PublicDataProperty.Request.PAGE_NO;
@@ -26,6 +27,7 @@ public class SpecificationInfoAPIConfig extends Properties {
     static final int DEFAULT_PAGE_NO = 1;
 
     public SpecificationInfoAPIConfig() {
+        super();
     }
 
     public SpecificationInfoAPIConfig setPageSize(int size) {

@@ -1,10 +1,9 @@
-package com.github.seijuro.common.scrap.publicdata.nps;
+package com.github.seijuro.common.scrap.publicdata.nps.normal;
 
+import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
 import com.github.seijuro.common.scrap.publicdata.PublicDataProperty;
 
-import java.util.Properties;
-
-public class BusinessPlaceInfoAPIConfig extends Properties {
+public class BusinessPlaceInfoAPIConfig extends PublicDataConfig {
     //  general
     public static final String NUM_OF_ROWS = PublicDataProperty.Request.NUM_OF_ROWS;
     public static final String PAGE_NO = PublicDataProperty.Request.PAGE_NO;

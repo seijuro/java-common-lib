@@ -1,6 +1,6 @@
 package com.github.seijuro.common.xml.parser;
 
-import com.github.seijuro.common.annotation.AbstractMethod;
+import com.github.seijuro.common.annotation.MethodDescription;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -86,21 +86,14 @@ public abstract class XMLSAXParser extends DefaultHandler {
         handleTagEnd(top, this.currentValue);
     }
 
-    @AbstractMethod(
-            ClassName = "XMLSaxParser",
-            MethodName = "handleTagBegin",
-            Description = "Abstract Method")
+    @MethodDescription(
+            name = "This interface will be called when the opening tag.",
+            description = "This method return 'true', when you got done with tag. Otherwise, false")
     protected abstract boolean handleTagBegin(String tag);
 
-    /**
-     *
-     * @param tag
-     * @param value
-     */
-    @AbstractMethod(
-            ClassName = "XMLSaxParser",
-            MethodName = "handleTagEnd",
-            Description = "Abstract Method")
+    @MethodDescription(
+            name = "This interface will be called when the closing tag",
+            description = "This method return 'true', when you got done with tag. Otherwise, false")
     protected abstract boolean handleTagEnd(String tag, String value);
 
     public void characters(char[] ch, int start, int length) {

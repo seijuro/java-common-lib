@@ -1,11 +1,9 @@
-package com.github.seijuro.common.scrap.publicdata.specinfo;
+package com.github.seijuro.common.scrap.publicdata.nps.stats;
 
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResult;
 
-import java.util.List;
+public class StatsAPIResult extends PublicDataAPIResult {
 
-public class SpeficiationInfoResult extends PublicDataAPIResult {
-    private List<SpecificationInfo> infoList = null;
     /**
      * C'tor
      *
@@ -15,11 +13,11 @@ public class SpeficiationInfoResult extends PublicDataAPIResult {
      * @param $numOfRows
      * @param $totalCount
      */
-    public SpeficiationInfoResult(String $resultCode, String $resultMesg, int $pageNo, int $numOfRows, int $totalCount) {
+    public StatsAPIResult(String $resultCode, String $resultMesg, int $pageNo, int $numOfRows, int $totalCount) {
         super($resultCode, $resultMesg, $pageNo, $numOfRows, $totalCount);
     }
 
-    public <T extends PublicDataAPIResult> SpeficiationInfoResult(T parent) {
+    public <T extends PublicDataAPIResult> StatsAPIResult(T parent) {
         super(parent.getResultCode(), parent.getResultMessage(), parent.getPageNo(), parent.getNumberOfRows(), parent.getTotalCount());
     }
 }

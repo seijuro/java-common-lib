@@ -1,14 +1,14 @@
 package com.github.seijuro.common.scrap.publicdata;
 
+import com.github.seijuro.common.IURLEncoder;
 import com.github.seijuro.common.http.RestfulAPI;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Properties;
 
 public class PublicDataAPI extends RestfulAPI {
     static final RequestMethod APIRequestMethod = RequestMethod.GET;
-    static final IParamEncoder ParameterEncoder = s -> URLEncoder.encode(s, PublicDataProperty.Encoding);
+    static final IURLEncoder ParameterEncoder = s -> URLEncoder.encode(s, PublicDataProperty.Encoding);
     static final String ServiceKey = "ServiceKey";
 
     private final String serviceKey;
@@ -17,10 +17,10 @@ public class PublicDataAPI extends RestfulAPI {
      * C'tor
      *
      * @param url
-     * @param props
+     * @param config
      */
-    public PublicDataAPI(String url, Properties props, String serviceKey) {
-        super(APIRequestMethod, url, props, ParameterEncoder);
+    public PublicDataAPI(String url, PublicDataConfig config, String serviceKey) {
+        super(APIRequestMethod, url, config, ParameterEncoder);
 
         this.serviceKey = serviceKey;
     }
