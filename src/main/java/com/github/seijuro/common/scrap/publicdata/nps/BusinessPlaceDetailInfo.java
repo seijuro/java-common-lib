@@ -94,5 +94,15 @@ public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
             this.notifiedAmountOfThisMonth = amount;
             return this;
         }
+
+        /**
+         * Builder Pattern method
+         *
+         * @return
+         */
+        @Override
+        public BusinessPlaceDetailInfo build() {
+            return new BusinessPlaceDetailInfo(this);
+        }
     }
 }

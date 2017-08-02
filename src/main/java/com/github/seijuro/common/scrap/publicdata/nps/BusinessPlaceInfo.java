@@ -105,7 +105,7 @@ public class BusinessPlaceInfo {
             return this;
         }
 
-        public Builder setStreetAddress(String addr) {
+        public Builder setAddressStreet(String addr) {
             this.streetAddress = addr;
             return this;
         }
@@ -120,7 +120,7 @@ public class BusinessPlaceInfo {
             return this;
         }
 
-        public Builder setAddressCodeDB(String code) {
+        public Builder setAddressCodeDG(String code) {
             this.addrCodeDG = code;
             return this;
         }

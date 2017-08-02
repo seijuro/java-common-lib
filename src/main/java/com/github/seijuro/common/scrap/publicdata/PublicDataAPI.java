@@ -37,6 +37,11 @@ public class PublicDataAPI extends RestfulAPI {
             sb.append("&").append(ParameterEncoder.encode(ServiceKey)).append("=").append(getServiceKey());
         }
 
-        return sb.toString();
+        String url = sb.toString();
+
+        //  TODO remove ...
+        System.out.println("request URL : " + url);
+
+        return url;
     }
 }

@@ -34,6 +34,21 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
 
     @Override
     protected boolean handleTagBegin(String tag) {
+        if (PublicDataPropertyUtils.Result.contains(tag)) {
+            int code = PublicDataPropertyUtils.Result.getCode(tag, Integer.MIN_VALUE);
+
+            assert (code != Integer.MIN_VALUE);
+
+            return true;
+        }
+        else if (PublicDataPropertyUtils.Error.contains(tag)) {
+            int code = PublicDataPropertyUtils.Error.getCode(tag, Integer.MIN_VALUE);
+
+            assert (code != Integer.MIN_VALUE);
+
+            return true;
+        }
+
         return false;
     }
 
@@ -100,12 +115,20 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
     public void endDocument() throws SAXException {
         super.endDocument();
 
-        if (hasError()) {
-            this.response = new PublicDataAPIErrorResponse(this.reasonCode, this.errorMsg, this.authMsg);
+        //  default impl.
+        this.response = createResponse();
+    }
+
+    /**
+     * create response
+     * @return
+     */
+    protected PublicDataAPIResponse createResponse() {
+        if (!hasError()) {
+            return new PublicDataAPIResponse(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
         }
-        else {
-            this.response = new PublicDataAPIResponse(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
-        }
+
+        return new PublicDataAPIErrorResponse(this.reasonCode, this.errorMsg, this.authMsg);
     }
 
     public boolean hasError() {

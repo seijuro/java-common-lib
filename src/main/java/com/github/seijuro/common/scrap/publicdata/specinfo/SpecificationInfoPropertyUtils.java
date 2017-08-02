@@ -38,7 +38,7 @@ public class SpecificationInfoPropertyUtils {
         }
 
         public static boolean contains(String key) {
-            return false;
+            return itemMap.containsKey(key);
         }
 
         public static int getCode(String key, int defaultValue) {

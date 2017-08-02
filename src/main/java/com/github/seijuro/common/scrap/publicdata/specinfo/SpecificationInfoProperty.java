@@ -5,6 +5,7 @@ public class SpecificationInfoProperty {
         static final int IC_PREFIX = 0x00030000;
     }
 
+    public static final String BODY = "body";
     public static final String ITEMS = "items";
     public static final String ITEM = "item";
 

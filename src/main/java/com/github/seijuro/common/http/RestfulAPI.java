@@ -67,7 +67,13 @@ public abstract class RestfulAPI {
         return new RestfulAPIErrorResponse("Not implemented yet.");
     }
 
-    public RestfulAPIResponse requestGET() throws UnsupportedEncodingException {
+    /**
+     * request using 'GET' method
+     *
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    protected RestfulAPIResponse requestGET() throws UnsupportedEncodingException {
         StringBuffer response = new StringBuffer();
         int responseCode = -1;
 

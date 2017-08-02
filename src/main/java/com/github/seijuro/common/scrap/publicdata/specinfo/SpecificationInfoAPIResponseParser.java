@@ -37,6 +37,11 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
 
                 return true;
             }
+            else if (SpecificationInfoProperty.BODY.equals(tag)) {
+                //  do nothing
+
+                return true;
+            }
 
             return false;
         }
@@ -125,10 +130,6 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
                         break;
                 }
             }
-            else if (SpecificationInfoProperty.ITEMS.equals(tag)) {
-                //  do nothing
-                return true;
-            }
             else if (SpecificationInfoProperty.ITEM.equals(tag)) {
                 assert (this.specificationInfos != null);
                 assert (this.productStdInfoBuilder != null);
@@ -136,6 +137,14 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
                 this.specificationInfos.add(this.productStdInfoBuilder.build());
                 this.productStdInfoBuilder = null;
 
+                return true;
+            }
+            else if (SpecificationInfoProperty.ITEMS.equals(tag)) {
+                //  do nothing
+                return true;
+            }
+            else if (SpecificationInfoProperty.BODY.equals(tag)) {
+                //  do nothing
                 return true;
             }
 
