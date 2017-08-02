@@ -1,12 +1,10 @@
-package com.github.seijuro.common.scrap.publicdata.specinfo;
+package com.github.seijuro.common.scrap.publicdata.spec;
 
 import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
 import com.github.seijuro.common.scrap.publicdata.PublicDataProperty;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
-import java.util.Properties;
 
 public class SpecificationInfoAPIConfig extends PublicDataConfig {
     //  general

@@ -1,4 +1,4 @@
-package com.github.seijuro.common.scrap.publicdata.specinfo;
+package com.github.seijuro.common.scrap.publicdata.spec;
 
 import java.util.HashMap;
 import java.util.Map;

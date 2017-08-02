@@ -1,4 +1,4 @@
-package com.github.seijuro.common.scrap.publicdata.specinfo.api;
+package com.github.seijuro.common.scrap.publicdata.spec.api;
 
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPI;
 import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
@@ -13,10 +13,10 @@ public class ForeignCapitalSpecificationInfoAPI extends PublicDataAPI {
     /**
      * C'tor
      *
-     * @param props
+     * @param config
      * @param serviceKey
      */
-    public ForeignCapitalSpecificationInfoAPI(PublicDataConfig props, String serviceKey) {
-        super(SERVICE_URL, props, serviceKey);
+    public ForeignCapitalSpecificationInfoAPI(PublicDataConfig config, String serviceKey) {
+        super(SERVICE_URL, config, serviceKey);
     }
 }

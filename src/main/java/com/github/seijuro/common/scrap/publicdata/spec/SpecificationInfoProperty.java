@@ -1,4 +1,4 @@
-package com.github.seijuro.common.scrap.publicdata.specinfo;
+package com.github.seijuro.common.scrap.publicdata.spec;
 
 public class SpecificationInfoProperty {
     static class CodePrefix {

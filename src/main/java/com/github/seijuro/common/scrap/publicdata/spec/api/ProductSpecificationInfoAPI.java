@@ -1,4 +1,4 @@
-package com.github.seijuro.common.scrap.publicdata.specinfo.api;
+package com.github.seijuro.common.scrap.publicdata.spec.api;
 
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPI;
 import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
