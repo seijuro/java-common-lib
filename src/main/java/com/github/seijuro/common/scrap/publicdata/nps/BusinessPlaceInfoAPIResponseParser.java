@@ -1,8 +1,7 @@
 package com.github.seijuro.common.scrap.publicdata.nps;
 
-import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponse;
+import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResult;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponseParser;
-import org.xml.sax.SAXException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +121,15 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponsePar
     }
 
     @Override
-    protected PublicDataAPIResponse createResponse() {
-        return super.createResponse();
+    protected PublicDataAPIResult createResult() {
+        if (!hasError()) {
+            BusinessPlaceInfoAPIResult result = new BusinessPlaceInfoAPIResult(super.createResult());
+
+            result.addData(this.infoList);
+
+            return result;
+        }
+
+        return null;
     }
 }

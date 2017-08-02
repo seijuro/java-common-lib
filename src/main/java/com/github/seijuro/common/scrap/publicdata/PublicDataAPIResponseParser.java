@@ -7,7 +7,7 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
     /**
      * Instance Properties
      */
-    //  response
+    //  result
     protected String resultCode = null;
     protected String resultMsg = null;
     protected int numberOfRows = Integer.MIN_VALUE;
@@ -20,7 +20,7 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
     protected String authMsg = null;
     protected String reasonCode = null;
 
-    protected PublicDataAPIResponse response = null;
+    protected PublicDataAPIResult result = null;
 
     /**
      * C'tor
@@ -116,26 +116,26 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
         super.endDocument();
 
         //  default impl.
-        this.response = createResponse();
+        this.result = createResult();
     }
 
     /**
-     * create response
+     * create result
      * @return
      */
-    protected PublicDataAPIResponse createResponse() {
+    protected PublicDataAPIResult createResult() {
         if (!hasError()) {
-            return new PublicDataAPIResponse(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
+            return new PublicDataAPIResult(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
         }
 
-        return new PublicDataAPIErrorResponse(this.reasonCode, this.errorMsg, this.authMsg);
+        return new PublicDataAPIErrorResult(this.reasonCode, this.errorMsg, this.authMsg);
     }
 
     public boolean hasError() {
         return this.hasError;
     }
 
-    public PublicDataAPIResponse getResponse() {
-        return this.response;
+    public PublicDataAPIResult getResult() {
+        return this.result;
     }
 }

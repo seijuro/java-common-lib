@@ -33,9 +33,8 @@ public class PublicDataAPI extends RestfulAPI {
     protected String createRequestGETURL() throws UnsupportedEncodingException {
         StringBuffer sb = new StringBuffer(super.createRequestGETURL());
 
-        if (this.properties.size() > 0) {
-            sb.append("&").append(ParameterEncoder.encode(ServiceKey)).append("=").append(getServiceKey());
-        }
+        sb.append((this.properties.size() > 0) ? "&" : "?");
+        sb.append(ParameterEncoder.encode(ServiceKey)).append("=").append(getServiceKey());
 
         String url = sb.toString();
 

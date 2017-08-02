@@ -1,6 +1,8 @@
 package com.github.seijuro.common.scrap.publicdata.specinfo;
 
-public class SpecificationInfo {
+import com.github.seijuro.common.scrap.publicdata.PublicData;
+
+public class SpecificationInfo extends PublicData {
     /**
      * Instance Properties
      */

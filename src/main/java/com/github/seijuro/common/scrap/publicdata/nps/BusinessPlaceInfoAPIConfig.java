@@ -62,7 +62,7 @@ public class BusinessPlaceInfoAPIConfig extends Properties {
     }
 
     public BusinessPlaceInfoAPIConfig setDivisionCode(DivisionCode code) {
-        this.setProperty(REGISTRATION_NUMBER, code.toCodeString());
+        this.setProperty(DIVISION_CODE, code.toCodeString());
 
         return this;
     }

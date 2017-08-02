@@ -2,12 +2,12 @@ package com.github.seijuro.common.scrap.publicdata;
 
 import java.util.function.Consumer;
 
-public class PublicDataAPIErrorResponse extends PublicDataAPIResponse {
+public class PublicDataAPIErrorResult extends PublicDataAPIResult {
     private final String reasonCode;
     private final String errorMessage;
     private final String authenticationMsg;
 
-    public PublicDataAPIErrorResponse(String code, String msg, String authMsg) {
+    public PublicDataAPIErrorResult(String code, String msg, String authMsg) {
         super(null, null, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
 
         this.reasonCode = code;

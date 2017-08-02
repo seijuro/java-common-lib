@@ -1,11 +1,19 @@
 package com.github.seijuro.common.scrap.publicdata.nps;
 
-public class BusinessPlaceInfo {
+import com.github.seijuro.common.PrettyPrint;
+import com.github.seijuro.common.scrap.publicdata.PublicData;
+
+import java.util.function.Consumer;
+
+public class BusinessPlaceInfo extends PublicData implements PrettyPrint {
+    /**
+     * Instsance Properties
+     */
     private final String id;
     private final String createdDatedYM;
     private final String name;
     private final String registrationNumber;
-    private final String streetAddress;
+    private final String addrStreet;
     private final String statusCode;
     private final String divisionCode;
     private final String addrCodeDG;
@@ -22,7 +30,7 @@ public class BusinessPlaceInfo {
         this.createdDatedYM = builder.createdDatedYM;
         this.name = builder.name;
         this.registrationNumber = builder.registrationNumber;
-        this.streetAddress = builder.streetAddress;
+        this.addrStreet = builder.addrStreet;
         this.statusCode = builder.statusCode;
         this.divisionCode = builder.divisionCode;
         this.addrCodeDG = builder.addrCodeDG;
@@ -47,7 +55,7 @@ public class BusinessPlaceInfo {
     }
 
     public String getStreetAddress(String addr) {
-        return this.streetAddress;
+        return this.addrStreet;
     }
 
     public String getStatusCode(String code) {
@@ -70,6 +78,25 @@ public class BusinessPlaceInfo {
         return this.addrCodeEMD;
     }
 
+    @Override
+    public void prettyPrint(Consumer<String> consumer) {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("business place information := \n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.ID).append(" : [").append(this.id).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.CREATED_YM).append(" : [").append(this.createdDatedYM).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.BUSINESSPLACE_NAME).append(" : [").append(this.name).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.REGISTRATION_NUMBER).append(" : [").append(this.registrationNumber).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.ADDRESS_STREET).append(" : [").append(this.addrStreet).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.STATUS_CODE).append(" : [").append(this.statusCode).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.DIVISION_CODE).append(" : [").append(this.divisionCode).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.ADDRESS_DG).append(" : [").append(this.addrCodeDG).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.ADDRESS_SGG).append(" : [").append(this.addrCodeSGG).append("]\n")
+                .append("\t").append(BusinessPlaceInfoProperty.Item.ADDRESS_EMD).append(" : [").append(this.addrCodeEMD).append("]");
+
+        consumer.accept(sb.toString());
+    }
+
     /**
      * Builder Pattern class
      */
@@ -78,7 +105,7 @@ public class BusinessPlaceInfo {
         private String createdDatedYM = null;
         private String name = null;
         private String registrationNumber = null;
-        private String streetAddress = null;
+        private String addrStreet = null;
         private String statusCode = null;
         private String divisionCode = null;
         private String addrCodeDG = null;
@@ -106,7 +133,7 @@ public class BusinessPlaceInfo {
         }
 
         public Builder setAddressStreet(String addr) {
-            this.streetAddress = addr;
+            this.addrStreet = addr;
             return this;
         }
 

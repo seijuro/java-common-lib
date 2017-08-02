@@ -1,6 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.specinfo;
 
-import com.github.seijuro.common.scrap.publicdata.PublicDataAPIErrorResponse;
+import com.github.seijuro.common.scrap.publicdata.PublicDataAPIErrorResult;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponseParser;
 import org.xml.sax.SAXException;
 
@@ -159,13 +159,13 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
         super.endDocument();
 
         if (hasError()) {
-            this.response = new PublicDataAPIErrorResponse(this.reasonCode, this.errorMsg, this.authMsg);
+            this.result = new PublicDataAPIErrorResult(this.reasonCode, this.errorMsg, this.authMsg);
         }
         else {
-            SpeficiationInfoResponse res = new SpeficiationInfoResponse(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
+            SpeficiationInfoResult res = new SpeficiationInfoResult(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
             res.setSpecificationInfos(this.specificationInfos);
 
-            this.response = res;
+            this.result = res;
         }
 
         //  release reference(s)
