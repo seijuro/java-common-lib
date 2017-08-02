@@ -4,15 +4,6 @@ import com.github.seijuro.common.xml.parser.XMLSAXParser;
 import org.xml.sax.SAXException;
 
 public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
-    //  result
-    public static final String RESULT_CODE = PublicDataProperty.Result.RESULT_CODE;
-    public static final String RESULT_MESSAGE = PublicDataProperty.Result.RESULT_MESSAGE;
-
-    //  page
-    public static final String NUM_OF_ROWS = PublicDataProperty.Result.NUM_OF_ROWS;
-    public static final String PAGE_NO = PublicDataProperty.Result.PAGE_NO;
-    public static final String TOTAL_COUNT = PublicDataProperty.Result.TOTAL_COUNT;
-
     /**
      * Instance Properties
      */
