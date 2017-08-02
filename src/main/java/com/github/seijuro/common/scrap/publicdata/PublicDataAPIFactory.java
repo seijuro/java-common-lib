@@ -14,10 +14,10 @@ public class PublicDataAPIFactory {
         NPS_BUSINESS_PLACE_DETAUL,
         NPS_STATS,
 
-        CONSTRUCT_SPEC,
-        FOREIGNCAPITAL_SPEC,
-        PRODUCT_SPEC,
-        SERVICE_SPEC;
+        SPEC_CONSTRUCT,
+        SPEC_FOREIGNCAPITAL,
+        SPEC_PRODUCT,
+        SPEC_SERVICE;
     }
 
     public static PublicDataAPI create(Type type, PublicDataConfig config, String serviceKey) throws PublicDataException {
@@ -30,16 +30,16 @@ public class PublicDataAPIFactory {
         else if (type == Type.NPS_STATS) {
             return new StatsAPI(config, serviceKey);
         }
-        else if (type == Type.CONSTRUCT_SPEC) {
+        else if (type == Type.SPEC_CONSTRUCT) {
             return new ConstructSpecificationInfoAPI(config, serviceKey);
         }
-        else if (type == Type.FOREIGNCAPITAL_SPEC) {
+        else if (type == Type.SPEC_FOREIGNCAPITAL) {
             return new ForeignCapitalSpecificationInfoAPI(config, serviceKey);
         }
-        else if (type == Type.PRODUCT_SPEC) {
+        else if (type == Type.SPEC_PRODUCT) {
             return new ProductSpecificationInfoAPI(config, serviceKey);
         }
-        else if (type == Type.SERVICE_SPEC) {
+        else if (type == Type.SPEC_SERVICE) {
             return new ServiceSpecificationInfoAPI(config, serviceKey);
         }
 
