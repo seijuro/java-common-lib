@@ -29,22 +29,6 @@ public class BusinessPlaceDetailInfoAPIResponseParser extends BusinessPlaceInfoA
             if (NPSPropertyUtils.Item.contains(tag)) {
                 return true;
             }
-            else if (NPSProperty.ITEM.equals(tag)) {
-                //  create builder object
-                this.dataBuilder = new BusinessPlaceDetailInfo.Builder();
-
-                return true;
-            }
-            else if (NPSProperty.ITEMS.equals(tag)) {
-                //  create container
-                this.dataList = new ArrayList<>();
-
-                return true;
-            }
-            else if (NPSProperty.BODY.equals(tag)) {
-                // do nothing
-                return true;
-            }
         }
 
         return false;

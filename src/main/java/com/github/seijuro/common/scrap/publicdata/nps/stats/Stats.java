@@ -34,6 +34,9 @@ public class Stats extends NPSData implements IPrettyPrint {
         consumer.accept(sb.toString());
     }
 
+    /**
+     * Builder Pattern class
+     */
     public static class Builder extends NPSData.Builder {
         /**
          * Instance Properties
