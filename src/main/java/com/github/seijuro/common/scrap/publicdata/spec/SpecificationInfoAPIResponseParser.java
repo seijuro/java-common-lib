@@ -1,12 +1,12 @@
 package com.github.seijuro.common.scrap.publicdata.spec;
 
-import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponseParser;
+import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponseXMLParser;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponseParser {
+public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponseXMLParser {
     /**
      * Instance Properties
      */
@@ -163,5 +163,10 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
         }
 
         return super.createResult();
+    }
+
+    @Override
+    public SpeficiationInfoResult getResult() {
+        return (SpeficiationInfoResult)super.getResult();
     }
 }

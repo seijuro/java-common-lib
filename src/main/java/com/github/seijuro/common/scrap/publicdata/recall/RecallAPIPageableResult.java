@@ -1,21 +1,31 @@
 package com.github.seijuro.common.scrap.publicdata.recall;
 
-import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResult;
 import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class RecallAPIResult extends PublicDataAPIResult {
+@ToString
+public class RecallAPIPageableResult extends RecallAPIResult {
     /**
      * Instance Properties
      */
     @Getter(AccessLevel.PUBLIC)
     private final Boolean enabled;
+    @Getter(AccessLevel.PUBLIC)
+    private final Integer number;
+    @Getter(AccessLevel.PUBLIC)
+    private final Integer size;
+    @Getter(AccessLevel.PUBLIC)
+    private final Integer numberOfElements;
+    @Getter(AccessLevel.PUBLIC)
+    private final Integer totalElements;
     @Getter(AccessLevel.PUBLIC)
     private final Integer totalPages;
     @Getter(AccessLevel.PUBLIC)
@@ -36,16 +46,32 @@ public class RecallAPIResult extends PublicDataAPIResult {
     private final Integer previousPage;
     @Getter(AccessLevel.PUBLIC)
     private final Integer nextPage;
+    @Getter(AccessLevel.PUBLIC)
+    private final String sort;
+    @Getter(AccessLevel.PUBLIC)
+    private final String status;
+    @Getter(AccessLevel.PUBLIC)
+    private final Integer pageNumber;
+    @Getter(AccessLevel.PUBLIC)
+    private final Integer pageSize;
+    @Getter(AccessLevel.PUBLIC)
+    private final Boolean firstPage;
+    @Getter(AccessLevel.PUBLIC)
+    private final Boolean lastPage;
 
     /**
      * C'tor
      *
      * @param builder
      */
-    protected RecallAPIResult(Builder builder) {
-        super(null, null, builder.number, builder.numOfElements, builder.totalElements);
+    protected RecallAPIPageableResult(Builder builder) {
+        super(builder.status, "", builder.pageNumber, builder.pageSize, builder.totalElements);
 
         this.enabled = builder.enabled;
+        this.number = builder.number;
+        this.size = builder.size;
+        this.numberOfElements = builder.numOfElements;
+        this.totalElements = builder.totalElements;
         this.totalPages = builder.totalPages;
         this.hasPreviousPage = builder.hasPreviousPage;
         this.hasNextPage = builder.hasNextPage;
@@ -56,8 +82,14 @@ public class RecallAPIResult extends PublicDataAPIResult {
         this.endPage = builder.endPage;
         this.previousPage = builder.previousPage;
         this.nextPage = builder.nextPage;
+        this.sort = builder.sort;
+        this.status = builder.status;
+        this.pageNumber = builder.pageNumber;
+        this.pageSize = builder.pageSize;
+        this.firstPage = builder.firstPage;
+        this.lastPage = builder.lastPage;
 
-        addData(builder.content);
+        addData(builder.getContents());
     }
 
     @Override
@@ -89,63 +121,86 @@ public class RecallAPIResult extends PublicDataAPIResult {
     /**
      * Builder Pattern method.
      */
+    @ToString
     public static class Builder {
-        @Getter(AccessLevel.PUBLIC)
+        /**
+         * Instance Properties
+         */
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.ENABLE)
         private Boolean enabled;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.NUMBER)
         private Integer number;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.SIZE)
         private Integer size;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.TOTAL_PAGES)
         private Integer totalPages;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.NUMBER_OF_ELEMENTS)
         private Integer numOfElements;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.TOTAL_ELEMENTS)
         private Integer totalElements;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.HAS_PREVIOUS_PAGE)
         private Boolean hasPreviousPage;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.HAS_NEXT_PAGE)
         private Boolean hasNextPage;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.IS_FIRST_PAGE)
         private Boolean isFirstPage;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.IS_LAST_PAGE)
         private Boolean isLastPage;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.HAS_CONTENTS)
         private Boolean hasContent;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.BEGIN_PAGE)
         private Integer beginPage;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.END_PAGE)
         private Integer endPage;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.PREVIOUS_PAGE)
         private Integer previousPage;
-        @Getter(AccessLevel.PUBLIC)
+        @Setter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.NEXT_PAGE)
         private Integer nextPage;
+        @Setter(AccessLevel.PUBLIC)
+        @SerializedName(RecallProperty.SORT)
+        private String sort;
+        @Setter(AccessLevel.PUBLIC)
+        @SerializedName(RecallProperty.STATUS)
+        private String status;
+        @Setter(AccessLevel.PUBLIC)
+        @SerializedName(RecallProperty.PAGE_NUMBER)
+        private Integer pageNumber;
+        @Setter(AccessLevel.PUBLIC)
+        @SerializedName(RecallProperty.PAGE_SIZE)
+        private Integer pageSize;
+        @Setter(AccessLevel.PUBLIC)
+        @SerializedName(RecallProperty.FIRST_PAGE)
+        private Boolean firstPage;
+        @Setter(AccessLevel.PUBLIC)
+        @SerializedName(RecallProperty.LAST_PAGE)
+        private Boolean lastPage;
+        @Setter(AccessLevel.PUBLIC)
         @Getter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.CONTENT)
-        private ArrayList<Recall> content;
+        private ArrayList<Recall> contents;
 
         /**
          * Builder pattern method
          * @return
          */
         @Test
-        public RecallAPIResult build() {
-            return new RecallAPIResult(this);
+        public RecallAPIPageableResult build() {
+            return new RecallAPIPageableResult(this);
         }
     }
 }

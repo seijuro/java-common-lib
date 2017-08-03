@@ -20,6 +20,35 @@ public class RecallProperty {
     public static final String PREVIOUS_PAGE = "previousPage";
     public static final String NEXT_PAGE = "nextPage";
     public static final String CONTENT = "content";
+    public static final String SORT = "sort";
+    public static final String STATUS = "status";
+    public static final String PAGE_NUMBER = "pageNumber";
+    public static final String PAGE_SIZE = "pageSize";
+    public static final String FIRST_PAGE = "firstPage";
+    public static final String LAST_PAGE = "lastPage";
+
+
+    String a = "{\"number\":0," +
+            "\"size\":10," +
+            "\"totalPages\":849," +
+            "\"numberOfElements\":10," +
+            "\"totalElements\":8486," +
+            "\"hasPreviousPage\":false," +
+            "\"isFirstPage\":true," +
+            "\"hasNextPage\":true," +
+            "\"isLastPage\":false," +
+            "\"hasContent\":true," +
+            "\"beginPage\":0," +
+            "\"endPage\":9," +
+            "\"previousPage\":-1," +
+            "\"nextPage\":10," +
+            "\"sort\":null," +
+            "\"status\":0," +
+            "\"pageNumber\":0," +
+            "\"pageSize\":10," +
+            "\"firstPage\":true," +
+            "\"lastPage\":false}";
+
 
     public static class Content {
         public class FieldName {

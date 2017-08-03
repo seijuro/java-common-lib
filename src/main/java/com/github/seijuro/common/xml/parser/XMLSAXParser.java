@@ -1,5 +1,6 @@
 package com.github.seijuro.common.xml.parser;
 
+import com.github.seijuro.common.IParser;
 import com.github.seijuro.common.annotation.MethodDescription;
 import lombok.AccessLevel;
 import lombok.Getter;

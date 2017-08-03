@@ -3,9 +3,10 @@ package com.github.seijuro.common.scrap.publicdata;
 import com.github.seijuro.common.xml.parser.XMLSAXParser;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import org.xml.sax.SAXException;
 
-public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
+public abstract class PublicDataAPIResponseXMLParser extends XMLSAXParser implements PublicDataAPIResponseParser {
     /**
      * Instance Properties
      */
@@ -21,7 +22,6 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
     private int totalCount = Integer.MIN_VALUE;
 
     //  error
-    @Getter(AccessLevel.PROTECTED)
     private boolean hasError = false;
     @Getter(AccessLevel.PROTECTED)
     private String errorMsg = null;
@@ -31,7 +31,6 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
     private String reasonCode = null;
 
     //  final result
-    @Getter(AccessLevel.PUBLIC)
     private PublicDataAPIResult result = null;
 
     /**
@@ -40,8 +39,13 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
      * @param type
      * @param input
      */
-    public PublicDataAPIResponseParser(InputType type, String input) {
+    public PublicDataAPIResponseXMLParser(InputType type, String input) {
         super(type, input);
+    }
+
+    @Override
+    public void parse() {
+        super.parse();
     }
 
     @Override
@@ -143,6 +147,12 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
         return new PublicDataAPIErrorResult(getReasonCode(), getErrorMsg(), getAuthMsg());
     }
 
+    @Override
+    public PublicDataAPIResult getResult() {
+        return this.result;
+    }
+
+    @Override
     public boolean hasError() {
         return this.hasError;
     }

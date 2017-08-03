@@ -1,6 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.nps.stats;
 
-import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponseParser;
+import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponseXMLParser;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResult;
 import com.github.seijuro.common.scrap.publicdata.nps.NPSDataBuilderFactory;
 import com.github.seijuro.common.scrap.publicdata.nps.NPSProperty;
@@ -9,7 +9,7 @@ import com.github.seijuro.common.scrap.publicdata.nps.NPSPropertyUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatsAPIResponseParser extends PublicDataAPIResponseParser {
+public class StatsAPIResponseParser extends PublicDataAPIResponseXMLParser {
     /**
      * Instance Properties
      */
