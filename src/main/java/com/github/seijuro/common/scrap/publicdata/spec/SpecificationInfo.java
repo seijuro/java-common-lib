@@ -38,6 +38,8 @@ public class SpecificationInfo extends PublicData {
      * @param builder
      */
     protected SpecificationInfo(Builder builder) {
+        super(builder);
+
         this.businessDivisionName = builder.businessDivisionName;
         this.refNo = builder.refNo;
         this.productName = builder.productName;
@@ -106,6 +108,7 @@ public class SpecificationInfo extends PublicData {
          *
          * @return
          */
+        @Override
         public SpecificationInfo build() {
             return new SpecificationInfo(this);
         }

@@ -26,6 +26,8 @@ public class BusinessPlaceInfo extends NPSData {
      * @param builder
      */
     protected BusinessPlaceInfo(Builder builder) {
+        super(builder);
+
         this.id = builder.id;
         this.createdDatedYM = builder.createdDatedYM;
         this.name = builder.name;
@@ -165,6 +167,7 @@ public class BusinessPlaceInfo extends NPSData {
         /**
          * build : Builder Pattern method
          */
+        @Override
         public BusinessPlaceInfo build() {
             return new BusinessPlaceInfo(this);
         }

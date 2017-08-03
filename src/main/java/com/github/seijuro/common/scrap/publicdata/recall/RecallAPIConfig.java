@@ -120,7 +120,8 @@ public class RecallAPIConfig extends PublicDataConfig {
                 if (this.value != null) {
                     if (this.opr == Comparator.EQUAL) {
                         jsonCondition.put(field.toString(), value);
-                    } else if (this.opr == Comparator.LIKE ||
+                    }
+                    else if (this.opr == Comparator.LIKE ||
                             this.opr == Comparator.GREATER_THAN ||
                             this.opr == Comparator.LESS_THAN ||
                             this.opr == Comparator.GREATER_THAN_OR_EQUALS ||
@@ -130,9 +131,11 @@ public class RecallAPIConfig extends PublicDataConfig {
                         jsonValue.put(this.opr.toOprString(), value);
                         jsonCondition.put(this.field.toString(), jsonValue);
                     }
-                } else if (this.opr == Comparator.IS_NULL) {
+                }
+                else if (this.opr == Comparator.IS_NULL) {
                     jsonCondition.put(this.field.toString(), null);
-                } else if (this.opr == Comparator.IS_NOT_NULL) {
+                }
+                else if (this.opr == Comparator.IS_NOT_NULL) {
                     JSONObject jsonValue = new JSONObject();
                     jsonValue.put(this.opr.toOprString(), null);
                     jsonCondition.put(this.field.toString(), jsonValue);
@@ -197,16 +200,16 @@ public class RecallAPIConfig extends PublicDataConfig {
      * enum Field
      */
     public enum Field {
-        IDX(RecallProperty.FieldName.IDX),
-        COUNTRY_OF_MANUFACTURE(RecallProperty.FieldName.COUNTRY_OF_MANUFACTURE),
-        PRODUCT_NAME(RecallProperty.FieldName.PRODUCT_NAME),
-        TRADEMARK(RecallProperty.FieldName.TRADEMARK),
-        MODEL(RecallProperty.FieldName.MODEL),
-        SERIAL_NUMBER(RecallProperty.FieldName.SERIAL_NUMBER),
-        TYPE(RecallProperty.FieldName.TYPE),
-        COMPANY(RecallProperty.FieldName.COMPANY),
-        DATE_OF_ISSUE(RecallProperty.FieldName.DATE_OF_ISSUE),
-        DIMENSION_TYPE(RecallProperty.FieldName.DIMENSION_TYPE);
+        IDX(RecallProperty.Content.FieldName.IDX),
+        COUNTRY_OF_MANUFACTURE(RecallProperty.Content.FieldName.COUNTRY_OF_MANUFACTURE),
+        PRODUCT_NAME(RecallProperty.Content.FieldName.PRODUCT_NAME),
+        TRADEMARK(RecallProperty.Content.FieldName.TRADEMARK),
+        MODEL(RecallProperty.Content.FieldName.MODEL),
+        SERIAL_NUMBER(RecallProperty.Content.FieldName.SERIAL_NUMBER),
+        TYPE(RecallProperty.Content.FieldName.TYPE),
+        COMPANY(RecallProperty.Content.FieldName.COMPANY),
+        DATE_OF_ISSUE(RecallProperty.Content.FieldName.DATE_OF_ISSUE),
+        DIMENSION_TYPE(RecallProperty.Content.FieldName.DIMENSION_TYPE);
 
         private final String fieldName;
 
@@ -383,6 +386,12 @@ public class RecallAPIConfig extends PublicDataConfig {
         return this;
     }
 
+    /**
+     * API doesn't seems to support 'distinct'.
+     *
+     * @param field
+     * @return
+     */
     public RecallAPIConfig setFieldDistinct(Field field) {
         this.put(PARAM_DISTINCT, field.toString());
 

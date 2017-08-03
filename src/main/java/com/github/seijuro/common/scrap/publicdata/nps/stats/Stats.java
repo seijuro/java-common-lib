@@ -13,7 +13,7 @@ public class Stats extends NPSData implements IPrettyPrint {
     private final String monthlyRetirement;
 
     protected Stats(Builder builer) {
-        super();
+        super(builer);
 
         this.monthlyEmployment = builer.monthlyEmployment;
         this.monthlyRetirement = builer.monthlyRetirement;

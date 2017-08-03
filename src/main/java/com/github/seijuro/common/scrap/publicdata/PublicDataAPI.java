@@ -38,9 +38,6 @@ public class PublicDataAPI extends RestfulAPI {
 
         String url = sb.toString();
 
-        //  TODO remove ...
-        System.out.println("request URL : " + url);
-
         return url;
     }
 }
