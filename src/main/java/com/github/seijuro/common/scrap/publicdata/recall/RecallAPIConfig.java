@@ -181,14 +181,10 @@ public class RecallAPIConfig extends PublicDataConfig {
                 Condition rhs = (Condition)obj;
 
                 if (this.opr != rhs) return false;
-                if (this.field == null) {
-                    if (rhs != null) return false;
-                }
-                else if (!this.field.equals(rhs.field)) return false;
-                else if (this.value == null) {
-                    if (rhs.value != null) return false;
-                }
-                else if (!this.value.equals(rhs.value)) return false;
+                if (this.field == null && rhs != null) return false;
+                if (!this.field.equals(rhs.field)) return false;
+                if (this.value == null && rhs.value != null) return false;
+                if (!this.value.equals(rhs.value)) return false;
 
                 return true;
             }
