@@ -1,27 +1,16 @@
 package com.github.seijuro.common.scrap.publicdata.recall;
 
 public class RecallProperty {
-    enum Field {
-        IDX("idx"),
-        CONTRY_OF_MANUFACTURE("makingNation"),
-        PRODUCT_NAME("produtName"),
-        TRADEMARK("trademark"),
-        MODEL("model"),
-        SERIAL_NUMBER("serialNumber"),
-        TYPE("recallType"),
-        COMPANY("companyName"),
-        DATE_OF_ISSUE("signDate"),
-        DIMENSION_TYPE("recallNationType");
-
-        private final String fieldName;
-
-        Field(String name) {
-            this.fieldName = name;
-        }
-
-        @Override
-        public String toString() {
-            return this.fieldName;
-        }
+    public class FieldName {
+        public static final String IDX = "idx";
+        public static final String COUNTRY_OF_MANUFACTURE = "makingNation";
+        public static final String PRODUCT_NAME = "produtName";
+        public static final String TRADEMARK = "trademark";
+        public static final String MODEL = "model";
+        public static final String SERIAL_NUMBER = "serialNumber";
+        public static final String TYPE = "recallType";
+        public static final String COMPANY = "companyName";
+        public static final String DATE_OF_ISSUE = "signDate";
+        public static final String DIMENSION_TYPE = "recallNationType";
     }
 }

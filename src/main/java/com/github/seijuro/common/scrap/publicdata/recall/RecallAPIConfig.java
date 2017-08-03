@@ -1,5 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.recall;
 
+import com.github.seijuro.common.IJSONConvertable;
 import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,82 +15,163 @@ public class RecallAPIConfig extends PublicDataConfig {
     public static final String PARAM_DISTINCT = "model_query_distinct";
     public static final String PARAM_PAGEABLE = "model_query_pageable";
 
-    public static class ConditionUtils {
-        public static JSONObject cretate(Comparator comparator, RecallProperty.Field field, Object value) {
+    /**
+     * Condition
+     */
+    public static class Condition implements IJSONConvertable {
+        /**
+         * interface for composite
+         */
+        private interface Opr {
+            String toOprString();
+        }
+
+        public enum Comparator implements Opr {
+            EQUAL(""),
+            NOT_EQUALS("$ne"),
+            LIKE("$regex"),
+            GREATER_THAN("$gt"),
+            LESS_THAN("$lt"),
+            GREATER_THAN_OR_EQUALS("$gte"),
+            LESS_THAN_OR_EQUALS("$lte"),
+            IS_NOT_NULL("$ne"),
+            IS_NULL("");
+
+            private final String operator;
+
+            Comparator(String opr) {
+                this.operator = opr;
+            }
+
+            @Override
+            public String toOprString() {
+                return this.operator;
+            }
+        }
+
+        public enum Combiner implements Opr {
+            AND("$and"),
+            OR("$or");
+
+            private final String operator;
+
+            Combiner(String opr) {
+                this.operator = opr;
+            }
+
+            @Override
+            public String toOprString() {
+                return this.operator;
+            }
+        }
+
+        private final Opr opr;
+        private final Field field;
+        private final Object value;
+
+        public Condition (Comparator $opr, Field $field, Object $value) {
+            this.opr = $opr;
+            this.field = $field;
+            this.value = $value;
+        }
+
+        public Condition (Combiner $opr, Set<Condition> conds) {
+            this.opr = $opr;
+            this.field = null;
+            this.value = conds;
+        }
+
+        @Override
+        public JSONObject toJSONObject() {
             JSONObject jsonCondition = new JSONObject();
 
-            if (value != null) {
-                if (comparator == Comparator.EQUAL) {
-                    jsonCondition.put(field.toString(), value);
-                }
-                else if (comparator == Comparator.LIKE  ||
-                        comparator == Comparator.GREATER_THAN ||
-                        comparator == Comparator.LESS_THAN ||
-                        comparator == Comparator.GREATER_THAN_OR_EQUALS ||
-                        comparator == Comparator.LESS_THAN_OR_EQUALS ||
-                        comparator == Comparator.NOT_EQUALS) {
+            if (this.opr instanceof Comparator) {
+                if (this.value != null) {
+                    if (this.opr == Comparator.EQUAL) {
+                        jsonCondition.put(field.toString(), value);
+                    } else if (this.opr == Comparator.LIKE ||
+                            this.opr == Comparator.GREATER_THAN ||
+                            this.opr == Comparator.LESS_THAN ||
+                            this.opr == Comparator.GREATER_THAN_OR_EQUALS ||
+                            this.opr == Comparator.LESS_THAN_OR_EQUALS ||
+                            this.opr == Comparator.NOT_EQUALS) {
+                        JSONObject jsonValue = new JSONObject();
+                        jsonValue.put(this.opr.toOprString(), value);
+                        jsonCondition.put(this.field.toString(), jsonValue);
+                    }
+                } else if (this.opr == Comparator.IS_NULL) {
+                    jsonCondition.put(this.field.toString(), null);
+                } else if (this.opr == Comparator.IS_NOT_NULL) {
                     JSONObject jsonValue = new JSONObject();
-                    jsonValue.put(comparator.toOperatorString(), value);
-                    jsonCondition.put(field.toString(), jsonValue);
+                    jsonValue.put(this.opr.toOprString(), null);
+                    jsonCondition.put(this.field.toString(), jsonValue);
                 }
             }
-            else if (comparator == Comparator.IS_NULL) {
-                jsonCondition.put(field.toString(), null);
-            }
-            else if (comparator == Comparator.IS_NOT_NULL) {
-                JSONObject jsonValue = new JSONObject();
-                jsonValue.put(comparator.toOperatorString(), null);
-                jsonCondition.put(field.toString(), jsonValue);
+            else if (this.opr instanceof Combiner) {
+                if (this.value instanceof Set) {
+                    Set<Condition> conds = (Set<Condition>)(this.value);
+
+                    if (conds.size() > 1) {
+                        JSONArray jsonConds = new JSONArray();
+
+                        Iterator<Condition> iter = conds.iterator();
+
+                        while (iter.hasNext()) {
+                            jsonConds.add(iter.next().toJSONObject());
+                        }
+
+                        jsonCondition.put(this.opr.toOprString(), jsonConds);
+                    }
+                }
             }
 
             return jsonCondition;
         }
 
-        public static JSONObject combine(Comparator comparator, Set<JSONObject> conds) {
-            JSONObject jsonCombined = new JSONObject();
+        @Override
+        public int hashCode() {
+            int code = 17;
 
-            if ((comparator == Comparator.OR || comparator == Comparator.AND) &&
-                    conds.size() > 2) {
-                JSONArray jsonConds = new JSONArray();
+            code = code * this.opr.toOprString().hashCode() << 31 + this.field.toString().hashCode();
+            code = code << 31 + (this.value == null ? 0 : this.value.hashCode());
 
-                Iterator<JSONObject> iter = conds.iterator();
-
-                while (iter.hasNext()) {
-                    jsonConds.add(iter.next());
-                }
-
-                jsonCombined.put(comparator.toOperatorString(), jsonConds);
-            }
-
-            return jsonCombined;
+            return code;
         }
     }
 
-    private enum Comparator {
-        EQUAL(""),
-        NOT_EQUALS("$ne"),
-        LIKE("$regex"),
-        GREATER_THAN("$gt"),
-        LESS_THAN("$lt"),
-        GREATER_THAN_OR_EQUALS("$gte"),
-        LESS_THAN_OR_EQUALS("$lte"),
-        IS_NOT_NULL("$ne"),
-        IS_NULL(""),
-        AND("$and"),
-        OR("$or");
+    /**
+     * enum Field
+     */
+    public enum Field {
+        IDX(RecallProperty.FieldName.IDX),
+        COUNTRY_OF_MANUFACTURE(RecallProperty.FieldName.COUNTRY_OF_MANUFACTURE),
+        PRODUCT_NAME(RecallProperty.FieldName.PRODUCT_NAME),
+        TRADEMARK(RecallProperty.FieldName.TRADEMARK),
+        MODEL(RecallProperty.FieldName.MODEL),
+        SERIAL_NUMBER(RecallProperty.FieldName.SERIAL_NUMBER),
+        TYPE(RecallProperty.FieldName.TYPE),
+        COMPANY(RecallProperty.FieldName.COMPANY),
+        DATE_OF_ISSUE(RecallProperty.FieldName.DATE_OF_ISSUE),
+        DIMENSION_TYPE(RecallProperty.FieldName.DIMENSION_TYPE);
 
-        private final String operator;
+        private final String fieldName;
 
-        Comparator(String op) {
-            this.operator = op;
+        Field(String name) {
+            this.fieldName = name;
         }
 
-        public String toOperatorString() {
-            return this.operator;
+        @Override
+        public String toString() {
+            return this.fieldName;
         }
     }
 
-    enum Direction {
+
+
+    /**
+     * enum Direction
+     */
+    public enum Direction {
         ASC(1),
         DESC(-1);
 
@@ -104,7 +186,10 @@ public class RecallAPIConfig extends PublicDataConfig {
         }
     }
 
-    enum Visibility {
+    /**
+     * enum Visibility
+     */
+    public enum Visibility {
         VISIBLE(1),
         INVISIBLE(0);
 
@@ -119,6 +204,9 @@ public class RecallAPIConfig extends PublicDataConfig {
         }
     }
 
+    /**
+     * enum SortOrder
+     */
     private enum SortOrder {
         PROPERTY("property"),
         DIRECTION("direction");
@@ -143,6 +231,9 @@ public class RecallAPIConfig extends PublicDataConfig {
         }
     }
 
+    /**
+     * enum Pageable
+     */
     private enum Pageable {
         ENABLE("enable"),
         PAGE_NUMBER("pageNumber"),
@@ -169,6 +260,9 @@ public class RecallAPIConfig extends PublicDataConfig {
         }
     }
 
+    /**
+     * C'tor
+     */
     public RecallAPIConfig() {
         super();
     }
@@ -218,11 +312,11 @@ public class RecallAPIConfig extends PublicDataConfig {
         return this;
     }
 
-    public RecallAPIConfig setPageableSortOrders(Map<RecallProperty.Field, Direction> orders) {
+    public RecallAPIConfig setPageableSortOrders(Map<Field, Direction> orders) {
         JSONObject jsonPageable = getPageableJSONObject();
         JSONArray jsonOrders = new JSONArray();
 
-        for (Map.Entry<RecallProperty.Field, Direction> order : orders.entrySet()) {
+        for (Map.Entry<Field, Direction> order : orders.entrySet()) {
             JSONObject jsonOrder = new JSONObject();
             jsonOrder.put(SortOrder.PROPERTY.toString(), order.getKey().toString());
             jsonOrder.put(SortOrder.DIRECTION.toString(), new Integer(order.getValue().toInt()));
@@ -235,23 +329,29 @@ public class RecallAPIConfig extends PublicDataConfig {
         return this;
     }
 
-    public RecallAPIConfig setFieldDistinct(RecallProperty.Field field) {
+    public RecallAPIConfig setFieldDistinct(Field field) {
         this.put(PARAM_DISTINCT, field.toString());
 
         return this;
     }
 
-    public RecallAPIConfig setFieldVisibility(Set<RecallProperty.Field> fields, Visibility visibility) {
-        Iterator<RecallProperty.Field> iter = fields.iterator();
+    public RecallAPIConfig setFieldVisibility(Set<Field> fields, Visibility visibility) {
+        Iterator<Field> iter = fields.iterator();
         JSONObject jsonVisibility = new JSONObject();
         Integer intVisibility = new Integer(visibility.toInt());
 
         while (iter.hasNext()) {
-            RecallProperty.Field field = iter.next();
+            Field field = iter.next();
             jsonVisibility.put(field.toString(), intVisibility);
         }
 
         this.put(PARAM_FIELD_VISIBILITY, jsonVisibility);
+
+        return this;
+    }
+
+    public RecallAPIConfig setQuery(Condition condition) {
+        put(PARAM_SEARCH, condition.toJSONObject());
 
         return this;
     }
