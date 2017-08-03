@@ -26,6 +26,11 @@ public class RecallAPIConfig extends PublicDataConfig {
             String toOprString();
         }
 
+        /**
+         * Comparator
+         *
+         * comparator contains 'binary' operator, such as EQUAL, NOT_EQUALS, LIKE, GREATER_THAN, etc ...
+         */
         public enum Comparator implements Opr {
             EQUAL(""),
             NOT_EQUALS("$ne"),
@@ -49,6 +54,11 @@ public class RecallAPIConfig extends PublicDataConfig {
             }
         }
 
+        /**
+         * Combiner
+         *
+         * comparator contains 'and', 'or' operator
+         */
         public enum Combiner implements Opr {
             AND("$and"),
             OR("$or");
@@ -65,22 +75,43 @@ public class RecallAPIConfig extends PublicDataConfig {
             }
         }
 
+        /**
+         * Instance Properties
+         */
         private final Opr opr;
         private final Field field;
         private final Object value;
 
+        /**
+         * C'tor
+         *
+         * @param $opr
+         * @param $field
+         * @param $value
+         */
         public Condition (Comparator $opr, Field $field, Object $value) {
             this.opr = $opr;
             this.field = $field;
             this.value = $value;
         }
 
+        /**
+         * C'tor
+         *
+         * @param $opr
+         * @param conds
+         */
         public Condition (Combiner $opr, Set<Condition> conds) {
             this.opr = $opr;
             this.field = null;
             this.value = conds;
         }
 
+        /**
+         * implement IJSONConvertable interface.
+         *
+         * @return
+         */
         @Override
         public JSONObject toJSONObject() {
             JSONObject jsonCondition = new JSONObject();
@@ -128,6 +159,12 @@ public class RecallAPIConfig extends PublicDataConfig {
             return jsonCondition;
         }
 
+        /**
+         * implements <code>hashCode</code> method.
+         * <code>Condition</code> instance can be used with HashSet, HashMap, etc ...
+         *
+         * @return
+         */
         @Override
         public int hashCode() {
             int code = 17;
@@ -136,6 +173,27 @@ public class RecallAPIConfig extends PublicDataConfig {
             code = code << 31 + (this.value == null ? 0 : this.value.hashCode());
 
             return code;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof Condition) {
+                Condition rhs = (Condition)obj;
+
+                if (this.opr != rhs) return false;
+                if (this.field == null) {
+                    if (rhs != null) return false;
+                }
+                else if (!this.field.equals(rhs.field)) return false;
+                else if (this.value == null) {
+                    if (rhs.value != null) return false;
+                }
+                else if (!this.value.equals(rhs.value)) return false;
+
+                return true;
+            }
+
+            return false;
         }
     }
 
