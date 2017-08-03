@@ -1,10 +1,16 @@
 package com.github.seijuro.common.scrap.publicdata;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+
 import java.util.function.Consumer;
 
 public class PublicDataAPIErrorResult extends PublicDataAPIResult {
+    @Getter(AccessLevel.PUBLIC)
     private final String reasonCode;
+    @Getter(AccessLevel.PUBLIC)
     private final String errorMessage;
+    @Getter(AccessLevel.PUBLIC)
     private final String authenticationMsg;
 
     public PublicDataAPIErrorResult(String code, String msg, String authMsg) {

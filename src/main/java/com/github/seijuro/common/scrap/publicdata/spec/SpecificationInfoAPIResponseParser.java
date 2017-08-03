@@ -156,7 +156,7 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
     @Override
     protected PublicDataAPIResult createResult() {
         if (!hasError()) {
-            PublicDataAPIResult result = new SpeficiationInfoResult(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
+            PublicDataAPIResult result = new SpeficiationInfoResult(this.getResultCode(), this.getResultMessage(), this.getPageNo(), this.getNumberOfRows(), this.getTotalCount());
             result.addData(this.specificationInfos);
 
             return result;

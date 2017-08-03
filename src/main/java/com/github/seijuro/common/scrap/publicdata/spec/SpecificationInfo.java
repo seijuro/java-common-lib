@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.function.Consumer;
 
 @ToString
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class SpecificationInfo extends PublicData {
     /**
      * Instance Properties

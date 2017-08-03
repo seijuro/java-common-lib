@@ -1,16 +1,23 @@
 package com.github.seijuro.common.scrap.publicdata;
 
 import com.github.seijuro.common.IPrettyPrint;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class PublicDataAPIResult implements IPrettyPrint {
+    @Getter(AccessLevel.PUBLIC)
     private final String resultCode;
-    private final String resultMsg;
+    @Getter(AccessLevel.PUBLIC)
+    private final String resultMessage;
+    @Getter(AccessLevel.PUBLIC)
     private int pageNo;
-    private int numOfRows;
+    @Getter(AccessLevel.PUBLIC)
+    private int numberOfRows;
+    @Getter(AccessLevel.PUBLIC)
     private int totalCount;
 
     protected List<PublicData> resultList = new ArrayList<>();
@@ -26,30 +33,10 @@ public class PublicDataAPIResult implements IPrettyPrint {
      */
     public PublicDataAPIResult(String $resultCode, String $resultMesg, int $pageNo, int $numOfRows, int $totalCount) {
         this.resultCode = $resultCode;
-        this.resultMsg = $resultMesg;
+        this.resultMessage = $resultMesg;
         this.pageNo = $pageNo;
-        this.numOfRows = $numOfRows;
+        this.numberOfRows = $numOfRows;
         this.totalCount = $totalCount;
-    }
-
-    public String getResultCode() {
-        return this.resultCode;
-    }
-
-    public String getResultMessage() {
-        return this.resultMsg;
-    }
-
-    public int getPageNo() {
-        return this.pageNo;
-    }
-
-    public int getNumberOfRows() {
-        return this.numOfRows;
-    }
-
-    public int getTotalCount() {
-        return this.totalCount;
     }
 
     @Override
@@ -58,9 +45,9 @@ public class PublicDataAPIResult implements IPrettyPrint {
 
         sb.append("[common]").append("\n")
                 .append("\t").append(PublicDataProperty.Result.RESULT_CODE).append(" : [").append(this.resultCode).append("]\n")
-                .append("\t").append(PublicDataProperty.Result.RESULT_MESSAGE).append(" : [").append(this.resultMsg).append("]\n")
+                .append("\t").append(PublicDataProperty.Result.RESULT_MESSAGE).append(" : [").append(this.resultMessage).append("]\n")
                 .append("\t").append(PublicDataProperty.Result.PAGE_NO).append(" : [").append(this.pageNo).append("]\n")
-                .append("\t").append(PublicDataProperty.Result.NUM_OF_ROWS).append(" : [").append(this.numOfRows).append("]\n")
+                .append("\t").append(PublicDataProperty.Result.NUM_OF_ROWS).append(" : [").append(this.numberOfRows).append("]\n")
                 .append("\t").append(PublicDataProperty.Result.TOTAL_COUNT).append(" : [").append(this.totalCount).append("]\n");
 
         consumer.accept(sb.toString());

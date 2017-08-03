@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.function.Consumer;
 
 @ToString
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class Recall extends PublicData {
     /**
      * Instance Properties

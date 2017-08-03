@@ -1,9 +1,11 @@
 package com.github.seijuro.common.scrap.publicdata;
 
 import com.github.seijuro.common.IPrettyPrint;
+import lombok.EqualsAndHashCode;
 
 import java.util.function.Consumer;
 
+@EqualsAndHashCode
 public abstract class PublicData implements IPrettyPrint {
     /**
      * Default C'tor

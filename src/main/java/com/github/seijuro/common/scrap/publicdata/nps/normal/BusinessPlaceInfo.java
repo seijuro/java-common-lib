@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.function.Consumer;
 
 @ToString
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class BusinessPlaceInfo extends NPSData {
     /**
      * Instsance Properties

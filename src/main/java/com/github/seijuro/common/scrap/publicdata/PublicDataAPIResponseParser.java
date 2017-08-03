@@ -1,18 +1,24 @@
 package com.github.seijuro.common.scrap.publicdata;
 
 import com.github.seijuro.common.xml.parser.XMLSAXParser;
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.xml.sax.SAXException;
 
 public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
     /**
      * Instance Properties
      */
-    //  result
-    protected String resultCode = null;
-    protected String resultMsg = null;
-    protected int numberOfRows = Integer.MIN_VALUE;
-    protected int pageNo = Integer.MIN_VALUE;
-    protected int totalCount = Integer.MIN_VALUE;
+    @Getter(AccessLevel.PROTECTED)
+    private String resultCode = null;
+    @Getter(AccessLevel.PROTECTED)
+    private String resultMessage = null;
+    @Getter(AccessLevel.PROTECTED)
+    private int numberOfRows = Integer.MIN_VALUE;
+    @Getter(AccessLevel.PROTECTED)
+    private int pageNo = Integer.MIN_VALUE;
+    @Getter(AccessLevel.PROTECTED)
+    private int totalCount = Integer.MIN_VALUE;
 
     //  error
     protected boolean hasError = false;
@@ -74,7 +80,7 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
                     this.resultCode = value;
                     return true;
                 case PublicDataProperty.ResultCode.RC_RESULT_MESSAGE:
-                    this.resultMsg = value;
+                    this.resultMessage = value;
                     return true;
 
                 default:
@@ -125,7 +131,7 @@ public abstract class PublicDataAPIResponseParser extends XMLSAXParser {
      */
     protected PublicDataAPIResult createResult() {
         if (!hasError()) {
-            return new PublicDataAPIResult(this.resultCode, this.resultMsg, this.pageNo, this.numberOfRows, this.totalCount);
+            return new PublicDataAPIResult(this.resultCode, this.resultMessage, this.pageNo, this.numberOfRows, this.totalCount);
         }
 
         return new PublicDataAPIErrorResult(this.reasonCode, this.errorMsg, this.authMsg);

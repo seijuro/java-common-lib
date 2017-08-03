@@ -26,7 +26,6 @@ public class RecallTest {
             return true;
         }
         catch (Exception excp) {
-
         }
 
         return false;

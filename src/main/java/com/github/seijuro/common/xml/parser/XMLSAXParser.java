@@ -1,6 +1,9 @@
 package com.github.seijuro.common.xml.parser;
 
 import com.github.seijuro.common.annotation.MethodDescription;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -35,10 +38,15 @@ public abstract class XMLSAXParser extends DefaultHandler {
     /**
      * Instance Properties
      */
+    @Getter(AccessLevel.PROTECTED)
     private TagStack<String> tagStack = new TagStack<>();
+    @Getter(AccessLevel.PRIVATE)
+    @Setter(AccessLevel.PRIVATE)
     private String currentValue = null;
 
+    @Getter(AccessLevel.PROTECTED)
     private final InputType inputType;
+    @Getter(AccessLevel.PROTECTED)
     private final String input;;
 
     /**
@@ -83,7 +91,7 @@ public abstract class XMLSAXParser extends DefaultHandler {
             this.tagStack.pop();
         }
 
-        handleTagEnd(top, this.currentValue);
+        handleTagEnd(top, getCurrentValue());
     }
 
     @MethodDescription(
@@ -96,8 +104,9 @@ public abstract class XMLSAXParser extends DefaultHandler {
             description = "This method return 'true', when you got done with tag. Otherwise, false")
     protected abstract boolean handleTagEnd(String tag, String value);
 
+    @Override
     public void characters(char[] ch, int start, int length) {
-        this.currentValue = new String(ch, start, length).trim();
+        setCurrentValue(new String(ch, start, length).trim());
     }
 
     public void parse() {

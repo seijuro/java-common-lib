@@ -1,6 +1,8 @@
 package com.github.seijuro.common.http;
 
 import com.github.seijuro.common.IURLEncoder;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,10 +40,14 @@ public abstract class RestfulAPI {
     /**
      * Instance Properties
      */
-    protected final RequestMethod requestMethod;
-    protected final String requestURL;
-    protected final Properties properties;
-    protected final IURLEncoder encodeFunc;
+    @Getter(AccessLevel.PROTECTED)
+    private final RequestMethod requestMethod;
+    @Getter(AccessLevel.PROTECTED)
+    private final String requestURL;
+    @Getter(AccessLevel.PROTECTED)
+    private final Properties properties;
+    @Getter(AccessLevel.PROTECTED)
+    private final IURLEncoder encodeFunc;
 
     /**
      * C'tor

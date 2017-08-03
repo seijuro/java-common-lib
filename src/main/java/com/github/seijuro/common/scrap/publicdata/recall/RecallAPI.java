@@ -1,10 +1,12 @@
 package com.github.seijuro.common.scrap.publicdata.recall;
 
+import com.github.seijuro.common.IURLEncoder;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPI;
 import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
+import java.util.Properties;
 
 public class RecallAPI extends PublicDataAPI {
     public static final String SERVICE_URL = "http://www.ibtk.kr/recall_api/";
@@ -28,15 +30,17 @@ public class RecallAPI extends PublicDataAPI {
         //  don't call <code>super.createRequestGETURL</code> method.
         //  super.createRequestGETURL();
 
-        StringBuffer sb = new StringBuffer(this.requestURL);
+        StringBuffer sb = new StringBuffer(getRequestURL());
         sb.append(getServiceKey());
 
         boolean isFirst = true;
-        Enumeration e = this.properties.keys();
+        Properties pros = getProperties();
+        IURLEncoder encodeFunc = getEncodeFunc();
+        Enumeration e = pros.keys();
 
         while (e.hasMoreElements()) {
             String param = (String)e.nextElement();
-            Object value = this.properties.get(param);
+            Object value = pros.get(param);
 
             if (value != null) {
                 if (isFirst) {
@@ -47,7 +51,7 @@ public class RecallAPI extends PublicDataAPI {
                     sb.append("&");
                 }
 
-                sb.append(this.encodeFunc.encode(param)).append("=").append(value.toString());
+                sb.append(encodeFunc.encode(param)).append("=").append(value.toString());
             }
         }
 

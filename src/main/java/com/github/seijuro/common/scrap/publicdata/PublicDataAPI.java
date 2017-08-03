@@ -2,6 +2,8 @@ package com.github.seijuro.common.scrap.publicdata;
 
 import com.github.seijuro.common.IURLEncoder;
 import com.github.seijuro.common.http.RestfulAPI;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -11,6 +13,7 @@ public class PublicDataAPI extends RestfulAPI {
     static final IURLEncoder ParameterEncoder = s -> URLEncoder.encode(s, PublicDataProperty.Encoding);
     static final String ServiceKey = "ServiceKey";
 
+    @Getter(AccessLevel.PROTECTED)
     private final String serviceKey;
 
     /**
@@ -25,15 +28,11 @@ public class PublicDataAPI extends RestfulAPI {
         this.serviceKey = serviceKey;
     }
 
-    protected String getServiceKey() {
-        return this.serviceKey;
-    }
-
     @Override
     protected String createRequestGETURL() throws UnsupportedEncodingException {
         StringBuffer sb = new StringBuffer(super.createRequestGETURL());
 
-        sb.append((this.properties.size() > 0) ? "&" : "?");
+        sb.append((getProperties().size() > 0) ? "&" : "?");
         sb.append(ParameterEncoder.encode(ServiceKey)).append("=").append(getServiceKey());
 
         String url = sb.toString();

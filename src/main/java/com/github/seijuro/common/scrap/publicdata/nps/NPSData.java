@@ -1,7 +1,11 @@
 package com.github.seijuro.common.scrap.publicdata.nps;
 
 import com.github.seijuro.common.scrap.publicdata.PublicData;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@ToString
+@EqualsAndHashCode(callSuper = true)
 public abstract class NPSData extends PublicData {
     public NPSData(Builder builder) {
         super(builder);
