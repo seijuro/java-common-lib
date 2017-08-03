@@ -1,5 +1,8 @@
 package com.github.seijuro.common.scrap.publicdata.recall;
 
+import lombok.ToString;
+
+@ToString
 public class RecallProperty {
     public static final String ENABLE = "enable";
     public static final String NUMBER = "number";

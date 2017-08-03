@@ -2,34 +2,50 @@ package com.github.seijuro.common.scrap.publicdata.recall;
 
 import com.github.seijuro.common.scrap.publicdata.PublicData;
 import com.google.gson.annotations.SerializedName;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.junit.Test;
 
 import java.util.function.Consumer;
 
+@ToString
 public class Recall extends PublicData {
     /**
      * Instance Properties
      */
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.IDX)
     private final int idx;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.COUNTRY_OF_MANUFACTURE)
     private final String countryOfManufacture;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.TRADEMARK)
     private final String trademark;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.PRODUCT_NAME)
     private final String productName;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.MODEL)
     private final String model;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.SERIAL_NUMBER)
     private final String serialNumber;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.TYPE)
     private final String type;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.COMPANY)
     private final String company;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.DATE_OF_ISSUE)
     private final String dateOfIssue;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.DIMENSION_TYPE)
     private final int dimensionType;
+    @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.Extra)
     private final RecallExtra extra;
 
@@ -79,16 +95,27 @@ public class Recall extends PublicData {
      * Builder pattern class
      */
     public static class Builder extends PublicData.Builder {
+        @Setter(AccessLevel.PUBLIC)
         private int idx = Integer.MIN_VALUE;
+        @Setter(AccessLevel.PUBLIC)
         private String countryOfManufacture = null;
+        @Setter(AccessLevel.PUBLIC)
         private String productName = null;
+        @Setter(AccessLevel.PUBLIC)
         private String trademark = null;
+        @Setter(AccessLevel.PUBLIC)
         private String model = null;
+        @Setter(AccessLevel.PUBLIC)
         private String serialNumber = null;
+        @Setter(AccessLevel.PUBLIC)
         private String type = null;
+        @Setter(AccessLevel.PUBLIC)
         private String company = null;
+        @Setter(AccessLevel.PUBLIC)
         private String dateOfIssue = null;
+        @Setter(AccessLevel.PUBLIC)
         private int dimensionType = Integer.MIN_VALUE;
+        @Setter(AccessLevel.PUBLIC)
         private final RecallExtra extra = null;
 
         @Override

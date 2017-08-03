@@ -70,10 +70,10 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponsePar
 
                 switch (code) {
                     case NPSProperty.ItemCode.Normal.IC_CREATED_YM:
-                        this.dataBuilder.setCreatedDateYM(value);
+                        this.dataBuilder.setCreatedDatedYM(value);
                         return true;
                     case NPSProperty.ItemCode.Normal.IC_ID:
-                        this.dataBuilder.setID(value);
+                        this.dataBuilder.setId(value);
                         return true;
                     case NPSProperty.ItemCode.Normal.IC_BUSINESSPLACE_NAME:
                         this.dataBuilder.setName(value);
@@ -82,7 +82,7 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponsePar
                         this.dataBuilder.setRegistrationNumber(value);
                         return true;
                     case NPSProperty.ItemCode.Normal.IC_ADDRESS_STREET:
-                        this.dataBuilder.setAddressStreet(value);
+                        this.dataBuilder.setAddrStreet(value);
                         return true;
                     case NPSProperty.ItemCode.Normal.IC_STATUS_CODE:
                         this.dataBuilder.setStatusCode(value);
@@ -91,13 +91,13 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponsePar
                         this.dataBuilder.setDivisionCode(value);
                         return true;
                     case NPSProperty.ItemCode.Normal.IC_ADDRESS_DG:
-                        this.dataBuilder.setAddressCodeDG(value);
+                        this.dataBuilder.setAddrCodeDG(value);
                         return true;
                     case NPSProperty.ItemCode.Normal.IC_ADDRESS_SGG:
-                        this.dataBuilder.setAddressCodeSGG(value);
+                        this.dataBuilder.setAddrCodeSGG(value);
                         return true;
                     case NPSProperty.ItemCode.Normal.IC_ADDRESS_EMD:
-                        this.dataBuilder.setAddressCodeEMD(value);
+                        this.dataBuilder.setAddrCodeEMD(value);
                         return true;
 
                     default:

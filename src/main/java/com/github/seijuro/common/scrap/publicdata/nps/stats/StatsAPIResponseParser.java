@@ -74,7 +74,7 @@ public class StatsAPIResponseParser extends PublicDataAPIResponseParser {
 
                 switch (code) {
                     case NPSProperty.ItemCode.Stats.IC_MONTHLY_EMPLOYMENT:
-                        this.dataBuilder.setMonthlyEmpolyment(value);
+                        this.dataBuilder.setMonthlyEmployment(value);
                         return true;
                     case NPSProperty.ItemCode.Stats.IC_MONTHLY_RETIREMENT:
                         this.dataBuilder.setMonthlyRetirement(value);

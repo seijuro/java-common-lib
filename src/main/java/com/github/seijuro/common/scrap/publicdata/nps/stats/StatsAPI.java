@@ -19,6 +19,4 @@ public class StatsAPI extends PublicDataAPI {
     public StatsAPI(PublicDataConfig props, String serviceKey) {
         super(getServiceURL(), props, serviceKey);
     }
-
-
 }

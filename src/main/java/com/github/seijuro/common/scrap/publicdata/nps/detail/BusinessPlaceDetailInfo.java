@@ -2,6 +2,9 @@ package com.github.seijuro.common.scrap.publicdata.nps.detail;
 
 import com.github.seijuro.common.scrap.publicdata.nps.NPSProperty;
 import com.github.seijuro.common.scrap.publicdata.nps.normal.BusinessPlaceInfo;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.function.Consumer;
 
@@ -9,11 +12,17 @@ public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
     /**
      * Instance Properties
      */
+    @Getter(AccessLevel.PUBLIC)
     private final String businessTypeName;
+    @Getter(AccessLevel.PUBLIC)
     private final String businessTypeCode;
+    @Getter(AccessLevel.PUBLIC)
     private final String registrationDate;
+    @Getter(AccessLevel.PUBLIC)
     private final String withdrawalDate;
+    @Getter(AccessLevel.PUBLIC)
     private final String subscriberNumber;
+    @Getter(AccessLevel.PUBLIC)
     private final String notifiedAmountOfThisMonth;
 
     /**
@@ -30,30 +39,6 @@ public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
         this.withdrawalDate = builder.withdrawalDate;
         this.subscriberNumber = builder.subscriberNumber;
         this.notifiedAmountOfThisMonth = builder.notifiedAmountOfThisMonth;
-    }
-
-    public String getBusinessTypeName() {
-        return this.businessTypeName;
-    }
-
-    public String getBusinessTypeCode() {
-        return this.businessTypeCode;
-    }
-
-    public String getRegistrationDate() {
-        return this.registrationDate;
-    }
-
-    public String getWithdrawalDate() {
-        return this.withdrawalDate;
-    }
-
-    public String getSubscriberNumber() {
-        return this.subscriberNumber;
-    }
-
-    public String getNotifiedAmountOfThisMonth() {
-        return this.notifiedAmountOfThisMonth;
     }
 
     @Override
@@ -79,42 +64,18 @@ public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
         /**
          * Instance Properties
          */
+        @Setter(AccessLevel.PUBLIC)
         private String businessTypeName = null;
+        @Setter(AccessLevel.PUBLIC)
         private String businessTypeCode = null;
+        @Setter(AccessLevel.PUBLIC)
         private String registrationDate = null;
+        @Setter(AccessLevel.PUBLIC)
         private String withdrawalDate = null;
+        @Setter(AccessLevel.PUBLIC)
         private String subscriberNumber = null;
+        @Setter(AccessLevel.PUBLIC)
         private String notifiedAmountOfThisMonth = null;
-
-        public Builder setBusinessTypeName(String name) {
-            this.businessTypeName = name;
-            return this;
-        }
-
-        public Builder setBusinessTypeCode(String code) {
-            this.businessTypeCode = code;
-            return this;
-        }
-
-        public Builder setRegistrationDate(String date) {
-            this.registrationDate = date;
-            return this;
-        }
-
-        public Builder setWithdrawalDate(String date) {
-            this.withdrawalDate = date;
-            return this;
-        }
-
-        public Builder setSubscriberNumber(String number) {
-            this.subscriberNumber = number;
-            return this;
-        }
-
-        public Builder setNotifiedAmountOfThisMonth(String amount) {
-            this.notifiedAmountOfThisMonth = amount;
-            return this;
-        }
 
         /**
          * Builder Pattern method

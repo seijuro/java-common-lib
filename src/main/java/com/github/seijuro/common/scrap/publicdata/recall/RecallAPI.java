@@ -1,6 +1,5 @@
 package com.github.seijuro.common.scrap.publicdata.recall;
 
-import com.github.seijuro.common.http.RestfulAPIResponse;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPI;
 import com.github.seijuro.common.scrap.publicdata.PublicDataConfig;
 

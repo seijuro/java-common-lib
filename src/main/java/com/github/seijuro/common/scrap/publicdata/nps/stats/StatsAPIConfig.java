@@ -10,7 +10,7 @@ public class StatsAPIConfig extends PublicDataConfig {
         super();
     }
 
-    public StatsAPIConfig setID(String id) {
+    public StatsAPIConfig setId(String id) {
         this.setProperty(ID, id);
         return this;
     }

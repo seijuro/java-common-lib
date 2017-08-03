@@ -1,35 +1,63 @@
 package com.github.seijuro.common.scrap.publicdata.spec;
 
 import com.github.seijuro.common.scrap.publicdata.PublicData;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.function.Consumer;
 
+@ToString
 public class SpecificationInfo extends PublicData {
     /**
      * Instance Properties
      */
+    @Getter(AccessLevel.PUBLIC)
     private final String businessDivisionName;
+    @Getter(AccessLevel.PUBLIC)
     private final String refNo;
+    @Getter(AccessLevel.PUBLIC)
     private final String productName;
+    @Getter(AccessLevel.PUBLIC)
     private final String orderingInstName;
+    @Getter(AccessLevel.PUBLIC)
     private final String demandInstName;
+    @Getter(AccessLevel.PUBLIC)
     private final String assignBudgetAmount;
+    @Getter(AccessLevel.PUBLIC)
     private final String receiptDate;
+    @Getter(AccessLevel.PUBLIC)
     private final String regOptionDueDate;
+    @Getter(AccessLevel.PUBLIC)
     private final String officalTel;
+    @Getter(AccessLevel.PUBLIC)
     private final String officalName;
+    @Getter(AccessLevel.PUBLIC)
     private final String isSWBusiness;
+    @Getter(AccessLevel.PUBLIC)
     private final String deliveryDueDate;
+    @Getter(AccessLevel.PUBLIC)
     private final String deliveryDayNum;
+    @Getter(AccessLevel.PUBLIC)
     private final String specificationRegNo;
+    @Getter(AccessLevel.PUBLIC)
     private final String specificationDocFileURL1;
+    @Getter(AccessLevel.PUBLIC)
     private final String specificationDocFileURL2;
+    @Getter(AccessLevel.PUBLIC)
     private final String specificationDocFileURL3;
+    @Getter(AccessLevel.PUBLIC)
     private final String specificationDocFileURL4;
+    @Getter(AccessLevel.PUBLIC)
     private final String specificationDocFileURL5;
+    @Getter(AccessLevel.PUBLIC)
     private final String productDetails;
+    @Getter(AccessLevel.PUBLIC)
     private final String regDate;
+    @Getter(AccessLevel.PUBLIC)
     private final String changedDate;
+    @Getter(AccessLevel.PUBLIC)
     private final String bidNoticeNoList;
 
     /**
@@ -79,28 +107,51 @@ public class SpecificationInfo extends PublicData {
         /**
          * Instance Properties
          */
+        @Setter(AccessLevel.PUBLIC)
         private String businessDivisionName;
+        @Setter(AccessLevel.PUBLIC)
         private String refNo;
+        @Setter(AccessLevel.PUBLIC)
         private String productName;
+        @Setter(AccessLevel.PUBLIC)
         private String orderingInstName;
+        @Setter(AccessLevel.PUBLIC)
         private String demandInstName;
+        @Setter(AccessLevel.PUBLIC)
         private String assignBudgetAmount;
+        @Setter(AccessLevel.PUBLIC)
         private String receiptDate;
+        @Setter(AccessLevel.PUBLIC)
         private String regOptionDueDate;
+        @Setter(AccessLevel.PUBLIC)
         private String officalTel;
+        @Setter(AccessLevel.PUBLIC)
         private String officalName;
+        @Setter(AccessLevel.PUBLIC)
         private String isSWBusiness;
+        @Setter(AccessLevel.PUBLIC)
         private String deliveryDueDate;
+        @Setter(AccessLevel.PUBLIC)
         private String deliveryDayNum;
+        @Setter(AccessLevel.PUBLIC)
         private String specificationRegNo;
+        @Setter(AccessLevel.PUBLIC)
         private String specificationDocFileURL1;
+        @Setter(AccessLevel.PUBLIC)
         private String specificationDocFileURL2;
+        @Setter(AccessLevel.PUBLIC)
         private String specificationDocFileURL3;
+        @Setter(AccessLevel.PUBLIC)
         private String specificationDocFileURL4;
+        @Setter(AccessLevel.PUBLIC)
         private String specificationDocFileURL5;
+        @Setter(AccessLevel.PUBLIC)
         private String productDetails;
+        @Setter(AccessLevel.PUBLIC)
         private String regDate;
+        @Setter(AccessLevel.PUBLIC)
         private String changedDate;
+        @Setter(AccessLevel.PUBLIC)
         private String bidNoticeNoList;
 
         /**
@@ -111,121 +162,6 @@ public class SpecificationInfo extends PublicData {
         @Override
         public SpecificationInfo build() {
             return new SpecificationInfo(this);
-        }
-
-        public Builder setBusinessDivisionName(String name) {
-            this.businessDivisionName = name;
-            return this;
-        }
-
-        public Builder setReferenceNo(String no) {
-            this.refNo = no;
-            return this;
-        }
-
-        public Builder setProductName(String name) {
-            this.productName = name;
-            return this;
-        }
-
-        public Builder setOrderingInstName(String name) {
-            this.orderingInstName = name;
-            return this;
-        }
-
-        public Builder setDemandInstName(String name) {
-            this.demandInstName = name;
-            return this;
-        }
-
-        public Builder setAssignBudgetAmount(String amount) {
-            this.assignBudgetAmount = amount;
-            return this;
-        }
-
-        public Builder setReceiptDate(String date) {
-            this.receiptDate = date;
-            return this;
-        }
-
-        public Builder setRegisterOptionDueDate(String date) {
-            this.regOptionDueDate = date;
-            return this;
-        }
-
-        public Builder setOfficialTel(String tel) {
-            this.officalTel = tel;
-            return this;
-        }
-
-        public Builder setOfficalName(String name) {
-            this.officalName = name;
-            return this;
-        }
-
-        public Builder setIsSWBusiness(String flag) {
-            this.isSWBusiness = flag;
-            return this;
-        }
-
-        public Builder setDeliveryDueDate(String date) {
-            this.deliveryDueDate = date;
-            return this;
-        }
-
-        public Builder setDeliveryDayNum(String num) {
-            this.deliveryDayNum = num;
-            return this;
-        }
-
-        public Builder setSpecificationRegNo(String no) {
-            this.specificationRegNo = no;
-            return this;
-        }
-
-        public Builder setSpecificationDocFileURL1(String url) {
-            this.specificationDocFileURL1 = url;
-            return this;
-        }
-
-        public Builder setSpecificationDocFileURL2(String url) {
-            this.specificationDocFileURL2 = url;
-            return this;
-        }
-
-        public Builder setSpecificationDocFileURL3(String url) {
-            this.specificationDocFileURL3 = url;
-            return this;
-        }
-
-        public Builder setSpecificationDocFileURL4(String url) {
-            this.specificationDocFileURL4 = url;
-            return this;
-        }
-
-        public Builder setSpecificationDocFileURL5(String url) {
-            this.specificationDocFileURL5 = url;
-            return this;
-        }
-
-        public Builder setProductDetails(String value) {
-            this.productDetails = value;
-            return this;
-        }
-
-        public Builder setRegDate(String date) {
-            this.regDate = date;
-            return this;
-        }
-
-        public Builder setChangedDate(String date) {
-            this.changedDate = date;
-            return this;
-        }
-
-        public Builder setBidNoticeNoList(String list) {
-            this.bidNoticeNoList = list;
-            return this;
         }
     }
 }

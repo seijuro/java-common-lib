@@ -59,7 +59,7 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
                         this.productStdInfoBuilder.setBusinessDivisionName(value);
                         return true;
                     case SpecificationInfoProperty.ItemCode.IC_REF_NO:
-                        this.productStdInfoBuilder.setReferenceNo(value);
+                        this.productStdInfoBuilder.setRefNo(value);
                         return true;
                     case SpecificationInfoProperty.ItemCode.IC_PRODUCT_NAME:
                         this.productStdInfoBuilder.setProductName(value);
@@ -77,10 +77,10 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponsePar
                         this.productStdInfoBuilder.setReceiptDate(value);
                         return true;
                     case SpecificationInfoProperty.ItemCode.IC_OPITION_REG_CLOSE_DATE:
-                        this.productStdInfoBuilder.setRegisterOptionDueDate(value);
+                        this.productStdInfoBuilder.setRegOptionDueDate(value);
                         return true;
                     case SpecificationInfoProperty.ItemCode.IC_OFFICIAL_TELNO:
-                        this.productStdInfoBuilder.setOfficialTel(value);
+                        this.productStdInfoBuilder.setOfficalTel(value);
                         return true;
                     case SpecificationInfoProperty.ItemCode.IC_OFFICIAL_NAME:
                         this.productStdInfoBuilder.setOfficalName(value);

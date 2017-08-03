@@ -2,6 +2,9 @@ package com.github.seijuro.common.scrap.publicdata.nps.stats;
 
 import com.github.seijuro.common.IPrettyPrint;
 import com.github.seijuro.common.scrap.publicdata.nps.NPSData;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.function.Consumer;
 
@@ -9,7 +12,9 @@ public class Stats extends NPSData implements IPrettyPrint {
     /**
      * Instance Properties
      */
+    @Getter(AccessLevel.PUBLIC)
     private final String monthlyEmployment;
+    @Getter(AccessLevel.PUBLIC)
     private final String monthlyRetirement;
 
     protected Stats(Builder builer) {
@@ -17,14 +22,6 @@ public class Stats extends NPSData implements IPrettyPrint {
 
         this.monthlyEmployment = builer.monthlyEmployment;
         this.monthlyRetirement = builer.monthlyRetirement;
-    }
-
-    public String getMonthlyEmployment() {
-        return this.monthlyEmployment;
-    }
-
-    public String getMonthlyRetirement() {
-        return this.monthlyRetirement;
     }
 
     @Override
@@ -41,7 +38,9 @@ public class Stats extends NPSData implements IPrettyPrint {
         /**
          * Instance Properties
          */
+        @Setter(AccessLevel.PUBLIC)
         private String monthlyEmployment;
+        @Setter(AccessLevel.PUBLIC)
         private String monthlyRetirement;
 
         /**
@@ -49,16 +48,6 @@ public class Stats extends NPSData implements IPrettyPrint {
          */
         public Builder() {
             super();
-        }
-
-        public Builder setMonthlyEmpolyment(String value) {
-            this.monthlyEmployment = value;
-            return this;
-        }
-
-        public Builder setMonthlyRetirement(String value) {
-            this.monthlyRetirement = value;
-            return this;
         }
 
         public Stats build() {
