@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.function.Consumer;
 
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class Stats extends NPSData implements IPrettyPrint {
     /**
      * Instance Properties

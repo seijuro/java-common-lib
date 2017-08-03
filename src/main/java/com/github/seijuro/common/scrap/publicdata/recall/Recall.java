@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.function.Consumer;
 
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class Recall extends PublicData {
     /**
      * Instance Properties
@@ -113,7 +113,7 @@ public class Recall extends PublicData {
         @Setter(AccessLevel.PUBLIC)
         private int dimensionType = Integer.MIN_VALUE;
         @Setter(AccessLevel.PUBLIC)
-        private final RecallExtra extra = null;
+        private RecallExtra extra = null;
 
         @Override
         public Recall build() {

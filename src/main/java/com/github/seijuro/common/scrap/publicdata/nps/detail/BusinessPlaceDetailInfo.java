@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.function.Consumer;
 
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
     /**
      * Instance Properties

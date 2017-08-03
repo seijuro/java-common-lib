@@ -4,7 +4,7 @@ import com.github.seijuro.common.IPrettyPrint;
 
 import java.util.function.Consumer;
 
-public abstract class PublicData extends Object implements IPrettyPrint {
+public abstract class PublicData implements IPrettyPrint {
     /**
      * Default C'tor
      */

@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-public class RecallExtra{
+public class RecallExtra extends Object {
     @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.Extra.TIME)
     private final String time;
