@@ -56,7 +56,7 @@ public class PublicDataAPIResult implements IPrettyPrint {
     public void prettyPrint(Consumer<String> consumer) {
         StringBuffer sb = new StringBuffer("result :=\n");
 
-        sb.append("\t[common]").append("\n")
+        sb.append("[common]").append("\n")
                 .append("\t").append(PublicDataProperty.Result.RESULT_CODE).append(" : [").append(this.resultCode).append("]\n")
                 .append("\t").append(PublicDataProperty.Result.RESULT_MESSAGE).append(" : [").append(this.resultMsg).append("]\n")
                 .append("\t").append(PublicDataProperty.Result.PAGE_NO).append(" : [").append(this.pageNo).append("]\n")

@@ -9,7 +9,7 @@ import com.github.seijuro.common.scrap.publicdata.spec.api.ProductSpecificationI
 import com.github.seijuro.common.scrap.publicdata.spec.api.ServiceSpecificationInfoAPI;
 
 public class PublicDataAPIFactory {
-    enum Type {
+    public enum Type {
         NPS_BUSINESS_PLACE_NORMAL,
         NPS_BUSINESS_PLACE_DETAUL,
         NPS_STATS,

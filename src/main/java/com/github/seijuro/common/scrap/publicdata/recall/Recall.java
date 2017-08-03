@@ -59,18 +59,18 @@ public class Recall extends PublicData {
     public void prettyPrint(Consumer<String> consumer) {
         StringBuffer sb = new StringBuffer();
 
-        sb.append("[recall] :=\b")
-                .append("idx : [").append(this.idx).append("]\n")
-                .append("country of manufacture : [").append(this.countryOfManufacture).append("]\n")
-                .append("product name : [").append(this.productName).append("]\n")
-                .append("trademark : [").append(this.trademark).append("]\n")
-                .append("model : [").append(this.model).append("]\n")
-                .append("serial# : [").append(this.serialNumber).append("]\n")
-                .append("type : [").append(this.type).append("]\n")
-                .append("company : [").append(this.company).append("]\n")
-                .append("date of issue : [").append(this.dateOfIssue).append("]\n")
-                .append("dimension of nation type : [").append(this.dimensionType).append("]\n")
-                .append("extra : [").append(this.extra).append("]\n");
+        sb.append("recall :=\n")
+                .append("\tidx : [").append(this.idx).append("]\n")
+                .append("\tcountry of manufacture : [").append(this.countryOfManufacture).append("]\n")
+                .append("\tproduct name : [").append(this.productName).append("]\n")
+                .append("\ttrademark : [").append(this.trademark).append("]\n")
+                .append("\tmodel : [").append(this.model).append("]\n")
+                .append("\tserial# : [").append(this.serialNumber).append("]\n")
+                .append("\ttype : [").append(this.type).append("]\n")
+                .append("\tcompany : [").append(this.company).append("]\n")
+                .append("\tdate of issue : [").append(this.dateOfIssue).append("]\n")
+                .append("\tdimension of nation type : [").append(this.dimensionType).append("]\n")
+                .append("\textra : [").append(this.extra).append("]\n");
 
         consumer.accept(sb.toString());
     }
