@@ -2,6 +2,8 @@ package com.github.seijuro.common.scrap.publicdata.spec;
 
 import com.github.seijuro.common.scrap.publicdata.PublicData;
 
+import java.util.function.Consumer;
+
 public class SpecificationInfo extends PublicData {
     /**
      * Instance Properties
@@ -59,6 +61,13 @@ public class SpecificationInfo extends PublicData {
         this.regDate = builder.regDate;
         this.changedDate = builder.changedDate;
         this.bidNoticeNoList = builder.bidNoticeNoList;
+    }
+
+    @Override
+    public void prettyPrint(Consumer<String> consumer) {
+        StringBuffer sb = new StringBuffer();
+
+        consumer.accept(sb.toString());
     }
 
     /**

@@ -5,8 +5,6 @@ import com.github.seijuro.common.scrap.publicdata.nps.NPSProperty;
 import com.github.seijuro.common.scrap.publicdata.nps.NPSPropertyUtils;
 import com.github.seijuro.common.scrap.publicdata.nps.normal.BusinessPlaceInfoAPIResponseParser;
 
-import java.util.ArrayList;
-
 public class BusinessPlaceDetailInfoAPIResponseParser extends BusinessPlaceInfoAPIResponseParser {
     /**
      * C'tor

@@ -1,12 +1,11 @@
 package com.github.seijuro.common.scrap.publicdata.nps.normal;
 
-import com.github.seijuro.common.IPrettyPrint;
 import com.github.seijuro.common.scrap.publicdata.nps.NPSData;
 import com.github.seijuro.common.scrap.publicdata.nps.NPSProperty;
 
 import java.util.function.Consumer;
 
-public class BusinessPlaceInfo extends NPSData implements IPrettyPrint {
+public class BusinessPlaceInfo extends NPSData {
     /**
      * Instsance Properties
      */
