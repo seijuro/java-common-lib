@@ -2,12 +2,12 @@ package com.github.seijuro.common.scrap.publicdata.nps.stats;
 
 import com.github.seijuro.common.IPrettyPrint;
 import com.github.seijuro.common.scrap.publicdata.nps.NPSData;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.function.Consumer;
 
+@ToString
+@EqualsAndHashCode
 public class Stats extends NPSData implements IPrettyPrint {
     /**
      * Instance Properties

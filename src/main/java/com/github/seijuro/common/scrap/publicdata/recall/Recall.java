@@ -2,15 +2,13 @@ package com.github.seijuro.common.scrap.publicdata.recall;
 
 import com.github.seijuro.common.scrap.publicdata.PublicData;
 import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.junit.Test;
 
 import java.util.function.Consumer;
 
 @ToString
+@EqualsAndHashCode
 public class Recall extends PublicData {
     /**
      * Instance Properties
@@ -70,7 +68,6 @@ public class Recall extends PublicData {
         this.extra = builder.extra;
     }
 
-    @Test
     @Override
     public void prettyPrint(Consumer<String> consumer) {
         StringBuffer sb = new StringBuffer();

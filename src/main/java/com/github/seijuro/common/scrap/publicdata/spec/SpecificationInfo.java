@@ -1,14 +1,12 @@
 package com.github.seijuro.common.scrap.publicdata.spec;
 
 import com.github.seijuro.common.scrap.publicdata.PublicData;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.function.Consumer;
 
 @ToString
+@EqualsAndHashCode
 public class SpecificationInfo extends PublicData {
     /**
      * Instance Properties

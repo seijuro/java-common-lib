@@ -2,10 +2,12 @@ package com.github.seijuro.common.scrap.publicdata.recall;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 @ToString
+@EqualsAndHashCode
 public class RecallExtra{
     @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.Extra.TIME)

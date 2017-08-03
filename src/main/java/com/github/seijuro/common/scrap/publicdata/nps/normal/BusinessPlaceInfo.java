@@ -2,12 +2,12 @@ package com.github.seijuro.common.scrap.publicdata.nps.normal;
 
 import com.github.seijuro.common.scrap.publicdata.nps.NPSData;
 import com.github.seijuro.common.scrap.publicdata.nps.NPSProperty;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.function.Consumer;
 
+@ToString
+@EqualsAndHashCode
 public class BusinessPlaceInfo extends NPSData {
     /**
      * Instsance Properties
