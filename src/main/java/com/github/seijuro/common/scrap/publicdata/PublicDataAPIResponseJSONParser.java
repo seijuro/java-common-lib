@@ -1,4 +1,4 @@
 package com.github.seijuro.common.scrap.publicdata;
 
-public class PublicDataAPIResponseParser {
+public class PublicDataAPIResponseJSONParser {
 }
