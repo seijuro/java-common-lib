@@ -3,13 +3,11 @@ package com.github.seijuro.common.scrap.publicdata.parser;
 import com.github.seijuro.common.InputType;
 import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIErrorResult;
 import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIResult;
-import com.github.seijuro.common.scrap.publicdata.parser.RecallAPIPageableResponseParser;
-import com.github.seijuro.common.scrap.publicdata.parser.RecallAPIResponseParser;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class RecallTest {
+public class RecallAPIResponseParserTest {
     /**
      * testing <code>RecallAPIResponsePaser</code>
      *

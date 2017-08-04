@@ -11,6 +11,19 @@ public class PublicDataAPIFactoryTest {
     final String sampleServiceKey = "test service-key";
 
     @Test
+    public void testExceptionalAPIUsage() {
+        try {
+            BusinessPlaceInfoAPIConfig config = new BusinessPlaceInfoAPIConfig();
+            PublicDataAPI api = PublicDataAPIFactory.create(null, config, sampleServiceKey);
+        }
+        catch (Exception excp) {
+            return;
+        }
+
+        assertTrue(false);
+    }
+
+    @Test
     public void testCreateBusinessPlaceInfoAPI() {
         try {
             BusinessPlaceInfoAPIConfig config = new BusinessPlaceInfoAPIConfig();
