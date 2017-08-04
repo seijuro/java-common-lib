@@ -1,5 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.services.recall;
 
+import com.github.seijuro.common.InputType;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIErrorResult;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIResponseJSONParser;
 import com.google.gson.Gson;
@@ -10,21 +11,18 @@ import java.util.Arrays;
 public class RecallAPIResponseParser extends PublicDataAPIResponseJSONParser {
     /**
      * C'tor
-     *
-     * @param type
-     * @param input
      */
-    public RecallAPIResponseParser(InputType type, String input) {
-        super(type, input);
+    public RecallAPIResponseParser() {
+        super();
     }
 
     @Test
     @Override
-    public void parse() {
+    public void parse(InputType type, String input) {
         try {
             Gson gson = new Gson();
 
-            Recall[] recalls = gson.fromJson(getInput(), Recall[].class);
+            Recall[] recalls = gson.fromJson(input, Recall[].class);
 
             String resultMessage = "";
             String resultCode = "";

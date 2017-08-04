@@ -18,12 +18,8 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponseXML
     protected List<BusinessPlaceInfo> dataList = null;
     /**
      * C'tor
-     *
-     * @param type
-     * @param input
      */
-    public BusinessPlaceInfoAPIResponseParser(InputType type, String input) {
-        super(type, input);
+    public BusinessPlaceInfoAPIResponseParser() {
     }
 
     @MethodDescription(

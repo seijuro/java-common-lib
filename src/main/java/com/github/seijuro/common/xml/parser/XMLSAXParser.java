@@ -1,6 +1,6 @@
 package com.github.seijuro.common.xml.parser;
 
-import com.github.seijuro.common.IParser;
+import com.github.seijuro.common.InputType;
 import com.github.seijuro.common.annotation.MethodDescription;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,28 +14,11 @@ import javax.xml.parsers.SAXParserFactory;
 
 import java.io.*;
 
-import static com.github.seijuro.common.xml.parser.XMLSAXParser.InputType.*;
+import static com.github.seijuro.common.InputType.CODE_INPUTTYPE_FILE;
+import static com.github.seijuro.common.InputType.CODE_INPUTTYPE_TEXT;
+import static com.github.seijuro.common.InputType.CODE_INPUTTYPE_UNKNOWN;
 
 public abstract class XMLSAXParser extends DefaultHandler {
-    public enum InputType {
-        UNKNOWN(InputType.CODE_INPUTTYPE_UNKNOWN),
-        FILE(InputType.CODE_INPUTTYPE_FILE),
-        TEXT(InputType.CODE_INPUTTYPE_TEXT);
-
-        static final int CODE_INPUTTYPE_UNKNOWN = -1;
-        static final int CODE_INPUTTYPE_TEXT = 1;
-        static final int CODE_INPUTTYPE_FILE = 2;
-
-        /**
-         * Instance Property
-         */
-        private final int code;
-
-        InputType(int $code) {
-            this.code = $code;
-        }
-    }
-
     /**
      * Instance Properties
      */
@@ -45,20 +28,10 @@ public abstract class XMLSAXParser extends DefaultHandler {
     @Setter(AccessLevel.PRIVATE)
     private String currentValue = null;
 
-    @Getter(AccessLevel.PROTECTED)
-    private final InputType inputType;
-    @Getter(AccessLevel.PROTECTED)
-    private final String input;;
-
     /**
      * C'tor
-     *
-     * @param type
-     * @param input
      */
-    public XMLSAXParser(InputType type, String input) {
-        this.inputType = type;
-        this.input = input;
+    public XMLSAXParser() {
     }
 
     /**
@@ -110,20 +83,20 @@ public abstract class XMLSAXParser extends DefaultHandler {
         setCurrentValue(new String(ch, start, length).trim());
     }
 
-    public void parse() {
+    public void parse(InputType type, String input) {
         try {
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 
-            switch (this.inputType.code) {
+            switch (type.getCode()) {
                 case CODE_INPUTTYPE_TEXT: {
-                    InputStream is = new ByteArrayInputStream(this.input.getBytes());
+                    InputStream is = new ByteArrayInputStream(input.getBytes());
 
                     parser.parse(is, this);
                 }
                     break;
 
                 case CODE_INPUTTYPE_FILE: {
-                    File file = new File(this.input);
+                    File file = new File(input);
                     parser.parse(file, this);
                 }
                     break;

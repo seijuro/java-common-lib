@@ -15,12 +15,9 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponseXML
 
     /**
      * C'tor
-     *
-     * @param type
-     * @param input
      */
-    public SpecificationInfoAPIResponseParser(InputType type, String input) {
-        super(type, input);
+    public SpecificationInfoAPIResponseParser() {
+        super();
     }
 
     @Override

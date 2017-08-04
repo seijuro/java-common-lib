@@ -32,7 +32,8 @@ public class PublicDataAPIFactory {
         else if (type == PublicDataAPIServices.SPEC_SERVICE) {
             return new ServiceSpecificationInfoAPI(config, serviceKey);
         }
-        else if (type == PublicDataAPIServices.RECALL) {
+        else if (type == PublicDataAPIServices.RECALL
+                || type == PublicDataAPIServices.RECALL_PAGEABLE) {
             return new RecallAPI(config, serviceKey);
         }
 

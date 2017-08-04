@@ -1,13 +1,13 @@
 package com.github.seijuro.common.scrap.publicdata.runner;
 
+import com.github.seijuro.common.InputType;
+import com.github.seijuro.common.http.RestfulAPIErrorResponse;
 import com.github.seijuro.common.http.RestfulAPIResponse;
-import com.github.seijuro.common.http.StatusCode;
-import com.github.seijuro.common.http.StatusCodeUtils;
 import com.github.seijuro.common.scrap.publicdata.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 
-public abstract class PublicDataAPIRunnable<T extends PublicDataAPI> implements IPublicDataAPIRunnable<T> {
+public class PublicDataAPIRunnable implements IPublicDataAPIRunnable {
     /**
      * Instance Properties
      */
@@ -18,8 +18,11 @@ public abstract class PublicDataAPIRunnable<T extends PublicDataAPI> implements 
     @Getter(AccessLevel.PROTECTED)
     private final String serviceKey;
 
-    private T api;
-    private IPublicDataAPIResultHandler handler;
+    private PublicDataAPI api;
+    @Getter(AccessLevel.PROTECTED)
+    private PublicDataAPIResponseParser parser;
+    @Getter(AccessLevel.PROTECTED)
+    private PublicDataAPIResultHandler handler;
 
     /**
      * C'tor
@@ -33,44 +36,52 @@ public abstract class PublicDataAPIRunnable<T extends PublicDataAPI> implements 
         this.serviceKey = $serviceKey;
     }
 
-    private void createAPIIfNotExists() throws PublicDataAPIException {
-        if (this.api == null) {
-            this.api = (T) PublicDataAPIFactory.create(getService(), getConfig(), getServiceKey());
-        }
+    /**
+     * set handler
+     *
+     * @param handler
+     */
+    public void setHandler(PublicDataAPIResultHandler handler) {
+        this.handler = handler;
     }
 
-    @Override
-    public T getAPI() throws PublicDataAPIException {
-        createAPIIfNotExists();
-
+    public PublicDataAPI getAPI() throws PublicDataAPIException {
         return this.api;
     }
 
     @Override
-    public boolean request() {
+    public void init() throws PublicDataAPIException {
+        this.api = PublicDataAPIFactory.create(getService(), getConfig(), getServiceKey());
+        this.parser = PublicDataAPIResponseParserFactory.create(getService());
+    }
+
+    @Override
+    public void request() {
         try {
-            T api = getAPI();
+            PublicDataAPI api = getAPI();
+            assert (api != null);
 
             RestfulAPIResponse response = api.request();
 
-            int responseCode = response.getHttpResponseCode();
-            StatusCode httpStatusCode = StatusCodeUtils.get(responseCode);
-            StringBuffer sb = new StringBuffer("HTTP Response -> ");
-
-            if (StatusCodeUtils.isOK(httpStatusCode)) {
-                StatusCodeUtils.format(httpStatusCode, sb::append);
+            if (response instanceof RestfulAPIErrorResponse) {
+                //  TODO handle error ...
             }
             else {
-                StatusCodeUtils.format(httpStatusCode, sb::append);
-            }
+                this.parser.parse(InputType.TEXT, response.getResponse());
 
-            System.out.println(sb.toString());
+                if (this.parser.hasError()) {
+                    PublicDataAPIResult reslut = this.parser.getResult();
+                    this.handler.handleResults(reslut);
+                }
+                else {
+                    PublicDataAPIErrorResult result = (PublicDataAPIErrorResult)this.parser.getResult();
+                    this.handler.handleError(result);
+                }
+            }
         }
         catch (Exception excp) {
             excp.printStackTrace();
         }
-
-        return false;
     }
 
     @Override

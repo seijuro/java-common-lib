@@ -18,12 +18,9 @@ public class StatsAPIResponseParser extends PublicDataAPIResponseXMLParser {
 
     /**
      * C'tor
-     *
-     * @param type
-     * @param input
      */
-    public StatsAPIResponseParser(InputType type, String input) {
-        super(type, input);
+    public StatsAPIResponseParser() {
+        super();
     }
 
     @Override

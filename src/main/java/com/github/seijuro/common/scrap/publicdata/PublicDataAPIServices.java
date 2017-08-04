@@ -10,5 +10,6 @@ public enum PublicDataAPIServices {
     SPEC_PRODUCT,
     SPEC_SERVICE,
 
-    RECALL;
+    RECALL,
+    RECALL_PAGEABLE;
 }

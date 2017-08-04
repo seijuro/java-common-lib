@@ -8,12 +8,9 @@ import com.github.seijuro.common.scrap.publicdata.services.nps.normal.BusinessPl
 public class BusinessPlaceDetailInfoAPIResponseParser extends BusinessPlaceInfoAPIResponseParser {
     /**
      * C'tor
-     *
-     * @param type
-     * @param input
      */
-    public BusinessPlaceDetailInfoAPIResponseParser(InputType type, String input) {
-        super(type, input);
+    public BusinessPlaceDetailInfoAPIResponseParser() {
+        super();
     }
 
     @Override

@@ -1,26 +1,22 @@
 package com.github.seijuro.common.scrap.publicdata.services.recall;
 
+import com.github.seijuro.common.InputType;
 import com.github.seijuro.common.scrap.publicdata.PublicDataAPIErrorResult;
 import com.google.gson.Gson;
-import org.junit.Test;
 
 public class RecallAPIPageableResponseParser extends RecallAPIResponseParser {
     /**
      * C'tor
-     *
-     * @param type
-     * @param input
      */
-    public RecallAPIPageableResponseParser(InputType type, String input) {
-        super(type, input);
+    public RecallAPIPageableResponseParser() {
+        super();
     }
 
-    @Test
     @Override
-    public void parse() {
+    public void parse(InputType type, String input) {
         try {
             Gson gson = new Gson();
-            RecallAPIPageableResult.Builder builder = gson.fromJson(getInput(), RecallAPIPageableResult.Builder.class);
+            RecallAPIPageableResult.Builder builder = gson.fromJson(input, RecallAPIPageableResult.Builder.class);
 
             assert (builder != null);
 

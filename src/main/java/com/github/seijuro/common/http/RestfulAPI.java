@@ -101,13 +101,7 @@ public abstract class RestfulAPI {
             br.close();
             conn.disconnect();
         }
-        catch (MalformedURLException excp) {
-            return new RestfulAPIErrorResponse(responseCode, response.toString(), excp.getMessage());
-        }
-        catch (ProtocolException excp) {
-            return new RestfulAPIErrorResponse(responseCode, response.toString(), excp.getMessage());
-        }
-        catch (IOException excp) {
+        catch (Exception excp) {
             return new RestfulAPIErrorResponse(responseCode, response.toString(), excp.getMessage());
         }
 
@@ -139,6 +133,15 @@ public abstract class RestfulAPI {
 
 
     protected RestfulAPIResponse createResponse(int code, String reponse) {
-        return new RestfulAPIResponse(code, reponse);
+        StatusCode statusCode = StatusCodeUtils.get(code);
+        if (StatusCodeUtils.isOK(statusCode)) {
+            return new RestfulAPIResponse(code, reponse);
+        }
+
+        StringBuffer sb = new StringBuffer();
+        StatusCodeUtils.format(statusCode, sb::append);
+        String message = sb.toString();
+
+        return new RestfulAPIErrorResponse(statusCode.getCode(), reponse, message);
     }
 }

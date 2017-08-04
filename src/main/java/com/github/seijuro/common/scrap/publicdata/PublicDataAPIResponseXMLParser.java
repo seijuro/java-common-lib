@@ -1,9 +1,9 @@
 package com.github.seijuro.common.scrap.publicdata;
 
+import com.github.seijuro.common.InputType;
 import com.github.seijuro.common.xml.parser.XMLSAXParser;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import org.xml.sax.SAXException;
 
 public abstract class PublicDataAPIResponseXMLParser extends XMLSAXParser implements PublicDataAPIResponseParser {
@@ -36,16 +36,14 @@ public abstract class PublicDataAPIResponseXMLParser extends XMLSAXParser implem
     /**
      * C'tor
      *
-     * @param type
-     * @param input
      */
-    public PublicDataAPIResponseXMLParser(InputType type, String input) {
-        super(type, input);
+    public PublicDataAPIResponseXMLParser() {
+        super();
     }
 
     @Override
-    public void parse() {
-        super.parse();
+    public void parse(InputType type, String input) {
+        super.parse(type, input);
     }
 
     @Override
