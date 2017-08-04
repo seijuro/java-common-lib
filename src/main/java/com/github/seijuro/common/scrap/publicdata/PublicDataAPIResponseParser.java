@@ -1,8 +1,7 @@
 package com.github.seijuro.common.scrap.publicdata;
 
-import com.github.seijuro.common.IParser;
-
-public interface PublicDataAPIResponseParser extends IParser {
+public interface PublicDataAPIResponseParser {
+    void parse();
     boolean hasError();
     PublicDataAPIResult getResult();
 }

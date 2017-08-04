@@ -2,6 +2,7 @@ package com.github.seijuro.common.scrap.publicdata;
 
 import com.github.seijuro.common.IURLEncoder;
 import com.github.seijuro.common.http.RestfulAPI;
+import com.github.seijuro.common.http.RestfulAPIResponse;
 import lombok.AccessLevel;
 import lombok.Getter;
 
@@ -22,7 +23,7 @@ public class PublicDataAPI extends RestfulAPI {
      * @param url
      * @param config
      */
-    public PublicDataAPI(String url, PublicDataConfig config, String serviceKey) {
+    public PublicDataAPI(String url, PublicDataAPIConfig config, String serviceKey) {
         super(APIRequestMethod, url, config, ParameterEncoder);
 
         this.serviceKey = serviceKey;
