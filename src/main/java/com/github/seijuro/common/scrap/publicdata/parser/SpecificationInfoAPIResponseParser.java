@@ -5,6 +5,8 @@ import com.github.seijuro.common.scrap.publicdata.result.item.SpecificationInfo;
 import com.github.seijuro.common.scrap.publicdata.property.SpecificationInfoProperty;
 import com.github.seijuro.common.scrap.publicdata.property.SpecificationInfoPropertyUtils;
 import com.github.seijuro.common.scrap.publicdata.result.SpeficiationInfoResult;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,9 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponseXML
     /**
      * Instance Properties
      */
+    @Getter(AccessLevel.PROTECTED)
     private List<SpecificationInfo> specificationInfos = null;
+    @Getter(AccessLevel.PROTECTED)
     private SpecificationInfo.Builder productStdInfoBuilder = null;
 
     /**
@@ -21,6 +25,14 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponseXML
      */
     public SpecificationInfoAPIResponseParser() {
         super();
+    }
+
+    @Override
+    public void clear() {
+        if (this.specificationInfos != null) this.specificationInfos.clear();
+
+        this.specificationInfos = null;
+        this.productStdInfoBuilder = null;
     }
 
     @Override

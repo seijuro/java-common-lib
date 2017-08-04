@@ -16,7 +16,7 @@ public class SpeficiationInfoResult extends PublicDataAPIResult {
      * @param $numOfRows
      * @param $totalCount
      */
-    public SpeficiationInfoResult(String $resultCode, String $resultMesg, int $pageNo, int $numOfRows, int $totalCount) {
+    public SpeficiationInfoResult(String $resultCode, String $resultMesg, Integer $pageNo, Integer $numOfRows, Integer $totalCount) {
         super($resultCode, $resultMesg, $pageNo, $numOfRows, $totalCount);
     }
 

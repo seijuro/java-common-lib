@@ -23,6 +23,14 @@ public abstract class PublicDataAPIResponseJSONParser implements PublicDataAPIRe
     }
 
     @Override
+    public void clear() {
+        if (this.result != null) result.clear();
+
+        this.result = null;
+        this.hasError = false;
+    }
+
+    @Override
     public boolean hasError() {
         return this.hasError;
     }

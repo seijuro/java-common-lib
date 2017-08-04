@@ -68,6 +68,11 @@ public abstract class XMLSAXParser extends DefaultHandler {
         handleTagEnd(qName, getCurrentValue());
     }
 
+    public void clear() {
+        this.tagStack.clear();
+        this.currentValue = null;
+    }
+
     @MethodDescription(
             name = "This interface will be called when the opening tag.",
             description = "This method return 'true', when you got done with tag. Otherwise, false")
@@ -84,6 +89,8 @@ public abstract class XMLSAXParser extends DefaultHandler {
     }
 
     public void parse(InputType type, String input) {
+        this.clear();
+
         try {
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 

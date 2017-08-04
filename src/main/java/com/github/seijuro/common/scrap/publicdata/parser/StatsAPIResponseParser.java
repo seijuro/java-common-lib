@@ -24,6 +24,14 @@ public class StatsAPIResponseParser extends PublicDataAPIResponseXMLParser {
     }
 
     @Override
+    public void clear() {
+        if (this.dataList != null) this.dataList.clear();
+
+        this.dataList = null;
+        this.dataBuilder = null;
+    }
+
+    @Override
     protected boolean handleTagBegin(String tag) {
         if (!super.handleTagBegin(tag)) {
             if (NPSPropertyUtils.Item.contains(tag)) {

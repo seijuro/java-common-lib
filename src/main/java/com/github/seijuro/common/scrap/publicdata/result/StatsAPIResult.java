@@ -13,7 +13,7 @@ public class StatsAPIResult extends PublicDataAPIResult {
      * @param $numOfRows
      * @param $totalCount
      */
-    public StatsAPIResult(String $resultCode, String $resultMesg, int $pageNo, int $numOfRows, int $totalCount) {
+    public StatsAPIResult(String $resultCode, String $resultMesg, Integer $pageNo, Integer $numOfRows, Integer $totalCount) {
         super($resultCode, $resultMesg, $pageNo, $numOfRows, $totalCount);
     }
 

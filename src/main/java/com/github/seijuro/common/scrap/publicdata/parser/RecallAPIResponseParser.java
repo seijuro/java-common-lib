@@ -17,6 +17,11 @@ public class RecallAPIResponseParser extends PublicDataAPIResponseJSONParser {
     }
 
     @Override
+    public void clear() {
+        //  do nothing
+    }
+
+    @Override
     public void parse(InputType type, String input) {
         try {
             Gson gson = new Gson();

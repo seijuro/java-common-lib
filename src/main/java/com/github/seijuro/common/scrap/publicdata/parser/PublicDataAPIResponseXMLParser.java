@@ -48,6 +48,26 @@ public class PublicDataAPIResponseXMLParser extends XMLSAXParser implements Publ
     }
 
     @Override
+    public void clear() {
+        super.clear();
+
+        if (this.result != null) this.result.clear();
+
+        this.resultCode = null;
+        this.resultMessage = null;
+        this.numberOfRows = null;
+        this.totalCount = null;
+        this.pageNo = null;
+
+        this.hasError = false;
+        this.errorMsg = null;
+        this.authMsg = null;
+        this.reasonCode = null;
+
+        this.result = null;
+    }
+
+    @Override
     public void parse(InputType type, String input) {
         super.parse(type, input);
     }

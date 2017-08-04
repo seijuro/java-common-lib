@@ -10,7 +10,7 @@ public class BusinessPlaceDetailInfoAPIResult extends BusinessPlaceInfoAPIResult
      * @param $numOfRows
      * @param $totalCount
      */
-    public BusinessPlaceDetailInfoAPIResult(String $resultCode, String $resultMesg, int $pageNo, int $numOfRows, int $totalCount) {
+    public BusinessPlaceDetailInfoAPIResult(String $resultCode, String $resultMesg, Integer $pageNo, Integer $numOfRows, Integer $totalCount) {
         super($resultCode, $resultMesg, $pageNo, $numOfRows, $totalCount);
     }
 

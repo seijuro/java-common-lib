@@ -17,7 +17,7 @@ public class RecallAPIResult extends PublicDataAPIResult {
      * @param $numOfRows
      * @param $totalCount
      */
-    public RecallAPIResult(String $resultCode, String $resultMesg, int $pageNo, int $numOfRows, int $totalCount) {
+    public RecallAPIResult(String $resultCode, String $resultMesg, Integer $pageNo, Integer $numOfRows, Integer $totalCount) {
         super($resultCode, $resultMesg, $pageNo, $numOfRows, $totalCount);
     }
 

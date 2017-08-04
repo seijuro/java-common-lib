@@ -16,10 +16,19 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponseXML
      */
     protected BusinessPlaceInfo.Builder dataBuilder = null;
     protected List<BusinessPlaceInfo> dataList = null;
+
     /**
      * C'tor
      */
     public BusinessPlaceInfoAPIResponseParser() {
+    }
+
+    @Override
+    public void clear() {
+        if (this.dataList != null) this.dataList.clear();
+
+        this.dataList = null;
+        this.dataBuilder = null;
     }
 
     @MethodDescription(

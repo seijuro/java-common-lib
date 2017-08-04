@@ -58,6 +58,13 @@ public class PublicDataAPIResult implements IPrettyPrint {
     }
 
     /**
+     * release reference(s).
+     */
+    public void clear() {
+        if (this.resultList != null) this.resultList.clear();
+    }
+
+    /**
      * set all elements in param
      *
      * @param list
