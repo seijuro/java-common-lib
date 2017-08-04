@@ -1,9 +1,15 @@
 package com.github.seijuro.common.scrap.publicdata.runner;
 
 import com.github.seijuro.common.InputType;
-import com.github.seijuro.common.http.RestfulAPIErrorResponse;
-import com.github.seijuro.common.http.RestfulAPIResponse;
+import com.github.seijuro.common.http.rest.RestfulAPIErrorResponse;
+import com.github.seijuro.common.http.rest.RestfulAPIResponse;
 import com.github.seijuro.common.scrap.publicdata.*;
+import com.github.seijuro.common.scrap.publicdata.api.PublicDataAPI;
+import com.github.seijuro.common.scrap.publicdata.api.config.PublicDataAPIConfig;
+import com.github.seijuro.common.scrap.publicdata.parser.PublicDataAPIResponseParser;
+import com.github.seijuro.common.scrap.publicdata.parser.PublicDataAPIResponseParserFactory;
+import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIErrorResult;
+import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIResult;
 import lombok.AccessLevel;
 import lombok.Getter;
 

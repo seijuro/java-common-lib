@@ -1,5 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.runner;
 
+import com.github.seijuro.common.scrap.publicdata.runner.config.PublicDataAPIRunnerConfig;
 import lombok.AccessLevel;
 import lombok.Getter;
 
@@ -9,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import com.github.seijuro.common.scrap.publicdata.runner.PublicDataAPIRunnerConfig.Property;
+import com.github.seijuro.common.scrap.publicdata.runner.config.PublicDataAPIRunnerConfig.Property;
 
 public class PublicDataAPIRunner {
     /**
