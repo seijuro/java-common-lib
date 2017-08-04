@@ -12,6 +12,9 @@ public class PublicDataAPIRunnerConfig {
     @Getter(AccessLevel.PUBLIC)
     static final long defaultAwaitTermMillis = 10 * DateUtils.MILLIS_PER_SECOND;
 
+    /**
+     * Property
+     */
     public enum Property {
         THREADPOOL_SIZE,
         AWAITTERM_MILLIS;
@@ -30,7 +33,7 @@ public class PublicDataAPIRunnerConfig {
     }
 
     public boolean contains(Property property) {
-        return this.props.contains(property);
+        return this.props.containsKey(property);
     }
 
     public <T> T get(Property property, Class<T> Clazz) {

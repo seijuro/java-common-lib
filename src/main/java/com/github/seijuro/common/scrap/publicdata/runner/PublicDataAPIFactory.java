@@ -10,7 +10,7 @@ public class PublicDataAPIFactory {
         if (type == PublicDataAPIServices.NPS_BUSINESS_PLACE_NORMAL) {
             return new BusinessPlaceInfoAPI(config, serviceKey);
         }
-        else if (type == PublicDataAPIServices.NPS_BUSINESS_PLACE_DETAUL) {
+        else if (type == PublicDataAPIServices.NPS_BUSINESS_PLACE_DETAIL) {
             return new BusinessPlaceDetailInfoAPI(config, serviceKey);
         }
         else if (type == PublicDataAPIServices.NPS_STATS) {

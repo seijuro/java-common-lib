@@ -13,7 +13,7 @@ public class PublicDataAPIResponseParserFactory {
         if (type == PublicDataAPIServices.NPS_BUSINESS_PLACE_NORMAL) {
             return new BusinessPlaceInfoAPIResponseParser();
         }
-        else if (type == PublicDataAPIServices.NPS_BUSINESS_PLACE_DETAUL) {
+        else if (type == PublicDataAPIServices.NPS_BUSINESS_PLACE_DETAIL) {
             return new BusinessPlaceDetailInfoAPIResponseParser();
         }
         else if (type == PublicDataAPIServices.NPS_STATS) {
