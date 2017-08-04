@@ -5,7 +5,6 @@ import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIErrorResul
 import com.github.seijuro.common.scrap.publicdata.result.item.Recall;
 import com.github.seijuro.common.scrap.publicdata.result.RecallAPIResult;
 import com.google.gson.Gson;
-import org.junit.Test;
 
 import java.util.Arrays;
 
@@ -17,7 +16,6 @@ public class RecallAPIResponseParser extends PublicDataAPIResponseJSONParser {
         super();
     }
 
-    @Test
     @Override
     public void parse(InputType type, String input) {
         try {

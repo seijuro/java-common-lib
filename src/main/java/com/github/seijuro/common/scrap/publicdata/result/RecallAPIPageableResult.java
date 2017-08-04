@@ -200,7 +200,6 @@ public class RecallAPIPageableResult extends RecallAPIResult {
          * Builder pattern method
          * @return
          */
-        @Test
         public RecallAPIPageableResult build() {
             return new RecallAPIPageableResult(this);
         }

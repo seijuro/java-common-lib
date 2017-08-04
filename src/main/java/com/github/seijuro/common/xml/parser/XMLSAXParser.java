@@ -65,7 +65,7 @@ public abstract class XMLSAXParser extends DefaultHandler {
             this.tagStack.pop();
         }
 
-        handleTagEnd(top, getCurrentValue());
+        handleTagEnd(qName, getCurrentValue());
     }
 
     @MethodDescription(

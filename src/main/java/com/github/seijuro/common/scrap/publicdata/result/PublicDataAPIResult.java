@@ -5,22 +5,24 @@ import com.github.seijuro.common.scrap.publicdata.result.item.PublicData;
 import com.github.seijuro.common.scrap.publicdata.property.PublicDataProperty;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+@ToString
 public class PublicDataAPIResult implements IPrettyPrint {
     @Getter(AccessLevel.PUBLIC)
     private final String resultCode;
     @Getter(AccessLevel.PUBLIC)
     private final String resultMessage;
     @Getter(AccessLevel.PUBLIC)
-    private int pageNo;
+    private Integer pageNo;
     @Getter(AccessLevel.PUBLIC)
-    private int numberOfRows;
+    private Integer numberOfRows;
     @Getter(AccessLevel.PUBLIC)
-    private int totalCount;
+    private Integer totalCount;
 
     protected List<PublicData> resultList = new ArrayList<>();
 
@@ -33,7 +35,7 @@ public class PublicDataAPIResult implements IPrettyPrint {
      * @param $numOfRows
      * @param $totalCount
      */
-    public PublicDataAPIResult(String $resultCode, String $resultMesg, int $pageNo, int $numOfRows, int $totalCount) {
+    public PublicDataAPIResult(String $resultCode, String $resultMesg, Integer $pageNo, Integer $numOfRows, Integer $totalCount) {
         this.resultCode = $resultCode;
         this.resultMessage = $resultMesg;
         this.pageNo = $pageNo;

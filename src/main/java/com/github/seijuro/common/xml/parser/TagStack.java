@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class TagStack<T> extends LinkedList<T> {
     public int size() {
-        return this.size();
+        return super.size();
     }
 
     public T pop() {

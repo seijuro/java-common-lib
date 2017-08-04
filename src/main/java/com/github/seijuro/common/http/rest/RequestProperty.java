@@ -1,33 +1,26 @@
 package com.github.seijuro.common.http.rest;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+
 public class RequestProperty {
     public static class UserAgent {
+        @Getter(AccessLevel.PUBLIC)
         static final String propertyName = "User-Agent";
-
-        public static String getPropertyName() {
-            return propertyName;
-        }
-
 
         public static final String MOZILA_5_0 = "Mozila/5.0";
     }
 
     public static class AcceptLanguage {
+        @Getter(AccessLevel.PUBLIC)
         static final String propertyName = "Accept-Language";
-
-        public static String getPropertyName() {
-            return propertyName;
-        }
 
         public static final String EN_US = "en-US,en;q=0.5";
     }
 
     public static class ContentType {
+        @Getter(AccessLevel.PUBLIC)
         static final String propertyName = "Accept-Language";
-
-        public static String getPropertyName() {
-            return propertyName;
-        }
 
         public static class Text {
             public static final String PLAIN = "text/plain";

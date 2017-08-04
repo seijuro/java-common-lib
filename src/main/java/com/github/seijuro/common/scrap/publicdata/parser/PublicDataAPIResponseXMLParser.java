@@ -8,9 +8,11 @@ import com.github.seijuro.common.scrap.publicdata.property.PublicDataPropertyUti
 import com.github.seijuro.common.xml.parser.XMLSAXParser;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.ToString;
 import org.xml.sax.SAXException;
 
-public abstract class PublicDataAPIResponseXMLParser extends XMLSAXParser implements PublicDataAPIResponseParser {
+@ToString
+public class PublicDataAPIResponseXMLParser extends XMLSAXParser implements PublicDataAPIResponseParser {
     /**
      * Instance Properties
      */
@@ -19,11 +21,11 @@ public abstract class PublicDataAPIResponseXMLParser extends XMLSAXParser implem
     @Getter(AccessLevel.PROTECTED)
     private String resultMessage = null;
     @Getter(AccessLevel.PROTECTED)
-    private int numberOfRows = Integer.MIN_VALUE;
+    private Integer numberOfRows = null;
     @Getter(AccessLevel.PROTECTED)
-    private int pageNo = Integer.MIN_VALUE;
+    private Integer pageNo = null;
     @Getter(AccessLevel.PROTECTED)
-    private int totalCount = Integer.MIN_VALUE;
+    private Integer totalCount = null;
 
     //  error
     private boolean hasError = false;
@@ -80,13 +82,13 @@ public abstract class PublicDataAPIResponseXMLParser extends XMLSAXParser implem
 
             switch (code) {
                 case PublicDataProperty.ResultCode.RC_NUM_OF_ROWS:
-                    this.numberOfRows = Integer.parseInt(value);
+                    this.numberOfRows = new Integer(value);
                     return true;
                 case PublicDataProperty.ResultCode.RC_PAGE_NO:
-                    this.pageNo = Integer.parseInt(value);
+                    this.pageNo = new Integer(value);
                     return true;
                 case PublicDataProperty.ResultCode.RC_TOTAL_COUNT:
-                    this.totalCount = Integer.parseInt(value);
+                    this.totalCount = new Integer(value);
                     return true;
                 case PublicDataProperty.ResultCode.RC_RESULT_CODE:
                     this.resultCode = value;

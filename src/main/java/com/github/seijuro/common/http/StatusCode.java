@@ -4,12 +4,12 @@ import lombok.AccessLevel;
 import lombok.Getter;
 
 public interface StatusCode {
-    public abstract String getName();
     public abstract int getCode();
+    public abstract String getName();
     public abstract String getRef();
 
     /**
-     * StatusCode : 100 - 1999
+     * StatusCode : 100 - 199
      */
     enum StatusCode100 implements StatusCode {
         CONTINUE(100, "RFC7231, Section 6.2.1"),

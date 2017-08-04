@@ -9,9 +9,9 @@ public class RecallAPIResultTest {
     public void testRecallAPIResult() {
         final String resultCode = "result code";
         final String resultMessage = "result message";
-        final int pageNo = 10;
-        final int numberOfRows = 100;
-        final int totalCount = 2000;
+        final Integer pageNo = 10;
+        final Integer numberOfRows = 100;
+        final Integer totalCount = 2000;
 
         RecallAPIResult result = new RecallAPIResult(resultCode, resultMessage, pageNo, numberOfRows, totalCount);
 
