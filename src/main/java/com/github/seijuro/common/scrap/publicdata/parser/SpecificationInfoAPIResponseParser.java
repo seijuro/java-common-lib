@@ -1,7 +1,7 @@
 package com.github.seijuro.common.scrap.publicdata.parser;
 
 import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIResult;
-import com.github.seijuro.common.scrap.publicdata.result.item.SpecificationInfo;
+import com.github.seijuro.common.scrap.publicdata.result.item.SpecificationData;
 import com.github.seijuro.common.scrap.publicdata.property.SpecificationInfoProperty;
 import com.github.seijuro.common.scrap.publicdata.property.SpecificationInfoPropertyUtils;
 import com.github.seijuro.common.scrap.publicdata.result.SpeficiationInfoResult;
@@ -16,9 +16,9 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponseXML
      * Instance Properties
      */
     @Getter(AccessLevel.PROTECTED)
-    private List<SpecificationInfo> specificationInfos = null;
+    private List<SpecificationData> specificationInfos = null;
     @Getter(AccessLevel.PROTECTED)
-    private SpecificationInfo.Builder productStdInfoBuilder = null;
+    private SpecificationData.Builder productStdInfoBuilder = null;
 
     /**
      * C'tor
@@ -44,7 +44,7 @@ public class SpecificationInfoAPIResponseParser extends PublicDataAPIResponseXML
                 return true;
             }
             else if (SpecificationInfoProperty.ITEM.equals(tag)) {
-                this.productStdInfoBuilder = new SpecificationInfo.Builder();
+                this.productStdInfoBuilder = new SpecificationData.Builder();
 
                 return true;
             }

@@ -13,7 +13,7 @@ public class PublicDataAPIFactoryTest {
     @Test
     public void testExceptionalAPIUsage() {
         try {
-            BusinessPlaceInfoAPIConfig config = new BusinessPlaceInfoAPIConfig();
+            BusinessPlaceAPIConfig config = new BusinessPlaceAPIConfig();
             PublicDataAPI api = PublicDataAPIFactory.create(null, config, sampleServiceKey);
         }
         catch (Exception excp) {
@@ -26,7 +26,7 @@ public class PublicDataAPIFactoryTest {
     @Test
     public void testCreateBusinessPlaceInfoAPI() {
         try {
-            BusinessPlaceInfoAPIConfig config = new BusinessPlaceInfoAPIConfig();
+            BusinessPlaceAPIConfig config = new BusinessPlaceAPIConfig();
             PublicDataAPI api = PublicDataAPIFactory.create(PublicDataAPIServices.NPS_BUSINESS_PLACE_NORMAL, config, sampleServiceKey);
 
             assertNotNull(api);
@@ -44,7 +44,7 @@ public class PublicDataAPIFactoryTest {
     @Test
     public void testCreateBusinessPlaceDetailInfoAPI() {
         try {
-            BusinessPlaceDetailInfoAPIConfig config = new BusinessPlaceDetailInfoAPIConfig();
+            BusinessPlaceDetailAPIConfig config = new BusinessPlaceDetailAPIConfig();
             PublicDataAPI api = PublicDataAPIFactory.create(PublicDataAPIServices.NPS_BUSINESS_PLACE_DETAIL, config, sampleServiceKey);
 
             assertNotNull(api);
@@ -80,7 +80,7 @@ public class PublicDataAPIFactoryTest {
     @Test
     public void testCreateConstructSpecificationInfoAPI() {
         try {
-            SpecificationInfoAPIConfig config = new SpecificationInfoAPIConfig();
+            SpecificationAPIConfig config = new SpecificationAPIConfig();
             PublicDataAPI api = PublicDataAPIFactory.create(PublicDataAPIServices.SPEC_CONSTRUCT, config, sampleServiceKey);
 
             assertNotNull(api);
@@ -98,7 +98,7 @@ public class PublicDataAPIFactoryTest {
     @Test
     public void testCreateForeignCapitalSpecificationInfoAPI() {
         try {
-            SpecificationInfoAPIConfig config = new SpecificationInfoAPIConfig();
+            SpecificationAPIConfig config = new SpecificationAPIConfig();
             PublicDataAPI api = PublicDataAPIFactory.create(PublicDataAPIServices.SPEC_FOREIGNCAPITAL, config, sampleServiceKey);
 
             assertNotNull(api);
@@ -116,7 +116,7 @@ public class PublicDataAPIFactoryTest {
     @Test
     public void testCreateServiceSpecificationInfoAPI() {
         try {
-            SpecificationInfoAPIConfig config = new SpecificationInfoAPIConfig();
+            SpecificationAPIConfig config = new SpecificationAPIConfig();
             PublicDataAPI api = PublicDataAPIFactory.create(PublicDataAPIServices.SPEC_SERVICE, config, sampleServiceKey);
 
             assertNotNull(api);
@@ -134,7 +134,7 @@ public class PublicDataAPIFactoryTest {
     @Test
     public void testProductServiceSpecificationInfoAPI() {
         try {
-            SpecificationInfoAPIConfig config = new SpecificationInfoAPIConfig();
+            SpecificationAPIConfig config = new SpecificationAPIConfig();
             PublicDataAPI api = PublicDataAPIFactory.create(PublicDataAPIServices.SPEC_PRODUCT, config, sampleServiceKey);
 
             assertNotNull(api);

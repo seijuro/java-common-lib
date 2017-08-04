@@ -3,7 +3,7 @@ package com.github.seijuro.common.scrap.publicdata.parser;
 import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIResult;
 import com.github.seijuro.common.scrap.publicdata.property.NPSProperty;
 import com.github.seijuro.common.scrap.publicdata.property.NPSPropertyUtils;
-import com.github.seijuro.common.scrap.publicdata.result.item.Stats;
+import com.github.seijuro.common.scrap.publicdata.result.item.StatsData;
 import com.github.seijuro.common.scrap.publicdata.result.StatsAPIResult;
 
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ public class StatsAPIResponseParser extends PublicDataAPIResponseXMLParser {
     /**
      * Instance Properties
      */
-    protected Stats.Builder dataBuilder = null;
-    protected List<Stats> dataList = null;
+    protected StatsData.Builder dataBuilder = null;
+    protected List<StatsData> dataList = null;
 
     /**
      * C'tor
@@ -50,7 +50,7 @@ public class StatsAPIResponseParser extends PublicDataAPIResponseXMLParser {
                 }
             }
             else if (NPSProperty.ITEM.equals(tag)) {
-                this.dataBuilder = (Stats.Builder)(NPSDataBuilderFactory.create(Stats.Builder.class));
+                this.dataBuilder = (StatsData.Builder)(NPSDataBuilderFactory.create(StatsData.Builder.class));
 
                 return true;
             }

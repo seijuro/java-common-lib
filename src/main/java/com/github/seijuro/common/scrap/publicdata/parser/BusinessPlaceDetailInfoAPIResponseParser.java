@@ -3,7 +3,7 @@ package com.github.seijuro.common.scrap.publicdata.parser;
 import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIResult;
 import com.github.seijuro.common.scrap.publicdata.property.NPSProperty;
 import com.github.seijuro.common.scrap.publicdata.property.NPSPropertyUtils;
-import com.github.seijuro.common.scrap.publicdata.result.item.BusinessPlaceDetailInfo;
+import com.github.seijuro.common.scrap.publicdata.result.item.BusinessPlaceDetailData;
 import com.github.seijuro.common.scrap.publicdata.result.BusinessPlaceDetailInfoAPIResult;
 
 public class BusinessPlaceDetailInfoAPIResponseParser extends BusinessPlaceInfoAPIResponseParser {
@@ -16,7 +16,7 @@ public class BusinessPlaceDetailInfoAPIResponseParser extends BusinessPlaceInfoA
 
     @Override
     protected Class getDataBuilderClass() {
-        return BusinessPlaceDetailInfo.Builder.class;
+        return BusinessPlaceDetailData.Builder.class;
     }
 
     @Override
@@ -42,22 +42,22 @@ public class BusinessPlaceDetailInfoAPIResponseParser extends BusinessPlaceInfoA
                 switch (code) {
                     // details only
                     case NPSProperty.ItemCode.Detail.IC_BUSINESSTYPE_NAME:
-                        BusinessPlaceDetailInfo.Builder.class.cast(this.dataBuilder).setBusinessTypeName(value);
+                        BusinessPlaceDetailData.Builder.class.cast(this.dataBuilder).setBusinessTypeName(value);
                         return true;
                     case NPSProperty.ItemCode.Detail.IC_BUSINESSTYPE_CODE:
-                        BusinessPlaceDetailInfo.Builder.class.cast(this.dataBuilder).setBusinessTypeCode(value);
+                        BusinessPlaceDetailData.Builder.class.cast(this.dataBuilder).setBusinessTypeCode(value);
                         return true;
                     case NPSProperty.ItemCode.Detail.IC_REGISTRATION_DATE:
-                        BusinessPlaceDetailInfo.Builder.class.cast(this.dataBuilder).setRegistrationDate(value);
+                        BusinessPlaceDetailData.Builder.class.cast(this.dataBuilder).setRegistrationDate(value);
                         return true;
                     case NPSProperty.ItemCode.Detail.IC_WITHDRAWAL_DATE:
-                        BusinessPlaceDetailInfo.Builder.class.cast(this.dataBuilder).setWithdrawalDate(value);
+                        BusinessPlaceDetailData.Builder.class.cast(this.dataBuilder).setWithdrawalDate(value);
                         return true;
                     case NPSProperty.ItemCode.Detail.IC_SUBSCRIBER_NUMBER:
-                        BusinessPlaceDetailInfo.Builder.class.cast(this.dataBuilder).setSubscriberNumber(value);
+                        BusinessPlaceDetailData.Builder.class.cast(this.dataBuilder).setSubscriberNumber(value);
                         return true;
                     case NPSProperty.ItemCode.Detail.IC_NOTIFIED_AMOUNT_OF_THIS_MONTH:
-                        BusinessPlaceDetailInfo.Builder.class.cast(this.dataBuilder).setNotifiedAmountOfThisMonth(value);
+                        BusinessPlaceDetailData.Builder.class.cast(this.dataBuilder).setNotifiedAmountOfThisMonth(value);
                         return true;
 
                     default:

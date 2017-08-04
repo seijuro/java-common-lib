@@ -1,6 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.result;
 
-import com.github.seijuro.common.scrap.publicdata.result.item.Recall;
+import com.github.seijuro.common.scrap.publicdata.result.item.RecallData;
 import lombok.ToString;
 
 import java.util.List;
@@ -29,10 +29,10 @@ public class RecallAPIResult extends PublicDataAPIResult {
     @Override
     public void prettyPrint(Consumer<String> consumer) {
         super.prettyPrint(consumer);
-        List<Recall> results = getData(Recall.class);
+        List<RecallData> results = getData(RecallData.class);
 
         consumer.accept("[result of recall API] (pageable : false)\n");
-        for (Recall recall : results) {
+        for (RecallData recall : results) {
             recall.prettyPrint(consumer);
         }
     }

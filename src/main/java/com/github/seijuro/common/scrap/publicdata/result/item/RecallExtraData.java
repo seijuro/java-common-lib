@@ -9,7 +9,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-public class RecallExtra extends Object {
+public class RecallExtraData extends Object {
     @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.Extra.TIME)
     private final String time;
@@ -34,7 +34,7 @@ public class RecallExtra extends Object {
      * @param $timeSecond
      * @param $inc
      */
-    public RecallExtra(String $time, String $new, String $machine, String $timeSecond, String $inc) {
+    public RecallExtraData(String $time, String $new, String $machine, String $timeSecond, String $inc) {
         this.time = $time;
         this._new = $new;
         this.machine = $machine;

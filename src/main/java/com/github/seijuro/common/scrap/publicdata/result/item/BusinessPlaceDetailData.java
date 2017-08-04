@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
+public class BusinessPlaceDetailData extends BusinessPlaceData {
     /**
      * Instance Properties
      */
@@ -29,7 +29,7 @@ public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
      *
      * @param builder
      */
-    protected BusinessPlaceDetailInfo(Builder builder) {
+    protected BusinessPlaceDetailData(Builder builder) {
         super(builder);
 
         this.businessTypeName = builder.businessTypeName;
@@ -59,7 +59,7 @@ public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
     /**
      * Builder Pattern class
      */
-    public static class Builder extends BusinessPlaceInfo.Builder {
+    public static class Builder extends BusinessPlaceData.Builder {
         /**
          * Instance Properties
          */
@@ -82,8 +82,8 @@ public class BusinessPlaceDetailInfo extends BusinessPlaceInfo {
          * @return
          */
         @Override
-        public BusinessPlaceDetailInfo build() {
-            return new BusinessPlaceDetailInfo(this);
+        public BusinessPlaceDetailData build() {
+            return new BusinessPlaceDetailData(this);
         }
     }
 }

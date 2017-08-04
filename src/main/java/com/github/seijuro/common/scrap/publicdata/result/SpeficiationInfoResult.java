@@ -1,12 +1,11 @@
 package com.github.seijuro.common.scrap.publicdata.result;
 
-import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIResult;
-import com.github.seijuro.common.scrap.publicdata.result.item.SpecificationInfo;
+import com.github.seijuro.common.scrap.publicdata.result.item.SpecificationData;
 
 import java.util.List;
 
 public class SpeficiationInfoResult extends PublicDataAPIResult {
-    private List<SpecificationInfo> infoList = null;
+    private List<SpecificationData> infoList = null;
     /**
      * C'tor
      *

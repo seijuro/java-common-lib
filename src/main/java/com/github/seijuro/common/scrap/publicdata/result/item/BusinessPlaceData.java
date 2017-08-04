@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class BusinessPlaceInfo extends NPSData {
+public class BusinessPlaceData extends NPSData {
     /**
      * Instsance Properties
      */
@@ -37,7 +37,7 @@ public class BusinessPlaceInfo extends NPSData {
      *
      * @param builder
      */
-    protected BusinessPlaceInfo(Builder builder) {
+    protected BusinessPlaceData(Builder builder) {
         super(builder);
 
         this.id = builder.id;
@@ -100,8 +100,8 @@ public class BusinessPlaceInfo extends NPSData {
          * build : Builder Pattern method
          */
         @Override
-        public BusinessPlaceInfo build() {
-            return new BusinessPlaceInfo(this);
+        public BusinessPlaceData build() {
+            return new BusinessPlaceData(this);
         }
     }
 }

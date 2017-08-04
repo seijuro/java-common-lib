@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Recall extends PublicData {
+public class RecallData extends PublicData {
     /**
      * Instance Properties
      */
@@ -44,14 +44,14 @@ public class Recall extends PublicData {
     private final int dimensionType;
     @Getter(AccessLevel.PUBLIC)
     @SerializedName(RecallProperty.Content.FieldName.Extra)
-    private final RecallExtra extra;
+    private final RecallExtraData extra;
 
     /**
      * C'tor
      *
      * @param builder
      */
-    protected Recall(Builder builder) {
+    protected RecallData(Builder builder) {
         super(builder);
 
         this.idx = builder.idx;
@@ -112,11 +112,11 @@ public class Recall extends PublicData {
         @Setter(AccessLevel.PUBLIC)
         private int dimensionType = Integer.MIN_VALUE;
         @Setter(AccessLevel.PUBLIC)
-        private RecallExtra extra = null;
+        private RecallExtraData extra = null;
 
         @Override
-        public Recall build() {
-            return new Recall(this);
+        public RecallData build() {
+            return new RecallData(this);
         }
     }
 }

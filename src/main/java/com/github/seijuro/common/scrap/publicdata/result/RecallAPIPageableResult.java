@@ -1,13 +1,12 @@
 package com.github.seijuro.common.scrap.publicdata.result;
 
 import com.github.seijuro.common.scrap.publicdata.property.RecallProperty;
-import com.github.seijuro.common.scrap.publicdata.result.item.Recall;
+import com.github.seijuro.common.scrap.publicdata.result.item.RecallData;
 import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,9 +112,9 @@ public class RecallAPIPageableResult extends RecallAPIResult {
 
         consumer.accept(sb.toString());
 
-        List<Recall> data = getData(Recall.class);
+        List<RecallData> data = getData(RecallData.class);
 
-        for (Recall recall : data) {
+        for (RecallData recall : data) {
             recall.prettyPrint(consumer);
         }
     }
@@ -194,7 +193,7 @@ public class RecallAPIPageableResult extends RecallAPIResult {
         @Setter(AccessLevel.PUBLIC)
         @Getter(AccessLevel.PUBLIC)
         @SerializedName(RecallProperty.CONTENT)
-        private ArrayList<Recall> contents;
+        private ArrayList<RecallData> contents;
 
         /**
          * Builder pattern method

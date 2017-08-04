@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class RecallExtraTest {
+public class RecallExtraDataTest {
     @Test
     public void testCreateAndGetter() {
         /*String $time, String $new, String $machine, String $timeSecond, String $inc*/
@@ -13,7 +13,7 @@ public class RecallExtraTest {
 
         try {
             Gson gson = new Gson();
-            RecallExtra extra = gson.fromJson(sampleText, RecallExtra.class);
+            RecallExtraData extra = gson.fromJson(sampleText, RecallExtraData.class);
 
             assertNotNull(extra.get_new());
             assertNotNull(extra.getTime());

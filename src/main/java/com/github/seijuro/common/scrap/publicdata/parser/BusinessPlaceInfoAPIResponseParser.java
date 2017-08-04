@@ -4,7 +4,7 @@ import com.github.seijuro.common.annotation.MethodDescription;
 import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIResult;
 import com.github.seijuro.common.scrap.publicdata.property.NPSProperty;
 import com.github.seijuro.common.scrap.publicdata.property.NPSPropertyUtils;
-import com.github.seijuro.common.scrap.publicdata.result.item.BusinessPlaceInfo;
+import com.github.seijuro.common.scrap.publicdata.result.item.BusinessPlaceData;
 import com.github.seijuro.common.scrap.publicdata.result.BusinessPlaceInfoAPIResult;
 
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponseXML
     /**
      * Instance Properties
      */
-    protected BusinessPlaceInfo.Builder dataBuilder = null;
-    protected List<BusinessPlaceInfo> dataList = null;
+    protected BusinessPlaceData.Builder dataBuilder = null;
+    protected List<BusinessPlaceData> dataList = null;
 
     /**
      * C'tor
@@ -35,7 +35,7 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponseXML
             name = "builder class notifier.",
             description = "The return value will be used by DataBuilderFactory as paramter")
     protected Class getDataBuilderClass() {
-        return BusinessPlaceInfo.Builder.class;
+        return BusinessPlaceData.Builder.class;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class BusinessPlaceInfoAPIResponseParser extends PublicDataAPIResponseXML
             }
             else if (NPSProperty.ITEM.equals(tag)) {
                 //  create builder object
-                this.dataBuilder = (BusinessPlaceInfo.Builder)(NPSDataBuilderFactory.create(getDataBuilderClass()));
+                this.dataBuilder = (BusinessPlaceData.Builder)(NPSDataBuilderFactory.create(getDataBuilderClass()));
 
                 return true;
             }

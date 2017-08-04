@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Stats extends NPSData implements IPrettyPrint {
+public class StatsData extends NPSData implements IPrettyPrint {
     /**
      * Instance Properties
      */
@@ -16,7 +16,7 @@ public class Stats extends NPSData implements IPrettyPrint {
     @Getter(AccessLevel.PUBLIC)
     private final String monthlyRetirement;
 
-    protected Stats(Builder builer) {
+    protected StatsData(Builder builer) {
         super(builer);
 
         this.monthlyEmployment = builer.monthlyEmployment;
@@ -49,8 +49,8 @@ public class Stats extends NPSData implements IPrettyPrint {
             super();
         }
 
-        public Stats build() {
-            return new Stats(this);
+        public StatsData build() {
+            return new StatsData(this);
         }
     }
 }

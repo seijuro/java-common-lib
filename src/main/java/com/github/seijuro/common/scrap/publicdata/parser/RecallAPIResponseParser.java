@@ -2,7 +2,7 @@ package com.github.seijuro.common.scrap.publicdata.parser;
 
 import com.github.seijuro.common.InputType;
 import com.github.seijuro.common.scrap.publicdata.result.PublicDataAPIErrorResult;
-import com.github.seijuro.common.scrap.publicdata.result.item.Recall;
+import com.github.seijuro.common.scrap.publicdata.result.item.RecallData;
 import com.github.seijuro.common.scrap.publicdata.result.RecallAPIResult;
 import com.google.gson.Gson;
 
@@ -26,7 +26,7 @@ public class RecallAPIResponseParser extends PublicDataAPIResponseJSONParser {
         try {
             Gson gson = new Gson();
 
-            Recall[] recalls = gson.fromJson(input, Recall[].class);
+            RecallData[] recalls = gson.fromJson(input, RecallData[].class);
 
             String resultMessage = "";
             String resultCode = "";

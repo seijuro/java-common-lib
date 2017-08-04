@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class SpecificationInfo extends PublicData {
+public class SpecificationData extends PublicData {
     /**
      * Instance Properties
      */
@@ -62,7 +62,7 @@ public class SpecificationInfo extends PublicData {
      *
      * @param builder
      */
-    protected SpecificationInfo(Builder builder) {
+    protected SpecificationData(Builder builder) {
         super(builder);
 
         this.businessDivisionName = builder.businessDivisionName;
@@ -157,8 +157,8 @@ public class SpecificationInfo extends PublicData {
          * @return
          */
         @Override
-        public SpecificationInfo build() {
-            return new SpecificationInfo(this);
+        public SpecificationData build() {
+            return new SpecificationData(this);
         }
     }
 }

@@ -2,7 +2,7 @@ package com.github.seijuro.common.scrap.publicdata.api.config;
 
 import com.github.seijuro.common.scrap.publicdata.property.PublicDataProperty;
 
-public class BusinessPlaceInfoAPIConfig extends PublicDataAPIConfig {
+public class BusinessPlaceAPIConfig extends PublicDataAPIConfig {
     //  general
     public static final String NUM_OF_ROWS = PublicDataProperty.Request.NUM_OF_ROWS;
     public static final String PAGE_NO = PublicDataProperty.Request.PAGE_NO;
@@ -37,51 +37,51 @@ public class BusinessPlaceInfoAPIConfig extends PublicDataAPIConfig {
     static final int DEFAULT_PAGE_NO = 1;
     static final int LOWERBOUND_PAGE_NO = 0;
 
-    public BusinessPlaceInfoAPIConfig() {
+    public BusinessPlaceAPIConfig() {
         super();
     }
 
-    public BusinessPlaceInfoAPIConfig setPageSize(int size) {
+    public BusinessPlaceAPIConfig setPageSize(int size) {
         this.setProperty(NUM_OF_ROWS, Integer.toString((size > LOWERBOUND_NUM_OF_ROWS && size < UPPERBOUND_NUM_OF_ROWS) ? size : DEFAULT_NUM_OF_ROWS));
 
         return this;
     }
 
-    public BusinessPlaceInfoAPIConfig setPageNo(int no) {
+    public BusinessPlaceAPIConfig setPageNo(int no) {
         this.setProperty(PAGE_NO, Integer.toString(no > LOWERBOUND_PAGE_NO ? no : DEFAULT_PAGE_NO));
 
         return this;
     }
 
-    public BusinessPlaceInfoAPIConfig setRegistrationNumber(String number) {
+    public BusinessPlaceAPIConfig setRegistrationNumber(String number) {
         this.setProperty(REGISTRATION_NUMBER, number);
 
         return this;
     }
 
-    public BusinessPlaceInfoAPIConfig setDivisionCode(DivisionCode code) {
+    public BusinessPlaceAPIConfig setDivisionCode(DivisionCode code) {
         this.setProperty(DIVISION_CODE, code.toCodeString());
 
         return this;
     }
 
-    public BusinessPlaceInfoAPIConfig setName(String name) {
+    public BusinessPlaceAPIConfig setName(String name) {
         this.setProperty(NAME, name);
 
         return this;
     }
 
-    public BusinessPlaceInfoAPIConfig setAddressDG(String addr) {
+    public BusinessPlaceAPIConfig setAddressDG(String addr) {
         this.setProperty(ADDRESS_DG, addr);
         return this;
     }
 
-    public BusinessPlaceInfoAPIConfig setAddressSGG(String addr) {
+    public BusinessPlaceAPIConfig setAddressSGG(String addr) {
         this.setProperty(ADDRESS_SGG, addr);
         return this;
     }
 
-    public BusinessPlaceInfoAPIConfig setAddressEMD(String addr) {
+    public BusinessPlaceAPIConfig setAddressEMD(String addr) {
         this.setProperty(ADDRESS_EMD, addr);
         return this;
     }
