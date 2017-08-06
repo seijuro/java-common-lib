@@ -1,13 +1,12 @@
 package com.github.seijuro.common.scrap.publicdata.api;
 
 import com.github.seijuro.common.scrap.publicdata.api.config.PublicDataAPIConfig;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 public class StatsAPI extends PublicDataAPI {
-    public static final String SERVICE_URL = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getPdAcctoSttusInfoSearch";
-
-    public static String getServiceURL() {
-        return SERVICE_URL;
-    }
+    @Getter(AccessLevel.PUBLIC)
+    public static final String serviceURL = "http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getPdAcctoSttusInfoSearch";
 
     /**
      * C'tor

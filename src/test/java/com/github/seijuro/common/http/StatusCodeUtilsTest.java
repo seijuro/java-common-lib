@@ -61,7 +61,7 @@ public class StatusCodeUtilsTest {
         StatusCode statusCode = StatusCodeUtils.get(200);
         StringBuffer sb = new StringBuffer();
 
-        String expected = String.format("HTTP StatusCode {name : [%s], code : [%d], ref. : [%s]}",
+        String expected = String.format("HTTP StatusCode {name(or reason) : [%s], code : [%d], ref. : [%s]}",
                 StatusCode.StatusCode200.OK.getName(),
                 StatusCode.StatusCode200.OK.getCode(),
                 StatusCode.StatusCode200.OK.getRef());

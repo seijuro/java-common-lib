@@ -150,11 +150,12 @@ public class PublicDataAPIFactoryTest {
     }
 
     @Test
-    public void testRecallServiceSpecificationInfoAPI() {
+    public void testRecallServiceAPI() {
         try {
-            RecallAPIConfig config = new RecallAPIConfig();
+            RecallAPIConfig.Builder confBuilder = new RecallAPIConfig.Builder();
 
             {
+                RecallAPIConfig config = confBuilder.build();
                 PublicDataAPI api = PublicDataAPIFactory.create(PublicDataAPIServices.RECALL, config, sampleServiceKey);
 
                 assertNotNull(api);
@@ -162,6 +163,7 @@ public class PublicDataAPIFactoryTest {
             }
 
             {
+                RecallAPIConfig config = confBuilder.build();
                 PublicDataAPI api = PublicDataAPIFactory.create(PublicDataAPIServices.RECALL_PAGEABLE, config, sampleServiceKey);
 
                 assertNotNull(api);

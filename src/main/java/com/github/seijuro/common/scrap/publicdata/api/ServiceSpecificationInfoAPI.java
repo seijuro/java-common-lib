@@ -1,13 +1,12 @@
 package com.github.seijuro.common.scrap.publicdata.api;
 
 import com.github.seijuro.common.scrap.publicdata.api.config.PublicDataAPIConfig;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 public class ServiceSpecificationInfoAPI extends PublicDataAPI {
-    static final String SERVICE_URL = "http://apis.data.go.kr/1230000/HrcspSsstndrdInfoService/getPublicPrcureThngInfoCnstwk";
-
-    public static String getServiceURL() {
-        return SERVICE_URL;
-    }
+    @Getter(AccessLevel.PUBLIC)
+    static final String serviceURL = "http://apis.data.go.kr/1230000/HrcspSsstndrdInfoService/getPublicPrcureThngInfoCnstwk";
 
     /**
      * C'tor
@@ -16,6 +15,6 @@ public class ServiceSpecificationInfoAPI extends PublicDataAPI {
      * @param serviceKey
      */
     public ServiceSpecificationInfoAPI(PublicDataAPIConfig config, String serviceKey) {
-        super(SERVICE_URL, config, serviceKey);
+        super(getServiceURL(), config, serviceKey);
     }
 }

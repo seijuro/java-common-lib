@@ -115,6 +115,8 @@ public abstract class XMLSAXParser extends DefaultHandler {
         }
         catch (Exception excp) {
             excp.printStackTrace();
+
+            System.out.println("input -> " + input);
         }
     }
 }

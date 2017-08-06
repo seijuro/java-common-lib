@@ -25,7 +25,7 @@ public class PublicDataAPI extends RestfulAPI {
      * @param config
      */
     public PublicDataAPI(String url, PublicDataAPIConfig config, String serviceKey) {
-        super(APIRequestMethod, url, config, ParameterEncoder);
+        super(APIRequestMethod, url, config.getProperties(), ParameterEncoder);
 
         this.serviceKey = serviceKey;
     }

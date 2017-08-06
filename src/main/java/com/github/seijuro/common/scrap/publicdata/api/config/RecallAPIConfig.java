@@ -2,18 +2,33 @@ package com.github.seijuro.common.scrap.publicdata.api.config;
 
 import com.github.seijuro.common.IJSONConvertable;
 import com.github.seijuro.common.scrap.publicdata.property.RecallProperty;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.ToString;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import sun.jvm.hotspot.debugger.Page;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
+@ToString
 public class RecallAPIConfig extends PublicDataAPIConfig {
-    public static final String PARAM_SEARCH = "model_query";
-    public static final String PARAM_FIELD_VISIBILITY = "model_query_fields";
-    public static final String PARAM_DISTINCT = "model_query_distinct";
-    public static final String PARAM_PAGEABLE = "model_query_pageable";
+    /**
+     * Property
+     */
+    public enum Property implements ConfigProperty {
+        PARAM_SEARCH("model_query"),
+        PARAM_FIELD_VISIBILITY("model_query_fields"),
+        PARAM_DISTINCT("model_query_distinct"),
+        PARAM_PAGEABLE("model_query_pageable");
+
+        @Getter(AccessLevel.PUBLIC)
+        private final String property;
+
+        Property(String prop) {
+            this.property = prop;
+        }
+    }
 
     /**
      * Condition
@@ -223,8 +238,6 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
         }
     }
 
-
-
     /**
      * enum Direction
      */
@@ -297,6 +310,10 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
         PAGE_SIZE("pageSize"),
         SORT_ORDERS("sortOrders");
 
+        public static Boolean DEFAULT_ENABLE = new Boolean(true);
+        public static Integer DEFAULT_PAGESIZE = new Integer(10);
+        public static Integer DEFAULT_PAGENUMBER = new Integer(0);
+
         /**
          * Instance Property
          */
@@ -320,102 +337,195 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
     /**
      * C'tor
      */
-    public RecallAPIConfig() {
+    protected RecallAPIConfig(Builder builder) {
         super();
+
+        Properties props = getProperties();
+
+        if (builder.query instanceof JSONObject) { props.put(Property.PARAM_SEARCH.getProperty(), builder.query.toJSONString()); }
+        if (builder.pageable instanceof JSONObject) { props.put(Property.PARAM_PAGEABLE.getProperty(), builder.pageable.toJSONString()); }
+        if (builder.visibility instanceof JSONObject) { props.put(Property.PARAM_FIELD_VISIBILITY.getProperty(), builder.visibility.toJSONString()); }
+        if (builder.distinct instanceof Field) { props.put(Property.PARAM_DISTINCT.getProperty(), builder.distinct.toString()); }
     }
 
-    protected JSONObject getPageableJSONObject() {
-        JSONObject jsonPageable = (JSONObject)get(PARAM_PAGEABLE);
+    @Override
+    public String toString() {
+        Properties props = getProperties();
+        Enumeration e = props.propertyNames();
+        boolean isFirst = true;
 
-        if (!(jsonPageable instanceof JSONObject)) {
-            jsonPageable = new JSONObject();
+        StringBuffer sb = new StringBuffer("recall config := {");
+        while (e.hasMoreElements()) {
+            if (isFirst) { isFirst =false; }
+            else { sb.append(", "); }
 
-            this.put(PARAM_PAGEABLE, jsonPageable);
+            Object prop = e.nextElement();
+            sb.append(prop.toString()).append(" : ").append(props.get(prop));
         }
 
-        return jsonPageable;
+        sb.append("}");
+
+        return sb.toString();
     }
 
-    protected JSONObject getFieldVisibilityJSONPObject() {
-        JSONObject jsonVisibility = (JSONObject)get(PARAM_FIELD_VISIBILITY);
-
-        if (!(jsonVisibility instanceof JSONObject)) {
-            jsonVisibility = new JSONObject();
-
-            this.put(PARAM_FIELD_VISIBILITY, jsonVisibility);
-        }
-
-        return jsonVisibility;
-    }
-
-    public RecallAPIConfig setPageableEnabled(boolean flag) {
-        JSONObject jsonPageable = getPageableJSONObject();
-        jsonPageable.put(Pageable.ENABLE.toString(), new Boolean(flag));
-
-        return this;
-    }
-
-    public RecallAPIConfig setPageablePageNumber(int page) {
-        JSONObject jsonPageable = getPageableJSONObject();
-        jsonPageable.put(Pageable.PAGE_NUMBER.toString(), new Integer(page > 0 ? page : 0));
-
-        return this;
-    }
-
-    public RecallAPIConfig setPageablePageSize(int size) {
-        JSONObject jsonPageable = getPageableJSONObject();
-        jsonPageable.put(Pageable.PAGE_SIZE.toString(), new Integer(size > 0 ? size : 10));
-
-        return this;
-    }
-
-    public RecallAPIConfig setPageableSortOrders(Map<Field, Direction> orders) {
-        JSONObject jsonPageable = getPageableJSONObject();
-        JSONArray jsonOrders = new JSONArray();
-
-        for (Map.Entry<Field, Direction> order : orders.entrySet()) {
-            JSONObject jsonOrder = new JSONObject();
-            jsonOrder.put(SortOrder.PROPERTY.toString(), order.getKey().toString());
-            jsonOrder.put(SortOrder.DIRECTION.toString(), new Integer(order.getValue().toInt()));
-
-            jsonOrders.add(jsonOrder);
-        }
-
-        jsonPageable.put(Pageable.SORT_ORDERS.toString(), jsonOrders);
-
-        return this;
-    }
 
     /**
-     * API doesn't seems to support 'distinct'.
-     *
-     * @param field
-     * @return
+     * Builder Pattern class
      */
-    public RecallAPIConfig setFieldDistinct(Field field) {
-        this.put(PARAM_DISTINCT, field.toString());
+    @ToString
+    public static class Builder {
+        /**
+         * Instance Properties
+         */
+        JSONObject visibility = null;
+        JSONObject pageable = null;
+        JSONObject query = null;
+        Field distinct = null;
 
-        return this;
-    }
+        /**
+         * C'tor
+         */
+        public Builder() {
+            // set default(s)
+            this.pageable = new JSONObject();
 
-    public RecallAPIConfig setFieldVisibility(Set<Field> fields, Visibility visibility) {
-        Iterator<Field> iter = fields.iterator();
-        JSONObject jsonVisibility = new JSONObject();
-        Integer intVisibility = new Integer(visibility.toInt());
-
-        while (iter.hasNext()) {
-            Field field = iter.next();
-            jsonVisibility.put(field.toString(), intVisibility);
+            this.pageable.put(Pageable.ENABLE, Pageable.DEFAULT_ENABLE);
+            this.pageable.put(Pageable.PAGE_SIZE, Pageable.DEFAULT_PAGESIZE);
+            this.pageable.put(Pageable.PAGE_NUMBER, Pageable.DEFAULT_PAGENUMBER);
         }
 
-        this.put(PARAM_FIELD_VISIBILITY, jsonVisibility);
+        /**
+         * set distinct
+         *
+         * @param field
+         * @return
+         */
+        public Builder setDistinct(Field field) {
+            this.distinct = field;
 
-        return this;
+            return this;
+        }
+
+        /**
+         * set 'query'
+         *
+         * @param condition
+         * @return
+         */
+        public Builder setQuery(Condition condition) {
+            this.query = condition.toJSONObject();
+
+            return this;
+        }
+
+        /**
+         * set visibility
+         *
+         * @param fields
+         * @param $visibility
+         * @return
+         */
+        public Builder setVisibility(Set<Field> fields, Visibility $visibility) {
+            setVisibility(new ArrayList<>(fields), $visibility);
+
+            return this;
+        }
+
+        /**
+         * set visibility
+         *
+         * @param fields
+         * @param $visibility
+         * @return
+         */
+        public Builder setVisibility(Field[] fields, Visibility $visibility) {
+            assert(fields != null);
+
+            setVisibility(Arrays.asList(fields), $visibility);
+
+            return this;
+        }
+
+        /**
+         * set visibility #3
+         *
+         * @param fields
+         * @param $visibility
+         * @return
+         */
+        public Builder setVisibility(List<Field> fields, Visibility $visibility) {
+            JSONObject jsonVisibility = new JSONObject();
+            Integer intVisibility = new Integer($visibility.toInt());
+
+            for (Field field : fields) {
+                jsonVisibility.put(field.toString(), intVisibility);
+            }
+
+            this.visibility = jsonVisibility;
+
+            return this;
+        }
+
+        public Builder setPageableEnabled(boolean flag) {
+            this.pageable.put(Pageable.ENABLE.toString(), new Boolean(flag));
+
+            return this;
+        }
+
+        /**
+         * set page number
+         *
+         * @param page
+         * @return
+         */
+        public Builder setPageablePageNumber(int page) {
+            this.pageable.put(Pageable.PAGE_NUMBER.toString(), new Integer(page > 0 ? page : 0));
+
+            return this;
+        }
+
+        /**
+         * set 'page size'
+         *
+         * @param size
+         * @return
+         */
+        public Builder setPageablePageSize(int size) {
+            this.pageable.put(Pageable.PAGE_SIZE.toString(), new Integer(size > 0 ? size : 10));
+
+            return this;
+        }
+
+        /**
+         * set 'sorting order'
+         *
+         * @param orders
+         * @return
+         */
+        public Builder setPageableSortOrders(Map<Field, Direction> orders) {
+            JSONArray jsonOrders = new JSONArray();
+
+            for (Map.Entry<Field, Direction> order : orders.entrySet()) {
+                JSONObject jsonOrder = new JSONObject();
+                jsonOrder.put(SortOrder.PROPERTY.toString(), order.getKey().toString());
+                jsonOrder.put(SortOrder.DIRECTION.toString(), new Integer(order.getValue().toInt()));
+
+                jsonOrders.add(jsonOrder);
+            }
+
+            this.pageable.put(Pageable.SORT_ORDERS, jsonOrders);
+
+            return this;
+        }
+
+        /**
+         * Builder pattern method
+         *
+         * @return
+         */
+        public RecallAPIConfig build() {
+            return new RecallAPIConfig(this);
+        }
     }
 
-    public RecallAPIConfig setQuery(Condition condition) {
-        put(PARAM_SEARCH, condition.toJSONObject());
-
-        return this;
-    }
 }

@@ -2,17 +2,16 @@ package com.github.seijuro.common.scrap.publicdata.api;
 
 import com.github.seijuro.common.IURLEncoder;
 import com.github.seijuro.common.scrap.publicdata.api.config.PublicDataAPIConfig;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.Properties;
 
 public class RecallAPI extends PublicDataAPI {
-    public static final String SERVICE_URL = "http://www.ibtk.kr/recall_api/";
-
-    public static String getServiceURL() {
-        return SERVICE_URL;
-    }
+    @Getter(AccessLevel.PUBLIC)
+    public static final String serviceURL = "http://www.ibtk.kr/recall_api/";
 
     /**
      * C'tor

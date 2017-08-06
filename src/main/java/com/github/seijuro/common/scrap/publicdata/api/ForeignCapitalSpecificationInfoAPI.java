@@ -1,13 +1,12 @@
 package com.github.seijuro.common.scrap.publicdata.api;
 
 import com.github.seijuro.common.scrap.publicdata.api.config.PublicDataAPIConfig;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 public class ForeignCapitalSpecificationInfoAPI extends PublicDataAPI {
-    public static final String SERVICE_URL = "http://apis.data.go.kr/1230000/HrcspSsstndrdInfoService/getPublicPrcureThngInfoFrgcpt";
-
-    public static String getServiceURL() {
-        return SERVICE_URL;
-    }
+    @Getter(AccessLevel.PUBLIC)
+    public static final String serviceURL = "http://apis.data.go.kr/1230000/HrcspSsstndrdInfoService/getPublicPrcureThngInfoFrgcpt";
 
     /**
      * C'tor
@@ -16,6 +15,6 @@ public class ForeignCapitalSpecificationInfoAPI extends PublicDataAPI {
      * @param serviceKey
      */
     public ForeignCapitalSpecificationInfoAPI(PublicDataAPIConfig config, String serviceKey) {
-        super(SERVICE_URL, config, serviceKey);
+        super(getServiceURL(), config, serviceKey);
     }
 }

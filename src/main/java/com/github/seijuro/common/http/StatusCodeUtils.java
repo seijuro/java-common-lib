@@ -47,7 +47,7 @@ public class StatusCodeUtils {
 
     public static void format(StatusCode code, Consumer<String> consumer) {
         StringBuffer sb = new StringBuffer("HTTP StatusCode {");
-        sb.append("name : [").append(code.getName()).append("], code : [").append(code.getCode()).append("], ref. : [").append(code.getRef()).append("]}");
+        sb.append("name(or reason) : [").append(code.getName()).append("], code : [").append(code.getCode()).append("], ref. : [").append(code.getRef()).append("]}");
 
         consumer.accept(sb.toString());
     }
