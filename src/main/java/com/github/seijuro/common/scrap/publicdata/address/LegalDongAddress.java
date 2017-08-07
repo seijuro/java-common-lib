@@ -24,7 +24,7 @@ public class LegalDongAddress {
      * @param $text
      * @param $status
      */
-    protected LegalDongAddress(LegalDongAddressCode $code, String $text, LegalDongAddressStatus $status) {
+    public LegalDongAddress(LegalDongAddressCode $code, String $text, LegalDongAddressStatus $status) {
         this.code = $code;
         this.text = $text;
         this.status = $status;

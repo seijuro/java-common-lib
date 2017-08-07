@@ -1,8 +1,12 @@
-package com.github.seijuro.common.scrap.publicdata.address;
+package com.github.seijuro.common.scrap.publicdata.address.reader;
+
+import com.github.seijuro.common.scrap.publicdata.address.LegalDongAddress;
+import com.github.seijuro.common.scrap.publicdata.address.LegalDongAddressCode;
+import com.github.seijuro.common.scrap.publicdata.address.LegalDongAddressStatus;
 
 import java.io.*;
 
-public class LegalDongAddressReader {
+public class LegalDongAddressFileReader {
     /**
      * Instance Properties
      */
@@ -15,7 +19,7 @@ public class LegalDongAddressReader {
      * @throws NullPointerException
      * @throws FileNotFoundException
      */
-    public LegalDongAddressReader(String filepath) throws NullPointerException, FileNotFoundException {
+    public LegalDongAddressFileReader(String filepath) throws NullPointerException, FileNotFoundException {
         this(new File(filepath));
     }
 
@@ -26,7 +30,7 @@ public class LegalDongAddressReader {
      * @throws NullPointerException
      * @throws FileNotFoundException
      */
-    public LegalDongAddressReader(File file) throws NullPointerException, FileNotFoundException {
+    public LegalDongAddressFileReader(File file) throws NullPointerException, FileNotFoundException {
         this.br = new BufferedReader(new FileReader(file));
     }
 

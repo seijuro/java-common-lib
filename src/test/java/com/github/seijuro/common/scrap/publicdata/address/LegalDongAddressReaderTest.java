@@ -1,5 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.address;
 
+import com.github.seijuro.common.scrap.publicdata.address.reader.LegalDongAddressFileReader;
 import org.junit.Test;
 
 import java.io.File;
@@ -12,7 +13,7 @@ public class LegalDongAddressReaderTest {
         int countUnavailable = 0;
 
         try {
-            LegalDongAddressReader reader = new LegalDongAddressReader(file);
+            LegalDongAddressFileReader reader = new LegalDongAddressFileReader(file);
             LegalDongAddress address = null;
 
             while ((address = reader.readAddress()) != null) {
