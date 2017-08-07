@@ -1,5 +1,6 @@
 package com.github.seijuro.common.scrap.publicdata.api.config;
 
+import com.github.seijuro.common.scrap.publicdata.address.LegalDongAddressCode;
 import com.github.seijuro.common.scrap.publicdata.property.PublicDataProperty;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,7 +13,7 @@ public class BusinessPlaceAPIConfig extends PublicDataAPIConfig {
         NUM_OF_ROWS(PublicDataProperty.Request.NUM_OF_ROWS),
         PAGE_NO(PublicDataProperty.Request.PAGE_NO),
         ADDRESS_DG("ldong_addr_mgpl_dg_cd"),
-        ADDRESS_SGG("ldong_addr_mgpl_sggu_cd"),
+        ADDRESS_SGGU("ldong_addr_mgpl_sggu_cd"),
         ADDRESS_EMD("ldong_addr_mgpl_sggu_emd_cd"),
         NAME("wkpl_nm"),
         DIVISION_CODE("wkpl_styl_dvcd"),
@@ -53,25 +54,25 @@ public class BusinessPlaceAPIConfig extends PublicDataAPIConfig {
         assert property instanceof Property;
 
         if (property == Property.NUM_OF_ROWS) {
-            super.setProperty(property, PublicDataAPIConfigHelper.DataGoKr.getNumberOfRows(number));
+            return super.setProperty(property, PublicDataAPIConfigHelper.DataGoKr.getNumberOfRows(number));
         }
         else if (property == Property.PAGE_NO) {
-            super.setProperty(property, PublicDataAPIConfigHelper.DataGoKr.getPageNot(number));
+            return super.setProperty(property, PublicDataAPIConfigHelper.DataGoKr.getPageNot(number));
         }
 
         return super.setProperty(property, number);
     }
 
     @Override
-    public <T extends ConfigProperty>
-    Object setProperty(T property, String value) {
+    public <T extends ConfigProperty, V extends String>
+    Object setProperty(T property, V value) {
         assert property instanceof Property;
 
         if (property == Property.NUM_OF_ROWS) {
-            super.setProperty(property, PublicDataAPIConfigHelper.DataGoKr.getNumberOfRows(value));
+            return super.setProperty(property, PublicDataAPIConfigHelper.DataGoKr.getNumberOfRows(value));
         }
         else if (property == Property.PAGE_NO) {
-            super.setProperty(property, PublicDataAPIConfigHelper.DataGoKr.getPageNot(value));
+            return super.setProperty(property, PublicDataAPIConfigHelper.DataGoKr.getPageNot(value));
         }
 
         return super.setProperty(property, value);
@@ -83,6 +84,18 @@ public class BusinessPlaceAPIConfig extends PublicDataAPIConfig {
         assert property instanceof Property;
 
         return super.setProperty(property, value);
+    }
+
+    /**
+     * set properties related to address
+     *
+     * @param code
+     * @return
+     */
+    public void setLegalDongAddress(LegalDongAddressCode code) {
+        super.setProperty(Property.ADDRESS_DG, code.getDGString());
+        super.setProperty(Property.ADDRESS_SGGU, code.getSGGUString());
+        super.setProperty(Property.ADDRESS_EMD, code.getEMDUString());
     }
 
     /**

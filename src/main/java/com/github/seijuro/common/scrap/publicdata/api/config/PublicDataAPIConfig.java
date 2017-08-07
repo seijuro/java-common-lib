@@ -11,23 +11,19 @@ public class PublicDataAPIConfig {
     private Properties properties = new Properties();
 
     public <T extends ConfigProperty, V extends Number>
-    Object setProperty(T property, V value) {
-        return getProperties().put(property.getProperty(), value);
-    }
-
-    public <T extends ConfigProperty>
-    Object setProperty(T property, String value) {
-        return getProperties().put(property.getProperty(), value);
-    }
+    Object setProperty(T property, V value) { return getProperties().put(property.getProperty(), value); }
 
     public <T extends  ConfigProperty, V extends ConfigPropertyValue>
     Object setProperty(T property, V value) {
-        return getProperties().put(property.getProperty(), value.getValue());
+        return setProperty(property, value.getValue());
     }
 
     public <T extends  ConfigProperty, V extends JSONObject>
-    Object setProperty(T property, V value) {
-        return getProperties().put(property.getProperty(), value.toJSONString());
+    Object setProperty(T property, V value) { return setProperty(property, value.toJSONString()); }
+
+    public <T extends ConfigProperty, V extends String>
+    Object setProperty(T property,  V value) {
+        return getProperties().put(property.getProperty(), value);
     }
 
     public <T1 extends ConfigProperty, T2>

@@ -34,8 +34,8 @@ public class StatsAPIConfig extends PublicDataAPIConfig {
     }
 
     @Override
-    public <T extends ConfigProperty>
-    Object setProperty(T property, String value) {
+    public <T extends ConfigProperty, V extends String>
+    Object setProperty(T property, V value) {
         assert(property instanceof StatsAPIConfig.Property);
         return super.setProperty(property, value);
     }

@@ -1,5 +1,7 @@
 package com.github.seijuro.common.scrap.publicdata.api.config;
 
+import com.github.seijuro.common.field.IField;
+import com.github.seijuro.common.field.value.IIntFieldValue;
 import com.github.seijuro.common.IJSONConvertable;
 import com.github.seijuro.common.scrap.publicdata.property.RecallProperty;
 import lombok.AccessLevel;
@@ -7,11 +9,9 @@ import lombok.Getter;
 import lombok.ToString;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import sun.jvm.hotspot.debugger.Page;
 
 import java.util.*;
 
-@ToString
 public class RecallAPIConfig extends PublicDataAPIConfig {
     /**
      * Property
@@ -214,7 +214,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
     /**
      * enum Field
      */
-    public enum Field {
+    public enum Field implements IField {
         IDX(RecallProperty.Content.FieldName.IDX),
         COUNTRY_OF_MANUFACTURE(RecallProperty.Content.FieldName.COUNTRY_OF_MANUFACTURE),
         PRODUCT_NAME(RecallProperty.Content.FieldName.PRODUCT_NAME),
@@ -233,7 +233,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
         }
 
         @Override
-        public String toString() {
+        public String getFieldName() {
             return this.fieldName;
         }
     }
@@ -241,7 +241,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
     /**
      * enum Direction
      */
-    public enum Direction {
+    public enum Direction implements IIntFieldValue {
         ASC(1),
         DESC(-1);
 
@@ -251,15 +251,16 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
             this.value = $value;
         }
 
-        public int toInt() {
-            return new Integer(this.value);
-        }
+        @Override
+        public Integer getIntegerValue() { return this.value; }
+        @Override
+        public int getIntValue() { return this.value; }
     }
 
     /**
      * enum Visibility
      */
-    public enum Visibility {
+    public enum Visibility implements IIntFieldValue {
         VISIBLE(1),
         INVISIBLE(0);
 
@@ -269,7 +270,12 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
             this.flag = $flag;
         }
 
-        public int toInt() {
+        @Override
+        public int getIntValue() {
+            return this.flag;
+        }
+        @Override
+        public Integer getIntegerValue() {
             return this.flag;
         }
     }
@@ -277,7 +283,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
     /**
      * enum SortOrder
      */
-    private enum SortOrder {
+    private enum SortOrder implements IField {
         PROPERTY("property"),
         DIRECTION("direction");
 
@@ -296,7 +302,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
         }
 
         @Override
-        public String toString() {
+        public String getFieldName() {
             return this.fieldName;
         }
     }
@@ -304,7 +310,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
     /**
      * enum Pageable
      */
-    private enum Pageable {
+    private enum Pageable implements IField {
         ENABLE("enable"),
         PAGE_NUMBER("pageNumber"),
         PAGE_SIZE("pageSize"),
@@ -329,7 +335,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
         }
 
         @Override
-        public String toString() {
+        public String getFieldName() {
             return this.fieldName;
         }
     }
@@ -395,6 +401,27 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
         }
 
         /**
+         * get visibility
+         *
+         * @return
+         */
+        public JSONObject getVisibility() {
+            return this.visibility;
+        }
+
+        public JSONObject getPageable() {
+            return this.pageable;
+        }
+
+        public JSONObject getQuery() {
+            return this.query;
+        }
+
+        public Field getDistinct() {
+            return this.distinct;
+        }
+
+        /**
          * set distinct
          *
          * @param field
@@ -455,10 +482,9 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
          */
         public Builder setVisibility(List<Field> fields, Visibility $visibility) {
             JSONObject jsonVisibility = new JSONObject();
-            Integer intVisibility = new Integer($visibility.toInt());
 
             for (Field field : fields) {
-                jsonVisibility.put(field.toString(), intVisibility);
+                jsonVisibility.put(field.getFieldName(), $visibility.getIntegerValue());
             }
 
             this.visibility = jsonVisibility;
@@ -467,7 +493,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
         }
 
         public Builder setPageableEnabled(boolean flag) {
-            this.pageable.put(Pageable.ENABLE.toString(), new Boolean(flag));
+            this.pageable.put(Pageable.ENABLE.getFieldName(), new Boolean(flag));
 
             return this;
         }
@@ -479,7 +505,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
          * @return
          */
         public Builder setPageablePageNumber(int page) {
-            this.pageable.put(Pageable.PAGE_NUMBER.toString(), new Integer(page > 0 ? page : 0));
+            this.pageable.put(Pageable.PAGE_NUMBER.getFieldName(), new Integer(page > 0 ? page : 0));
 
             return this;
         }
@@ -491,7 +517,7 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
          * @return
          */
         public Builder setPageablePageSize(int size) {
-            this.pageable.put(Pageable.PAGE_SIZE.toString(), new Integer(size > 0 ? size : 10));
+            this.pageable.put(Pageable.PAGE_SIZE.getFieldName(), new Integer(size > 0 ? size : 10));
 
             return this;
         }
@@ -507,13 +533,13 @@ public class RecallAPIConfig extends PublicDataAPIConfig {
 
             for (Map.Entry<Field, Direction> order : orders.entrySet()) {
                 JSONObject jsonOrder = new JSONObject();
-                jsonOrder.put(SortOrder.PROPERTY.toString(), order.getKey().toString());
-                jsonOrder.put(SortOrder.DIRECTION.toString(), new Integer(order.getValue().toInt()));
+                jsonOrder.put(SortOrder.PROPERTY.getFieldName(), order.getKey().toString());
+                jsonOrder.put(SortOrder.DIRECTION.getFieldName(), new Integer(order.getValue().getIntValue()));
 
                 jsonOrders.add(jsonOrder);
             }
 
-            this.pageable.put(Pageable.SORT_ORDERS, jsonOrders);
+            this.pageable.put(Pageable.SORT_ORDERS.getFieldName(), jsonOrders);
 
             return this;
         }

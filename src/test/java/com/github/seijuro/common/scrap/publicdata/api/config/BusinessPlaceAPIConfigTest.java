@@ -1,16 +1,17 @@
 package com.github.seijuro.common.scrap.publicdata.api.config;
 
-import com.github.seijuro.common.scrap.publicdata.api.BusinessPlaceInfoAPI;
+import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
 public class BusinessPlaceAPIConfigTest {
+    @Test
     public void testInstantiation() {
         BusinessPlaceAPIConfig config = new BusinessPlaceAPIConfig();
         assertNotNull(config);
 
         config.setProperty(BusinessPlaceAPIConfig.Property.ADDRESS_DG, "01");
-        config.setProperty(BusinessPlaceAPIConfig.Property.ADDRESS_SGG, "101");
+        config.setProperty(BusinessPlaceAPIConfig.Property.ADDRESS_SGGU, "101");
         config.setProperty(BusinessPlaceAPIConfig.Property.ADDRESS_EMD, "202");
 
     }

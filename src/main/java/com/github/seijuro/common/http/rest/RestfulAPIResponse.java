@@ -1,5 +1,8 @@
 package com.github.seijuro.common.http.rest;
 
+import lombok.ToString;
+
+@ToString
 public class RestfulAPIResponse {
     protected final int httpResponseCode;
     protected final String responseText;
