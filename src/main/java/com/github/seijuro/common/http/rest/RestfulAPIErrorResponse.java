@@ -1,14 +1,6 @@
 package com.github.seijuro.common.http.rest;
 
 public class RestfulAPIErrorResponse extends RestfulAPIResponse {
-    public static boolean isError(RestfulAPIResponse response) {
-        if (response instanceof RestfulAPIErrorResponse) {
-            return true;
-        }
-
-        return false;
-    }
-
     /**
      * Instance Properties
      */

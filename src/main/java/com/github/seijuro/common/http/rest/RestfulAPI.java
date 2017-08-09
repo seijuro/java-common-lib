@@ -5,6 +5,7 @@ import com.github.seijuro.common.http.StatusCode;
 import com.github.seijuro.common.http.StatusCodeUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -43,23 +44,23 @@ public abstract class RestfulAPI {
     private final RequestMethod requestMethod;
     @Getter(AccessLevel.PROTECTED)
     private final String requestURL;
+
     @Getter(AccessLevel.PROTECTED)
-    private final Properties properties;
-    @Getter(AccessLevel.PROTECTED)
-    private final IURLEncoder encodeFunc;
+    @Setter(AccessLevel.PUBLIC)
+    private Properties properties;
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    private IURLEncoder encodeFunc;
 
     /**
      * C'tor
      *
      * @param method
      * @param url
-     * @param props
      */
-    public RestfulAPI(RequestMethod method, String url, Properties props, IURLEncoder func) {
+    public RestfulAPI(RequestMethod method, String url) {
         this.requestMethod = method;
         this.requestURL = url;
-        this.properties = props;
-        this.encodeFunc = func;
     }
 
     public RestfulAPIResponse request() throws Exception {
@@ -81,7 +82,11 @@ public abstract class RestfulAPI {
         int responseCode = -1;
 
         try {
-            URL url = new URL(createRequestGETURL());
+            String urlText = createRequestGETURL();
+
+            System.out.println("urlText : " + urlText);
+
+            URL url = new URL(urlText);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             assert (this.requestMethod != null);
