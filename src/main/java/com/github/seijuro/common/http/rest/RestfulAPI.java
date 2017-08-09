@@ -84,8 +84,6 @@ public abstract class RestfulAPI {
         try {
             String urlText = createRequestGETURL();
 
-            System.out.println("urlText : " + urlText);
-
             URL url = new URL(urlText);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 

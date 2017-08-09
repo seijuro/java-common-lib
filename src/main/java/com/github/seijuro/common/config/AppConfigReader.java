@@ -95,16 +95,12 @@ public class AppConfigReader {
                         String key = tokens[0];
                         String value = tokens[1];
 
-                        System.out.println("key : " + key + ", value : " + value);
-
                         cb.addConfig(tokens[0].trim(), tokens[1].trim());
                     }
 
                     String filepath = fileEntry.getAbsolutePath();
                     int index = filepath.lastIndexOf(SystemVariableHelper.getFileSeparator());
                     String filename = filepath.substring(index >= 0 ? index + 1 : 0, filepath.length());
-
-                    System.out.println("filename : " + filename);
 
                     appConfFiles.put(filename, cb.build());
                 }
