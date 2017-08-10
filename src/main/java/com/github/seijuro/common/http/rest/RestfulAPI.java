@@ -40,9 +40,9 @@ public abstract class RestfulAPI {
     /**
      * Instance Properties
      */
-    @Getter(AccessLevel.PROTECTED)
+    @Getter(AccessLevel.PUBLIC)
     private final RequestMethod requestMethod;
-    @Getter(AccessLevel.PROTECTED)
+    @Getter(AccessLevel.PUBLIC)
     private final String requestURL;
 
     @Getter(AccessLevel.PROTECTED)

@@ -41,7 +41,7 @@ public class MySQLConnectionString implements JDBCConnectionString {
                         return tmp.toString();
                     })
                     .reduce(StringUtils.EMPTY, (a, b) -> {
-                        if (!StringUtils.EMPTY.equals(a)) {
+                        if (!StringUtils.isEmpty(a)) {
                             StringBuffer tmp = new StringBuffer(a);
                             tmp.append("&").append(b);
                             return tmp.toString();

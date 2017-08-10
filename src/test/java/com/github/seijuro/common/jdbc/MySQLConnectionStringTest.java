@@ -22,10 +22,8 @@ public class MySQLConnectionStringTest {
         assertEquals("user", connString.getUser());
         assertEquals("pwd", connString.getPassword());
 
-        connString.setOther("k1", "v1");
-        connString.setOther("k2", "v2");
-        connString.setOther("k3", "v3");
-        connString.setOther("k4", "v4");
+        connString.setOther("useUnicode", "true");
+        connString.setOther("characterEncoding", "utf8");
 
         result = connString.toConnectionString();
         assertTrue(expacted.length() < result.length());
