@@ -6,6 +6,7 @@ import com.github.seijuro.common.http.StatusCodeUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.time.DateUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,9 +14,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.Properties;
 
 public abstract class RestfulAPI {
+    @Getter
+    public static final int DefaultReadTimeout = (int)(30 * DateUtils.MILLIS_PER_SECOND);
+
     /**
      * RequestMethod
      */
@@ -40,6 +45,7 @@ public abstract class RestfulAPI {
     /**
      * Instance Properties
      */
+    private final Properties requestProperties = new Properties();
     @Getter(AccessLevel.PUBLIC)
     private final RequestMethod requestMethod;
     @Getter(AccessLevel.PUBLIC)
@@ -51,6 +57,9 @@ public abstract class RestfulAPI {
     @Getter(AccessLevel.PUBLIC)
     @Setter(AccessLevel.PUBLIC)
     private IURLEncoder encodeFunc;
+    @Getter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PUBLIC)
+    private int readTimeout = getDefaultReadTimeout();
 
     /**
      * C'tor
@@ -71,6 +80,10 @@ public abstract class RestfulAPI {
         return new RestfulAPIErrorResponse("Not implemented yet.");
     }
 
+    public void setRequestProperty(String key, String value) {
+        requestProperties.setProperty(key, value);
+    }
+
     /**
      * request using 'GET' method
      *
@@ -86,11 +99,16 @@ public abstract class RestfulAPI {
 
             URL url = new URL(urlText);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(readTimeout);
+
+            for (Object key : requestProperties.keySet()) {
+                String propertyKey = (String)key;
+                conn.setRequestProperty((String)key, requestProperties.getProperty(propertyKey));
+            }
 
             assert (this.requestMethod != null);
 
             conn.setRequestMethod(this.requestMethod.toString());
-            conn.setRequestProperty(RequestProperty.UserAgent.getPropertyName(), RequestProperty.UserAgent.MOZILA_5_0);
 
             String line;
             responseCode = conn.getResponseCode();

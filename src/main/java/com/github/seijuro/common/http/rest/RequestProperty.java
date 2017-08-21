@@ -20,7 +20,7 @@ public class RequestProperty {
 
     public static class ContentType {
         @Getter(AccessLevel.PUBLIC)
-        static final String propertyName = "Accept-Language";
+        static final String propertyName = "Content-Type";
 
         public static class Text {
             public static final String PLAIN = "text/plain";
