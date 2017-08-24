@@ -8,17 +8,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class KeyFile {
     static final String defaultSeperator = "=";
+    static final String valueSperator = ",";
 
     boolean isChaned = false;
     @Setter(AccessLevel.PUBLIC)
     private String seperator = defaultSeperator;
     private String keypath = null;
-    private Map<String, String> keyMap = new HashMap<>();
+    private Map<String, List<String>> keyMap = new HashMap<>();
 
     /**
      * C'tor
@@ -41,11 +41,12 @@ public class KeyFile {
 
             assert (tokens.length == 2);
             String name = StringUtils.stripToNull(tokens[0]);
-            String key = StringUtils.stripToNull(tokens[1]);
+            String key = StringUtils.stripToEmpty(tokens[1]);
+            List<String> keys = Arrays.asList(tokens[1].split(valueSperator));
 
             if (name != null ||
-                    key != null) {
-                keyMap.put(name, key);
+                    keys.size() > 0) {
+                keyMap.put(name, keys);
             }
         }
     }
@@ -57,6 +58,22 @@ public class KeyFile {
     }
 
     synchronized public String getKey(String name) {
+        try {
+            if (isChaned) {
+                load();
+                isChaned = false;
+            }
+
+            return keyMap.get(name).get(0);
+        }
+        catch (Exception excp) {
+            excp.printStackTrace();
+        }
+
+        return null;
+    }
+
+    synchronized public List<String> getKeys(String name) {
         try {
             if (isChaned) {
                 load();
