@@ -19,9 +19,11 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 public abstract class RestfulAPI {
+    //  Logger
+    final Logger log = LoggerFactory.getLogger(RestfulAPI.class);
+
     @Getter
     public static final int DefaultReadTimeout = (int)(30 * DateUtils.MILLIS_PER_SECOND);
-    final Logger logger = LoggerFactory.getLogger(RestfulAPI.class);
 
     /**
      * RequestMethod
@@ -107,15 +109,12 @@ public abstract class RestfulAPI {
                 String propertyKey = (String)key;
                 String propertyValue = requestProperties.getProperty(propertyKey);
                 conn.setRequestProperty((String)key, propertyValue);
-
-                //  Log
-                logger.debug("set request property : {} -> {}", propertyKey, propertyValue);
             }
 
             conn.setRequestMethod(this.requestMethod.toString());
 
             //  Log
-            logger.debug("set request method : {}", this.requestMethod.toString());
+            log.debug("request -> method : {}, read-timeout : {}, property : {}", requestMethod.toString(), readTimeout, requestProperties.toString());
 
             String line;
             StringBuffer responseBuffer = new StringBuffer();
@@ -123,7 +122,7 @@ public abstract class RestfulAPI {
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
             //  Log
-            logger.debug("http response code (status code) : {}", responseCode);
+            log.debug("http response -> url : {}, code (status code) : {}", urlText, responseCode);
 
             while ((line = br.readLine()) != null) {
                 responseBuffer.append(line);
