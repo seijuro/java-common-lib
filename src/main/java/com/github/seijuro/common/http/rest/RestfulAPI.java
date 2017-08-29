@@ -7,6 +7,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.time.DateUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,12 +16,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Enumeration;
-import java.util.Map;
 import java.util.Properties;
 
 public abstract class RestfulAPI {
     @Getter
     public static final int DefaultReadTimeout = (int)(30 * DateUtils.MILLIS_PER_SECOND);
+    final Logger logger = LoggerFactory.getLogger(RestfulAPI.class);
 
     /**
      * RequestMethod
@@ -91,7 +93,7 @@ public abstract class RestfulAPI {
      * @throws UnsupportedEncodingException
      */
     protected RestfulAPIResponse requestGET() throws UnsupportedEncodingException {
-        StringBuffer response = new StringBuffer();
+        String response = "";
         int responseCode = -1;
 
         try {
@@ -103,20 +105,31 @@ public abstract class RestfulAPI {
 
             for (Object key : requestProperties.keySet()) {
                 String propertyKey = (String)key;
-                conn.setRequestProperty((String)key, requestProperties.getProperty(propertyKey));
-            }
+                String propertyValue = requestProperties.getProperty(propertyKey);
+                conn.setRequestProperty((String)key, propertyValue);
 
-            assert (this.requestMethod != null);
+                //  Log
+                logger.debug("set request property : {} -> {}", propertyKey, propertyValue);
+            }
 
             conn.setRequestMethod(this.requestMethod.toString());
 
+            //  Log
+            logger.debug("set request method : {}", this.requestMethod.toString());
+
             String line;
+            StringBuffer responseBuffer = new StringBuffer();
             responseCode = conn.getResponseCode();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
+            //  Log
+            logger.debug("http response code (status code) : {}", responseCode);
+
             while ((line = br.readLine()) != null) {
-                response.append(line);
+                responseBuffer.append(line);
             }
+
+            response = responseBuffer.toString();
 
             br.close();
             conn.disconnect();
@@ -125,7 +138,7 @@ public abstract class RestfulAPI {
             return new RestfulAPIErrorResponse(responseCode, response.toString(), excp.getMessage());
         }
 
-        return createResponse(responseCode, response.toString());
+        return createResponse(responseCode, response);
     }
 
     protected String createRequestGETURL() throws UnsupportedEncodingException {

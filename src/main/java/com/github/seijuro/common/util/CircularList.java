@@ -13,14 +13,17 @@ public class CircularList<T> {
         }
     }
 
-    Element head, nil;
-    Element current;
+    private int size = 0;
+    private Element head, nil;
+    private Element current;
 
     public CircularList() {
         head = null;
         nil = null;
         current = null;
     }
+
+    public int size() { return size; }
 
     public T getNext() {
         if (Objects.isNull(current)) {
@@ -54,6 +57,8 @@ public class CircularList<T> {
             nil = element;
             lastElement.next = nil;
         }
+
+        ++size;
     }
 
     public void delete(T value) {
@@ -69,6 +74,7 @@ public class CircularList<T> {
                     tmp2.next = tmp1.next;
                 }
 
+                --size;
                 break;
             }
 
