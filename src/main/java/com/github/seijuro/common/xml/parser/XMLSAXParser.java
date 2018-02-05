@@ -54,6 +54,8 @@ public abstract class XMLSAXParser extends DefaultHandler {
     public void startElement(String url, String localName, String qName, Attributes attributes) throws SAXException {
         this.tagStack.push(qName);
 
+        currentValue = null;
+
         handleTagBegin(qName);
     }
 

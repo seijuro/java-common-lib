@@ -16,7 +16,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.Objects;
 import java.util.Properties;
+import java.util.zip.GZIPInputStream;
 
 public abstract class RestfulAPI {
     //  Logger
@@ -119,7 +121,17 @@ public abstract class RestfulAPI {
             String line;
             StringBuffer responseBuffer = new StringBuffer();
             responseCode = conn.getResponseCode();
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            String contentEncoding = conn.getHeaderField("Content-Encoding");
+            BufferedReader br = null;
+
+            if (Objects.nonNull(contentEncoding) &&
+                    contentEncoding.equals("gzip")) {
+                br = new BufferedReader(new InputStreamReader(new GZIPInputStream(conn.getInputStream())));
+            }
+            else {
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            }
 
             //  Log
             log.debug("http response -> url : {}, code (status code) : {}", urlText, responseCode);
@@ -166,6 +178,9 @@ public abstract class RestfulAPI {
 
     protected RestfulAPIResponse createResponse(int code, String reponse) {
         StatusCode statusCode = StatusCodeUtils.get(code);
+
+        log.debug("status code : {}", code);
+
         if (StatusCodeUtils.isOK(statusCode)) {
             return new RestfulAPIResponse(code, reponse);
         }

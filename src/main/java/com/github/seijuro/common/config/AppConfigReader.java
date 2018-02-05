@@ -30,7 +30,7 @@ public class AppConfigReader {
     /**
      * Singleton instance
      */
-    static AppConfigReader instance;
+    private static AppConfigReader instance;
 
     /**
      * Singleton pattern method

@@ -2,11 +2,13 @@ package com.github.seijuro.common.jdbc;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@ToString
 public class MySQLConnectionString implements JDBCConnectionString {
     public static final String PREFIX = "jdbc:mysql://";
 
@@ -25,6 +27,21 @@ public class MySQLConnectionString implements JDBCConnectionString {
 
     public String setOther(String key, String value) {
         return others.put(key, value);
+    }
+
+    /**
+     * Construct
+     *
+     * @param host
+     * @param db
+     * @param user
+     * @param pass
+     */
+    public MySQLConnectionString(String host, String db, String user, String pass) {
+        this.host = host;
+        this.database = db;
+        this.user = user;
+        this.password = pass;
     }
 
     @Override

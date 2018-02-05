@@ -10,12 +10,7 @@ public class MySQLConnectionStringTest {
     public void test1() {
         final String expacted = "jdbc:mysql://127.0.0.1/MyDatabase";
         String result;
-        MySQLConnectionString connString = new MySQLConnectionString();
-
-        connString.setHost("127.0.0.1");
-        connString.setDatabase("MyDatabase");
-        connString.setUser("user");
-        connString.setPassword("pwd");
+        MySQLConnectionString connString = new MySQLConnectionString("127.0.0.1", "MyDatabase", "user", "pwd");
 
         result = connString.toConnectionString();
         assertEquals(expacted, result);
