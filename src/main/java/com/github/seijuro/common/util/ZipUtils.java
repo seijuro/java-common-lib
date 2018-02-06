@@ -50,6 +50,15 @@ public class ZipUtils {
         unzip(src, destDir, null);
     }
 
+    /**
+     * unzip file at path, src into out directory, destDir.
+     * Sometime, we need to retrieve ZipEntry with the specific <code>Charset</code>.
+     * The 3rd param, charset, is designed for that purpose. You can easily solve that kinda problem by set the 3rd param, charset.
+     *
+     * @param src
+     * @param destDir
+     * @param charset
+     */
     public static void unzip(Path src, Path destDir, Charset charset) {
         assert Objects.nonNull(src) && Objects.nonNull(destDir);
 
