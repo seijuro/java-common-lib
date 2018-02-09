@@ -1,6 +1,6 @@
 package com.github.seijuro.common.jdbc;
 
-import com.github.seijuro.common.db.url.JDBCMySQLConnectionUrl;
+import com.github.seijuro.common.db.mysql.MySQLJDBCConnectionUrl;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -11,7 +11,7 @@ public class MySQLConnectionStringTest {
     public void test1() {
         final String expacted = "jdbc:mysql://127.0.0.1/MyDatabase";
         String result;
-        JDBCMySQLConnectionUrl connString = new JDBCMySQLConnectionUrl("127.0.0.1", "MyDatabase", "user", "pwd");
+        MySQLJDBCConnectionUrl connString = new MySQLJDBCConnectionUrl("127.0.0.1", "MyDatabase", "user", "pwd");
 
         result = connString.toConnectionUrl();
         assertEquals(expacted, result);

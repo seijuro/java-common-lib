@@ -1,9 +1,12 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 @ToString
 public class AutoReconnect implements JDBCConfigurationProperty {
@@ -21,8 +24,12 @@ public class AutoReconnect implements JDBCConfigurationProperty {
      * @param flag
      * @return
      */
-    public static AutoReconnect create(boolean flag) {
-        return new AutoReconnect(flag);
+    public static AutoReconnect create(Object flag) {
+        if (flag instanceof Boolean) {
+            return new AutoReconnect(Boolean.class.cast(flag));
+        }
+
+        return null;
     }
 
     @Getter

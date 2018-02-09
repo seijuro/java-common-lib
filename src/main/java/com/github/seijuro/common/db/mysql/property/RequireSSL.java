@@ -1,5 +1,6 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
@@ -21,8 +22,12 @@ public class RequireSSL implements JDBCConfigurationProperty {
      * @param flag
      * @return
      */
-    public static RequireSSL create(boolean flag) {
-        return new RequireSSL(flag);
+    public static RequireSSL create(Object flag) {
+        if (flag instanceof Boolean) {
+            return new RequireSSL(Boolean.class.cast(flag));
+        }
+
+        return null;
     }
 
     /**

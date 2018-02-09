@@ -1,5 +1,6 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
@@ -22,9 +23,9 @@ public class CharacterEncoding implements JDBCConfigurationProperty {
      * @param encoding
      * @return
      */
-    public static CharacterEncoding create(String encoding) {
-        if (StringUtils.isNotEmpty(encoding)) {
-            return new CharacterEncoding(encoding);
+    public static CharacterEncoding create(Object encoding) {
+        if (encoding instanceof String) {
+            return new CharacterEncoding(String.class.cast(encoding));
         }
 
         //  Log (WARN)

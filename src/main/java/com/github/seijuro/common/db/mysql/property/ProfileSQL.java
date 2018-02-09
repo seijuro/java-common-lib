@@ -1,5 +1,6 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
@@ -21,8 +22,12 @@ public class ProfileSQL implements JDBCConfigurationProperty {
      * @param flag
      * @return
      */
-    public static ProfileSQL create(boolean flag) {
-        return new ProfileSQL(flag);
+    public static ProfileSQL create(Object flag) {
+        if (flag instanceof Boolean) {
+            return new ProfileSQL(Boolean.class.cast(flag));
+        }
+
+        return null;
     }
 
     /**

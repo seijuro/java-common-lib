@@ -1,23 +1,23 @@
-package com.github.seijuro.common.db.ctrl;
+package com.github.seijuro.common.db.mysql;
 
-import com.github.seijuro.common.db.url.JDBCMySQLConnectionUrl;
+import com.github.seijuro.common.db.JDBCDatabaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class JDBCMySQLController extends JDBCDatabaseController {
+public class MySQLJDBCController extends JDBCDatabaseController {
     //  Logger
-    private static final Logger LOG = LoggerFactory.getLogger(JDBCMySQLController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MySQLJDBCController.class);
 
     /**
-     * create {@link JDBCMySQLController} instance.
+     * create {@link MySQLJDBCController} instance.
      *
      * @param $url
      * @return
      * @throws IllegalArgumentException
      */
-    public static JDBCMySQLController create(JDBCMySQLConnectionUrl $url) throws IllegalArgumentException {
+    public static MySQLJDBCController create(MySQLJDBCConnectionUrl $url) throws IllegalArgumentException {
         //  check param #1
         if (Objects.isNull($url)) {
             String msg = "1st param , $url, is null.";
@@ -28,7 +28,7 @@ public class JDBCMySQLController extends JDBCDatabaseController {
             throw new IllegalArgumentException(msg);
         }
 
-        return new JDBCMySQLController($url);
+        return new MySQLJDBCController($url);
     }
 
 
@@ -37,7 +37,7 @@ public class JDBCMySQLController extends JDBCDatabaseController {
      *
      * @param $url
      */
-    protected JDBCMySQLController(JDBCMySQLConnectionUrl $url) {
+    protected MySQLJDBCController(MySQLJDBCConnectionUrl $url) {
         super($url, $url.getUser(), $url.getPassword());
     }
 

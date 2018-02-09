@@ -1,4 +1,4 @@
-package com.github.seijuro.common.db.url;
+package com.github.seijuro.common.db;
 
 public interface JDBCConnectionUrl {
     public abstract String toConnectionUrl();

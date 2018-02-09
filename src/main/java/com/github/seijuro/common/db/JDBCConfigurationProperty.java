@@ -1,4 +1,4 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db;
 
 /**
  * @see <a href="http://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-configuration-properties.html/>

@@ -1,5 +1,6 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
@@ -21,9 +22,13 @@ public class MaxReconnects implements JDBCConfigurationProperty {
      * @param max
      * @return
      */
-    public static MaxReconnects create(int max) {
-        if (max >= 0) {
-            return new MaxReconnects(max);
+    public static MaxReconnects create(Object max) {
+        if (max instanceof Integer) {
+            Integer value = Integer.class.cast(max);
+
+            if (value >= 0) {
+                return new MaxReconnects(value);
+            }
         }
 
         //  Log (WARN)

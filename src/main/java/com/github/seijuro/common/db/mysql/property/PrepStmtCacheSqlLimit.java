@@ -1,9 +1,11 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import scala.Int;
 
 @ToString
 public class PrepStmtCacheSqlLimit implements JDBCConfigurationProperty {
@@ -21,9 +23,13 @@ public class PrepStmtCacheSqlLimit implements JDBCConfigurationProperty {
      * @param limit
      * @return
      */
-    public static PrepStmtCacheSqlLimit create(int limit) {
-        if (limit > 0) {
-            return new PrepStmtCacheSqlLimit(limit);
+    public static PrepStmtCacheSqlLimit create(Object limit) {
+        if (limit instanceof Integer) {
+            Integer value = Integer.class.cast(limit);
+
+            if (value > 0) {
+                return new PrepStmtCacheSqlLimit(value);
+            }
         }
 
         //  Log (WARN)

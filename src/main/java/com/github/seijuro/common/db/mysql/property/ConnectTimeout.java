@@ -1,5 +1,6 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
@@ -21,9 +22,13 @@ public class ConnectTimeout implements JDBCConfigurationProperty {
      * @param millis
      * @return
      */
-    public static ConnectTimeout create(long millis) {
-        if (millis >= 0L) {
-            return new ConnectTimeout(millis);
+    public static ConnectTimeout create(Object millis) {
+        if (millis instanceof Long) {
+            Long value = Long.class.cast(millis);
+
+            if (value >= 0L) {
+                return new ConnectTimeout(value);
+            }
         }
 
         //  Log (WARN)

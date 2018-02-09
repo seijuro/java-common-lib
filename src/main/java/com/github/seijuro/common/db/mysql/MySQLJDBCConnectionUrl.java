@@ -1,6 +1,7 @@
-package com.github.seijuro.common.db.url;
+package com.github.seijuro.common.db.mysql;
 
-import com.github.seijuro.common.db.url.property.JDBCConfigurationProperty;
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
+import com.github.seijuro.common.db.JDBCConnectionUrl;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,7 +11,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 @ToString
-public class JDBCMySQLConnectionUrl implements JDBCConnectionUrl {
+public class MySQLJDBCConnectionUrl implements JDBCConnectionUrl {
     public static final String PREFIX = "jdbc:mysql://";
 
     /**
@@ -45,7 +46,7 @@ public class JDBCMySQLConnectionUrl implements JDBCConnectionUrl {
      * @param user
      * @param pass
      */
-    public JDBCMySQLConnectionUrl(String host, String db, String user, String pass) {
+    public MySQLJDBCConnectionUrl(String host, String db, String user, String pass) {
         this.host = host;
         this.database = db;
         this.user = user;

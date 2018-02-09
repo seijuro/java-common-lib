@@ -1,28 +1,33 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class CachePrepStmts implements JDBCConfigurationProperty {
+public class UseSSL implements JDBCConfigurationProperty {
     /**
      * Class Instance.
      */
-    private static final Logger LOG = LoggerFactory.getLogger(CachePrepStmts.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UseSSL.class);
 
-    public static final String PropertyName = "cachePrepStmts";
+    public static final String PropertyName = "useSSL";
     public static final boolean DefaultValue = false;
 
     /**
-     * create {@link CachePrepStmts} instance.
+     * create {@link UseSSL} instance.
      *
      * @param flag
      * @return
      */
-    public static CachePrepStmts create(boolean flag) {
-        return new CachePrepStmts(flag);
+    public static UseSSL create(Object flag) {
+        if (flag instanceof Boolean) {
+            return new UseSSL(Boolean.class.cast(flag));
+        }
+
+        return null;
     }
 
     /**
@@ -40,7 +45,7 @@ public class CachePrepStmts implements JDBCConfigurationProperty {
      *
      * @param $value
      */
-    protected CachePrepStmts(boolean $value) {
+    protected UseSSL(boolean $value) {
         this.propertyValue = Boolean.toString($value);
     }
 }

@@ -1,7 +1,4 @@
-package com.github.seijuro.common.db.ctrl;
-
-import com.github.seijuro.common.db.url.JDBCConnectionUrl;
-import org.apache.commons.lang3.StringUtils;
+package com.github.seijuro.common.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,5 +1,6 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
@@ -44,9 +45,11 @@ public class ZeroDateTimeBehavior implements JDBCConfigurationProperty {
      * @param behavior
      * @return
      */
-    public static ZeroDateTimeBehavior create(ZeroDateTimeBehavior.Value behavior) {
-        if (Objects.nonNull(behavior)) {
-            return new ZeroDateTimeBehavior(behavior);
+    public static ZeroDateTimeBehavior create(Object behavior) {
+        if (behavior instanceof ZeroDateTimeBehavior.Value) {
+            ZeroDateTimeBehavior.Value value = ZeroDateTimeBehavior.Value.class.cast(behavior);
+
+            return new ZeroDateTimeBehavior(value);
         }
 
         //  Log (WARN)

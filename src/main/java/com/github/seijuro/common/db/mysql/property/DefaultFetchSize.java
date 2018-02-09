@@ -1,5 +1,6 @@
-package com.github.seijuro.common.db.url.property;
+package com.github.seijuro.common.db.mysql.property;
 
+import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
@@ -21,9 +22,13 @@ public class DefaultFetchSize implements JDBCConfigurationProperty {
      * @param size
      * @return
      */
-    public static DefaultFetchSize create(int size) {
-        if (size > 0) {
-            return new DefaultFetchSize(size);
+    public static DefaultFetchSize create(Object size) {
+        if (size instanceof Integer) {
+            Integer casted = Integer.class.cast(size);
+
+            if (casted > 0) {
+                return new DefaultFetchSize(casted);
+            }
         }
 
         //  Log (WARN)
