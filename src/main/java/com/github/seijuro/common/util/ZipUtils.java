@@ -1,6 +1,5 @@
 package com.github.seijuro.common.util;
 
-import org.apache.commons.lang3.CharSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +45,8 @@ public class ZipUtils {
     public static boolean containsZipExtension(Path path) {
         return matcher.matches(path);
     }
+
+
     public static void unzip(Path src, Path destDir) {
         unzip(src, destDir, null);
     }
@@ -78,6 +79,7 @@ public class ZipUtils {
         try {
             ZipFile zipFile = Objects.nonNull(charset) ? new ZipFile(src.toFile(), charset) : new ZipFile(src.toFile());
             Enumeration entries = zipFile.entries();
+            int index = 0;
 
             while (entries.hasMoreElements()) {
                 ZipEntry zipEntry = (ZipEntry)entries.nextElement();
