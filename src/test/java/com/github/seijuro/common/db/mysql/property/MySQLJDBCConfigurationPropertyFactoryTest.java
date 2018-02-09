@@ -1,4 +1,4 @@
-package com.github.seijuro.common.db.url.mysql;
+package com.github.seijuro.common.db.mysql.property;
 
 import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import com.github.seijuro.common.db.mysql.property.*;

@@ -1,14 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class CharacterSetResults implements JDBCConfigurationProperty {
+public class CharacterSetResults extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -24,7 +21,7 @@ public class CharacterSetResults implements JDBCConfigurationProperty {
      */
     public static CharacterSetResults create(Object encoding) {
         if (encoding instanceof String) {
-            return new CharacterSetResults(String.class.cast(encoding));
+            return new CharacterSetResults(PropertyName, String.class.cast(encoding));
         }
 
         //  Log (WARN)
@@ -34,21 +31,12 @@ public class CharacterSetResults implements JDBCConfigurationProperty {
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param encoding
      */
-    protected CharacterSetResults(String encoding) {
-        this.propertyValue = encoding;
+    protected CharacterSetResults(String $name, String encoding) {
+        super($name, encoding);
     }
 }

@@ -1,13 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class MaxRows implements JDBCConfigurationProperty {
+public class MaxRows extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -28,7 +26,7 @@ public class MaxRows implements JDBCConfigurationProperty {
 
             if (value > 0 ||
                     value == DefaultValue) {
-                return new MaxRows(value);
+                return new MaxRows(PropertyName, value);
             }
         }
 
@@ -39,21 +37,12 @@ public class MaxRows implements JDBCConfigurationProperty {
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @para $name
      * @param $value
      */
-    protected MaxRows(int $value) {
-        this.propertyValue = Integer.toString($value);
+    protected MaxRows(String $name, int $value) {
+        super($name, Integer.toString($value));
     }
 }

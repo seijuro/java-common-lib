@@ -1,13 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class MaxReconnects implements JDBCConfigurationProperty {
+public class MaxReconnects extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -27,7 +25,7 @@ public class MaxReconnects implements JDBCConfigurationProperty {
             Integer value = Integer.class.cast(max);
 
             if (value >= 0) {
-                return new MaxReconnects(value);
+                return new MaxReconnects(PropertyName, value);
             }
         }
 
@@ -37,22 +35,14 @@ public class MaxReconnects implements JDBCConfigurationProperty {
         return null;
     }
 
-    /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
 
     /**
      * C'tor
      *
+     * @param $name
      * @param $value
      */
-    protected MaxReconnects(int $value) {
-        this.propertyValue = Integer.toString($value);
+    protected MaxReconnects(String $name, int $value) {
+        super($name, Integer.toString($value));
     }
 }

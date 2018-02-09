@@ -1,15 +1,12 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Objects;
-
 @ToString
-public class ZeroDateTimeBehavior implements JDBCConfigurationProperty {
+public class ZeroDateTimeBehavior extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -49,7 +46,7 @@ public class ZeroDateTimeBehavior implements JDBCConfigurationProperty {
         if (behavior instanceof ZeroDateTimeBehavior.Value) {
             ZeroDateTimeBehavior.Value value = ZeroDateTimeBehavior.Value.class.cast(behavior);
 
-            return new ZeroDateTimeBehavior(value);
+            return new ZeroDateTimeBehavior(PropertyName, value);
         }
 
         //  Log (WARN)
@@ -59,22 +56,12 @@ public class ZeroDateTimeBehavior implements JDBCConfigurationProperty {
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param $behavior
      */
-    protected ZeroDateTimeBehavior(Value $behavior) {
-        this.propertyValue = $behavior.behavior;
+    protected ZeroDateTimeBehavior(String $name, Value $behavior) {
+        super($name, $behavior.behavior);
     }
 }

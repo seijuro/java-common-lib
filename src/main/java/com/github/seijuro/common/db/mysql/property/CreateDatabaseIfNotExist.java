@@ -1,13 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class CreateDatabaseIfNotExist implements JDBCConfigurationProperty {
+public class CreateDatabaseIfNotExist extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -24,28 +22,19 @@ public class CreateDatabaseIfNotExist implements JDBCConfigurationProperty {
      */
     public static CreateDatabaseIfNotExist create(Object flag) {
         if (flag instanceof Boolean) {
-            return new CreateDatabaseIfNotExist(Boolean.class.cast(flag));
+            return new CreateDatabaseIfNotExist(PropertyName, Boolean.class.cast(flag));
         }
 
         return null;
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param $value
      */
-    protected CreateDatabaseIfNotExist(boolean $value) {
-        this.propertyValue = Boolean.toString($value);
+    protected CreateDatabaseIfNotExist(String $name, boolean $value) {
+        super($name, Boolean.toString($value));
     }
 }

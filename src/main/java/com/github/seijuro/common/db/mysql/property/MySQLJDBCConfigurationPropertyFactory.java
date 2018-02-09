@@ -22,6 +22,7 @@ public class MySQLJDBCConfigurationPropertyFactory {
         REQUIRE_SSL(RequireSSL::create),
         USE_SSL(UseSSL::create),
         USE_UNICODE(UseUnicode::create),
+        USE_COMPRESSION(UseCompression::create),
         //  String
         CHARACTER_ENCODING(CharacterEncoding::create),
         CHARACTERSET_RESULTS(CharacterSetResults::create),

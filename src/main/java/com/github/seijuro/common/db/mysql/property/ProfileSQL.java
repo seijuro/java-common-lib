@@ -1,13 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class ProfileSQL implements JDBCConfigurationProperty {
+public class ProfileSQL extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -24,28 +22,19 @@ public class ProfileSQL implements JDBCConfigurationProperty {
      */
     public static ProfileSQL create(Object flag) {
         if (flag instanceof Boolean) {
-            return new ProfileSQL(Boolean.class.cast(flag));
+            return new ProfileSQL(PropertyName, Boolean.class.cast(flag));
         }
 
         return null;
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param $value
      */
-    protected ProfileSQL(boolean $value) {
-        this.propertyValue = Boolean.toString($value);
+    protected ProfileSQL(String $name, boolean $value) {
+        super($name, Boolean.toString($value));
     }
 }

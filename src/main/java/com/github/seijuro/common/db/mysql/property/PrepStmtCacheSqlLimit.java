@@ -1,14 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import scala.Int;
 
 @ToString
-public class PrepStmtCacheSqlLimit implements JDBCConfigurationProperty {
+public class PrepStmtCacheSqlLimit extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -28,7 +25,7 @@ public class PrepStmtCacheSqlLimit implements JDBCConfigurationProperty {
             Integer value = Integer.class.cast(limit);
 
             if (value > 0) {
-                return new PrepStmtCacheSqlLimit(value);
+                return new PrepStmtCacheSqlLimit(PropertyName, value);
             }
         }
 
@@ -39,21 +36,11 @@ public class PrepStmtCacheSqlLimit implements JDBCConfigurationProperty {
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
      * @param limit
      */
-    protected PrepStmtCacheSqlLimit(int limit) {
-        this.propertyValue = Integer.toString(limit);
+    protected PrepStmtCacheSqlLimit(String $name, int limit) {
+        super($name, Integer.toString(limit));
     }
 }

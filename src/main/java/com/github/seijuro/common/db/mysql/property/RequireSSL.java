@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class RequireSSL implements JDBCConfigurationProperty {
+public class RequireSSL extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -24,28 +24,19 @@ public class RequireSSL implements JDBCConfigurationProperty {
      */
     public static RequireSSL create(Object flag) {
         if (flag instanceof Boolean) {
-            return new RequireSSL(Boolean.class.cast(flag));
+            return new RequireSSL(PropertyName, Boolean.class.cast(flag));
         }
 
         return null;
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param $value
      */
-    protected RequireSSL(boolean $value) {
-        this.propertyValue = Boolean.toString($value);
+    protected RequireSSL(String $name, boolean $value) {
+        super($name, Boolean.toString($value));
     }
 }

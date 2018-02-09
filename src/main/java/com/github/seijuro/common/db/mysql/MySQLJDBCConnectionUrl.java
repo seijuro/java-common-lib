@@ -2,6 +2,7 @@ package com.github.seijuro.common.db.mysql;
 
 import com.github.seijuro.common.db.JDBCConfigurationProperty;
 import com.github.seijuro.common.db.JDBCConnectionUrl;
+import com.github.seijuro.common.db.mysql.property.MySQLJDBCConfigurationProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,9 +33,9 @@ public class MySQLJDBCConnectionUrl implements JDBCConnectionUrl {
      * @param option
      */
     @SuppressWarnings("unused")
-    public void setConfigurationProperty(JDBCConfigurationProperty option) {
+    public void setConfigurationProperty(MySQLJDBCConfigurationProperty option) {
         if (Objects.nonNull(option)) {
-            this.configurationProperties.setProperty(option.getPropertyName(), option.getPropertyValue());
+            this.configurationProperties.put(option.getPropertyName(), option);
         }
     }
 
@@ -62,16 +63,16 @@ public class MySQLJDBCConnectionUrl implements JDBCConnectionUrl {
             String othersString = configurationProperties.entrySet()
                     .stream()
                     .map(entry -> {
-                        String mapped = new StringBuffer()
-                                .append(entry.getKey())
-                                .append("=")
-                                .append(entry.getValue())
-                                .toString();
+                        if (entry.getValue() instanceof MySQLJDBCConfigurationProperty) {
+                            MySQLJDBCConfigurationProperty property = MySQLJDBCConfigurationProperty.class.cast(entry.getValue());
+                            return property.toConnectionUrl();
+                        }
 
-                        return mapped;
+                        return StringUtils.EMPTY;
                     })
                     .reduce(StringUtils.EMPTY, (lhs, rhs) -> {
-                        if (!StringUtils.isEmpty(lhs)) {
+                        if (StringUtils.isNotEmpty(lhs) &&
+                                StringUtils.isNotEmpty(rhs)) {
                             String reduced = new StringBuffer()
                                     .append(lhs)
                                     .append("&")
@@ -80,7 +81,7 @@ public class MySQLJDBCConnectionUrl implements JDBCConnectionUrl {
                             return reduced;
                         }
 
-                        return rhs;
+                        return StringUtils.isNotEmpty(rhs) ? rhs : lhs;
                     });
 
             if (othersString.length() > 0) {    sb.append("?").append(othersString);    }

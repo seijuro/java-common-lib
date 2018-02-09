@@ -1,13 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class SocketTimeout implements JDBCConfigurationProperty {
+public class SocketTimeout extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -27,7 +25,7 @@ public class SocketTimeout implements JDBCConfigurationProperty {
             Long value = Long.class.cast(millis);
 
             if (value >= 0L) {
-                return new SocketTimeout(value);
+                return new SocketTimeout(PropertyName, value);
             }
         }
 
@@ -38,21 +36,12 @@ public class SocketTimeout implements JDBCConfigurationProperty {
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param millis
      */
-    protected SocketTimeout(long millis) {
-        this.propertyValue = Long.toString(millis);
+    protected SocketTimeout(String $name, long millis) {
+        super($name, Long.toString(millis));
     }
 }

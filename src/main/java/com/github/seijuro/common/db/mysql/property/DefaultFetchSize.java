@@ -1,13 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class DefaultFetchSize implements JDBCConfigurationProperty {
+public class DefaultFetchSize extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -27,7 +25,7 @@ public class DefaultFetchSize implements JDBCConfigurationProperty {
             Integer casted = Integer.class.cast(size);
 
             if (casted > 0) {
-                return new DefaultFetchSize(casted);
+                return new DefaultFetchSize(PropertyName, casted);
             }
         }
 
@@ -38,21 +36,12 @@ public class DefaultFetchSize implements JDBCConfigurationProperty {
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param size
      */
-    protected DefaultFetchSize(int size) {
-        this.propertyValue = Integer.toString(size);
+    protected DefaultFetchSize(String $name, int size) {
+        super($name, Integer.toString(size));
     }
 }

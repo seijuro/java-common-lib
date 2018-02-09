@@ -1,13 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class UseUnicode implements JDBCConfigurationProperty {
+public class UseUnicode extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -24,28 +22,19 @@ public class UseUnicode implements JDBCConfigurationProperty {
      */
     public static UseUnicode create(Object flag) {
         if (flag instanceof Boolean) {
-            return new UseUnicode(Boolean.class.cast(flag));
+            return new UseUnicode(PropertyName, Boolean.class.cast(flag));
         }
 
         return null;
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param $value
      */
-    protected UseUnicode(boolean $value) {
-        this.propertyValue = Boolean.toString($value);
+    protected UseUnicode(String $name, boolean $value) {
+        super($name, Boolean.toString($value));
     }
 }

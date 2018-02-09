@@ -1,13 +1,11 @@
 package com.github.seijuro.common.db.mysql.property;
 
-import com.github.seijuro.common.db.JDBCConfigurationProperty;
-import lombok.Getter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ToString
-public class MaxQuerySizeToLog implements JDBCConfigurationProperty {
+public class MaxQuerySizeToLog extends MySQLJDBCConfigurationProperty {
     /**
      * Class Instance.
      */
@@ -27,7 +25,7 @@ public class MaxQuerySizeToLog implements JDBCConfigurationProperty {
             Integer value = Integer.class.cast(size);
 
             if (value > 0) {
-                return new MaxQuerySizeToLog(value);
+                return new MaxQuerySizeToLog(PropertyName, value);
             }
         }
 
@@ -38,21 +36,12 @@ public class MaxQuerySizeToLog implements JDBCConfigurationProperty {
     }
 
     /**
-     * Instance Properties
-     */
-    @Getter
-    private final String propertyValue;
-
-    public java.lang.String getPropertyName() {
-        return PropertyName;
-    }
-
-    /**
      * C'tor
      *
+     * @param $name
      * @param size
      */
-    protected MaxQuerySizeToLog(int size) {
-        this.propertyValue = Integer.toString(size);
+    protected MaxQuerySizeToLog(String $name, int size) {
+        super($name, Integer.toString(size));
     }
 }
