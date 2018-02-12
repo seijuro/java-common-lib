@@ -2,8 +2,11 @@ package com.github.seijuro.common.db.mysql.property;
 
 import lombok.Getter;
 import lombok.ToString;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 @ToString
 public class ZeroDateTimeBehavior extends MySQLJDBCConfigurationProperty {
@@ -15,7 +18,7 @@ public class ZeroDateTimeBehavior extends MySQLJDBCConfigurationProperty {
     public static final String PropertyName = "zeroDateTimeBehavior";
     public static final String DefaultValue = "exception";
 
-    public enum Value {
+    public enum Behaviors {
         EXCEPTION("exception"),
         ROUND("round"),
         CONVERT_TO_NULL("convertToNull");
@@ -31,7 +34,7 @@ public class ZeroDateTimeBehavior extends MySQLJDBCConfigurationProperty {
          *
          * @param $behavior
          */
-        Value(String $behavior) {
+        Behaviors(String $behavior) {
             this.behavior = $behavior;
         }
     }
@@ -39,20 +42,40 @@ public class ZeroDateTimeBehavior extends MySQLJDBCConfigurationProperty {
     /**
      * create {@link CharacterEncoding} instance.
      *
-     * @param behavior
+     * @param $behavior
      * @return
+     * @throws IllegalArgumentException
      */
-    public static ZeroDateTimeBehavior create(Object behavior) {
-        if (behavior instanceof ZeroDateTimeBehavior.Value) {
-            ZeroDateTimeBehavior.Value value = ZeroDateTimeBehavior.Value.class.cast(behavior);
+    public static ZeroDateTimeBehavior create(String $behavior) throws IllegalArgumentException {
+        if (StringUtils.isNotEmpty($behavior)) {
+            for (Behaviors behavior : Behaviors.values()) {
+                behavior.getBehavior().equalsIgnoreCase($behavior);
 
-            return new ZeroDateTimeBehavior(PropertyName, value);
+                return new ZeroDateTimeBehavior(PropertyName, behavior.behavior);
+            }
         }
 
-        //  Log (WARN)
-        LOG.warn("Param, behavior, is null.");
+        String msg = String.format("Param, behavior, must be one of {%s, %s, %s}.", Behaviors.EXCEPTION.getBehavior(), Behaviors.ROUND.getBehavior(), Behaviors.CONVERT_TO_NULL.getBehavior());
 
-        return null;
+        //  Log (WARN)
+        LOG.warn(msg);
+
+        throw new IllegalArgumentException(msg);
+    }
+
+    /**
+     * create {@link CharacterEncoding} instance.
+     *
+     * @param behavior
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public static ZeroDateTimeBehavior create(Behaviors behavior) throws IllegalArgumentException {
+        if (Objects.nonNull(behavior)) {
+            return new ZeroDateTimeBehavior(PropertyName, behavior.behavior);
+        }
+
+        throw new IllegalArgumentException("Param, behavior, must not be null.");
     }
 
     /**
@@ -61,7 +84,7 @@ public class ZeroDateTimeBehavior extends MySQLJDBCConfigurationProperty {
      * @param $name
      * @param $behavior
      */
-    protected ZeroDateTimeBehavior(String $name, Value $behavior) {
-        super($name, $behavior.behavior);
+    protected ZeroDateTimeBehavior(String $name, String $behavior) {
+        super($name, $behavior);
     }
 }

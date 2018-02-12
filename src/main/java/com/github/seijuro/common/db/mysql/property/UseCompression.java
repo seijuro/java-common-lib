@@ -1,6 +1,7 @@
 package com.github.seijuro.common.db.mysql.property;
 
 import lombok.ToString;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,30 @@ public class UseCompression extends MySQLJDBCConfigurationProperty {
     private static final Logger LOG = LoggerFactory.getLogger(UseCompression.class);
 
     public static final String PropertyName = "useCompression";
-    public static final boolean DefaultValue = false;
+    public static final String DefaultValue = Boolean.toString(false);
+
+    /**
+     * create {@link UseCompression} instance.
+     *
+     * @param flag
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public static UseCompression create(String flag) throws IllegalArgumentException {
+        if (StringUtils.isNotEmpty(flag)) {
+            if (Boolean.TRUE.toString().equalsIgnoreCase(flag) ||
+                    Boolean.FALSE.toString().equalsIgnoreCase(flag)) {
+                return new UseCompression(PropertyName, flag);
+            }
+        }
+
+        String msg = String.format("Param, flag, is not valid (flag : %s, default : %s).", flag, DefaultValue);
+
+        //  Log (WARN)
+        LOG.warn(msg);
+
+        throw new IllegalArgumentException(msg);
+    }
 
     /**
      * create {@link UseCompression} instance.
@@ -20,14 +44,8 @@ public class UseCompression extends MySQLJDBCConfigurationProperty {
      * @param flag
      * @return
      */
-    public static UseCompression create(Object flag) {
-        if (flag instanceof Boolean) {
-            Boolean value = Boolean.class.cast(flag);
-
-            return new UseCompression(PropertyName, value);
-        }
-
-        return null;
+    public static UseCompression create(boolean flag) {
+        return new UseCompression(PropertyName, Boolean.toString(flag));
     }
 
     /**
@@ -36,7 +54,7 @@ public class UseCompression extends MySQLJDBCConfigurationProperty {
      * @param $name
      * @param $value
      */
-    protected UseCompression(String $name, boolean $value) {
-        super($name, Boolean.toString($value));
+    protected UseCompression(String $name, String $value) {
+        super($name, $value);
     }
 }

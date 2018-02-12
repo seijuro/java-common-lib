@@ -13,7 +13,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
 
             //  AutoReconnect
             {
-                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.AUTO_RECONNECT, true);
+                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.AUTO_RECONNECT, "true");
 
                 Assert.assertTrue(property instanceof AutoReconnect);
                 Assert.assertEquals(Boolean.toString(true), property.getPropertyValue());
@@ -25,7 +25,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
 
             //  CachePrepStmts
             {
-                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.CACHE_PREPRARED_STATEMENTS, false);
+                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.CACHE_PREPRARED_STATEMENTS, "false");
 
                 Assert.assertTrue(property instanceof CachePrepStmts);
                 Assert.assertEquals(Boolean.toString(false), property.getPropertyValue());
@@ -37,7 +37,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
 
             //  CreateDatabaseIfNotExist
             {
-                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.CREATE_DATABASE_IF_NOT_EXIST, true);
+                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.CREATE_DATABASE_IF_NOT_EXIST, "true");
 
                 Assert.assertTrue(property instanceof CreateDatabaseIfNotExist);
                 Assert.assertEquals(Boolean.toString(true), property.getPropertyValue());
@@ -49,7 +49,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
 
             //  ProfileSQL
             {
-                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.PROFILE_SQL, false);
+                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.PROFILE_SQL, "false");
 
                 Assert.assertTrue(property instanceof ProfileSQL);
                 Assert.assertEquals(Boolean.toString(false), property.getPropertyValue());
@@ -61,7 +61,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
 
             //  RequireSSL
             {
-                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.REQUIRE_SSL, true);
+                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.REQUIRE_SSL, "true");
 
                 Assert.assertTrue(property instanceof RequireSSL);
                 Assert.assertEquals(Boolean.toString(true), property.getPropertyValue());
@@ -73,7 +73,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
 
             //  UseSSL
             {
-                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.USE_SSL, false);
+                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.USE_SSL, "false");
 
                 Assert.assertTrue(property instanceof UseSSL);
                 Assert.assertEquals(Boolean.toString(false), property.getPropertyValue());
@@ -86,7 +86,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
 
             //  Use Unicode
             {
-                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.USE_UNICODE, true);
+                property = MySQLJDBCConfigurationPropertyFactory.create(MySQLJDBCConfigurationPropertyFactory.Property.USE_UNICODE, "true");
 
                 Assert.assertTrue(property instanceof UseUnicode);
                 Assert.assertEquals(Boolean.toString(true), property.getPropertyValue());
@@ -95,20 +95,6 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
                 System.out.println("Testing a configuration property 'use unicode' ... [OK]");
                 System.out.println("property : " + property);
             }
-
-            return;
-        }
-        catch (Exception excp) {
-            excp.printStackTrace();
-        }
-
-        Assert.fail();
-    }
-
-    @Test
-    public void testFactoryCreateStringTypeProperty() {
-        try {
-            JDBCConfigurationProperty property;
 
             //  charset encoding
             {
@@ -119,6 +105,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
                 Assert.assertEquals("characterEncoding", property.getPropertyName());
 
                 System.out.println("Testing a configuration property 'character encoding' ... [OK]");
+                System.out.println("property : " + property);
             }
 
             //  charset results
@@ -130,6 +117,7 @@ public class MySQLJDBCConfigurationPropertyFactoryTest {
                 Assert.assertEquals("characterSetResults", property.getPropertyName());
 
                 System.out.println("Testing a configuration property 'character results' ... [OK]");
+                System.out.println("property : " + property);
             }
 
             return;

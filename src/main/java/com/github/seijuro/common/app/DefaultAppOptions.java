@@ -135,6 +135,13 @@ public class DefaultAppOptions {
     @Setter(AccessLevel.PROTECTED)
     private String tmp = null;
 
+
+    /**
+     * C'tor
+     */
+    protected DefaultAppOptions() {
+    }
+
     /**
      * returns the filepath to application config file whose name is 'app.conf'.
      * If not set 'config' option, it return 'default' filepath.

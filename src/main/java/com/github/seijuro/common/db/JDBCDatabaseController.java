@@ -35,7 +35,7 @@ public abstract class JDBCDatabaseController {
     private final String user;
     private final String password;
 
-    private Connection connection;
+    protected Connection connection;
 
     /**
      * C'tor
@@ -48,10 +48,20 @@ public abstract class JDBCDatabaseController {
         this.password = $password;
     }
 
+    /**
+     * connect to database
+     *
+     * @throws SQLException
+     */
     public void connect() throws SQLException {
         this.connection = DriverManager.getConnection(this.connectionUrl, this.user, this.password);
     }
 
+    /**
+     * close connection.
+     *
+     * @throws SQLException
+     */
     public void close() throws SQLException {
         if (Objects.nonNull(this.connection) &&
                 this.connection.isClosed()) {
@@ -59,5 +69,44 @@ public abstract class JDBCDatabaseController {
         }
 
         this.connection = null;
+    }
+
+    /**
+     * set auto-commit enabled.
+     *
+     * @param flag
+     * @throws SQLException
+     */
+    public void setAutoCommit(boolean flag) throws SQLException {
+        if (Objects.nonNull(this.connection) &&
+                !this.connection.isClosed()) {
+            this.connection.setAutoCommit(flag);
+        }
+    }
+
+    /**
+     * commit
+     *
+     * @throws SQLException
+     */
+    public void commit() throws SQLException {
+        if (Objects.nonNull(this.connection) &&
+                !this.connection.isClosed() &&
+                !this.connection.getAutoCommit()) {
+            this.connection.commit();
+        }
+    }
+
+    /**
+     * roll-back
+     *
+     * @throws SQLException
+     */
+    public void rollback() throws SQLException {
+        if (Objects.nonNull(this.connection) &&
+                !this.connection.isClosed() &&
+                !this.connection.getAutoCommit()) {
+            this.connection.rollback();
+        }
     }
 }

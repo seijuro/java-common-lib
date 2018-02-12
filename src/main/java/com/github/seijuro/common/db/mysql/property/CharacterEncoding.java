@@ -1,6 +1,7 @@
 package com.github.seijuro.common.db.mysql.property;
 
 import lombok.ToString;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,15 +21,17 @@ public class CharacterEncoding extends MySQLJDBCConfigurationProperty {
      * @param encoding
      * @return
      */
-    public static CharacterEncoding create(Object encoding) {
-        if (encoding instanceof String) {
+    public static CharacterEncoding create(String encoding) throws IllegalArgumentException {
+        if (StringUtils.isNotEmpty(encoding)) {
             return new CharacterEncoding(PropertyName, String.class.cast(encoding));
         }
 
-        //  Log (WARN)
-        LOG.warn("Param, encoding, is empty (default : {}).", DefaultValue);
+        String msg = String.format("Param, encoding, is empty (default : {}).", DefaultValue);
 
-        return null;
+        //  Log (WARN)
+        LOG.warn(msg);
+
+        throw new IllegalArgumentException(msg);
     }
 
     /**

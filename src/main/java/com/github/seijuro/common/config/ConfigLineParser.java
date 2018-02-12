@@ -36,6 +36,7 @@ public class ConfigLineParser {
                     String key = tokens[0];
                     String value = tokens[1];
 
+                    //  throw IllegalArgumentException, if there aren't elements whose key is equals to the parameter, key.
                     T config = T.valueOf(clazz, key);
 
                     if (Objects.nonNull(config)) {
@@ -47,6 +48,7 @@ public class ConfigLineParser {
                 }
             }
         }
+
 
         return null;
     }

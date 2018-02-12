@@ -1,6 +1,7 @@
 package com.github.seijuro.common.db.mysql.property;
 
 import lombok.ToString;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,7 @@ public class MaxQuerySizeToLog extends MySQLJDBCConfigurationProperty {
     private static final Logger LOG = LoggerFactory.getLogger(MaxQuerySizeToLog.class);
 
     public static final String PropertyName = "maxQuerySizeToLog";
-    public static final int DefaultValue = 2048;
+    public static final String DefaultValue = Integer.toString(2048);
 
     /**
      * create {@link MaxQuerySizeToLog} instance.
@@ -20,19 +21,46 @@ public class MaxQuerySizeToLog extends MySQLJDBCConfigurationProperty {
      * @param size
      * @return
      */
-    public static MaxQuerySizeToLog create(Object size) {
-        if (size instanceof Integer) {
-            Integer value = Integer.class.cast(size);
+    public static MaxQuerySizeToLog create(String size) throws IllegalArgumentException {
+        try {
+            if (StringUtils.isNotEmpty(size)) {
+                int value = Integer.parseInt(size);
 
-            if (value > 0) {
-                return new MaxQuerySizeToLog(PropertyName, value);
+                if (value > 0) {
+                    return new MaxQuerySizeToLog(PropertyName, size);
+                }
             }
         }
+        catch (NumberFormatException nfexcp) {
+            nfexcp.printStackTrace();
+        }
+
+        String msg = String.format("Param, size, must be greater than 0 (size : %s, default : %s)", size, DefaultValue);
 
         //  Log (WARN)
-        LOG.warn("Param, size, must be greater than 0 (size : {}, default : {})", size, DefaultValue);
+        LOG.warn(msg);
 
-        return null;
+        throw new IllegalArgumentException(msg);
+    }
+
+
+    /**
+     * create {@link MaxQuerySizeToLog} instance.
+     *
+     * @param size
+     * @return
+     */
+    public static MaxQuerySizeToLog create(int size) {
+        if (size > 0) {
+            return new MaxQuerySizeToLog(PropertyName, Integer.toString(size));
+        }
+
+        String msg = String.format("Param, size, must be greater than 0 (size : %d, default : %s)", size, DefaultValue);
+
+        //  Log (WARN)
+        LOG.warn(msg);
+
+        throw new IllegalArgumentException(msg);
     }
 
     /**
@@ -41,7 +69,7 @@ public class MaxQuerySizeToLog extends MySQLJDBCConfigurationProperty {
      * @param $name
      * @param size
      */
-    protected MaxQuerySizeToLog(String $name, int size) {
-        super($name, Integer.toString(size));
+    protected MaxQuerySizeToLog(String $name, String size) {
+        super($name, size);
     }
 }

@@ -40,6 +40,4 @@ public class MySQLJDBCController extends JDBCDatabaseController {
     protected MySQLJDBCController(MySQLJDBCConnectionUrl $url) {
         super($url, $url.getUser(), $url.getPassword());
     }
-
-
 }
